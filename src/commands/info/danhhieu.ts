@@ -3,7 +3,9 @@ import {
   ChatInputCommandInteraction, 
   EmbedBuilder, 
   ActionRowBuilder, 
-  StringSelectMenuBuilder
+  StringSelectMenuBuilder,
+  ButtonBuilder,
+  ButtonStyle
 } from 'discord.js';
 import User from '../../models/User.js';
 import { getRankName, updateGuildMemberRole } from '../../utils/levelUtils.js';
@@ -79,7 +81,20 @@ export default {
 
         const row = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(selectMenu);
 
-        return { embeds: [embed], components: [row] };
+        // Tạo Nút bấm phụ trợ
+        const btnRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
+          new ButtonBuilder()
+            .setCustomId('danhhieu_revert')
+            .setLabel('Trang Bị Mặc Định 🌾')
+            .setStyle(ButtonStyle.Secondary)
+            .setDisabled(active === levelRank),
+          new ButtonBuilder()
+            .setCustomId('danhhieu_refresh')
+            .setLabel('Làm Mới 🔄')
+            .setStyle(ButtonStyle.Primary)
+        );
+
+        return { embeds: [embed], components: [row, btnRow] };
       }
 
       // Gửi phản hồi ban đầu
@@ -93,6 +108,7 @@ export default {
       });
 
       collector.on('collect', async (i) => {
+        // Xử lý Select Menu
         if (i.isStringSelectMenu() && i.customId === 'danhhieu_select') {
           const selectedValue = i.values[0];
 
@@ -126,6 +142,48 @@ export default {
             embeds: [updatedPayload.embeds[0], successEmbed],
             components: updatedPayload.components
           });
+        }
+
+        // Xử lý Buttons
+        if (i.isButton()) {
+          if (i.customId === 'danhhieu_revert') {
+            const currentUser = await User.findOne({ discordId: userId });
+            if (!currentUser) return;
+
+            const defaultTitle = getRankName(currentUser.level);
+            currentUser.title = defaultTitle;
+            await currentUser.save();
+
+            // Đồng bộ biệt danh và vai trò Discord ngay lập tức
+            if (interaction.guild && interaction.member) {
+              await updateGuildMemberRole(interaction.member as any, currentUser.level);
+            }
+
+            // Cập nhật giao diện mới
+            const updatedPayload = generateTitleEmbedAndComponents(defaultTitle, currentUser.titlesOwned || [], defaultTitle);
+            
+            const successEmbed = new EmbedBuilder()
+              .setTitle('🌾 ĐỒNG BỘ MẶC ĐỊNH THÀNH CÔNG 🌾')
+              .setDescription(`Đã đưa danh hiệu về mặc định theo cấp tu vi: **${defaultTitle}**`)
+              .setColor('#3B82F6');
+
+            await i.update({
+              embeds: [updatedPayload.embeds[0], successEmbed],
+              components: updatedPayload.components
+            });
+          } else if (i.customId === 'danhhieu_refresh') {
+            const currentUser = await User.findOne({ discordId: userId });
+            if (!currentUser) return;
+
+            const defaultTitle = getRankName(currentUser.level);
+            const active = currentUser.title || defaultTitle;
+            const updatedPayload = generateTitleEmbedAndComponents(active, currentUser.titlesOwned || [], defaultTitle);
+
+            await i.update({
+              embeds: updatedPayload.embeds,
+              components: updatedPayload.components
+            });
+          }
         }
       });
 
