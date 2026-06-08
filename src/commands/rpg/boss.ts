@@ -242,7 +242,11 @@ export default {
               userToReward.exp += finalExpEarned;
               
               if (idx === 0) {
-                userToReward.title = `🥇 Tiên Sát Thần Ma • ${userToReward.characterName}`;
+                const bossTitle = `🥇 Tiên Sát Thần Ma • ${userToReward.characterName}`;
+                userToReward.title = bossTitle;
+                if (!userToReward.titlesOwned.includes(bossTitle)) {
+                  userToReward.titlesOwned.push(bossTitle);
+                }
               }
               await userToReward.save();
 

@@ -91,6 +91,9 @@ export default {
       user.exp += expAward;
       if (titleReward) {
         user.title = titleReward;
+        if (!user.titlesOwned.includes(titleReward)) {
+          user.titlesOwned.push(titleReward);
+        }
       }
 
       const levelUpResult = await checkLevelUp(user, interaction.member as any);
@@ -98,6 +101,9 @@ export default {
       // Nếu có danh hiệu thưởng từ Gacha thì giữ nguyên danh hiệu đó thay vì bị đè bởi level title mới
       if (titleReward) {
         user.title = titleReward;
+        if (!user.titlesOwned.includes(titleReward)) {
+          user.titlesOwned.push(titleReward);
+        }
       }
       
       await user.save();

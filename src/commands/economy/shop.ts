@@ -187,11 +187,19 @@ export default {
             currentUser.combatPower += 5000;
             extraResultText = `🔮 Cửu chuyển kim đan đại mạch thông suốt! Lực chiến bay cao thêm **+5,000 Linh lực**.`;
           } else if (selectedItem.id === 'vip_rank_pass') {
-            currentUser.title = `👑 VIP • ${currentUser.title}`;
+            const newTitle = `👑 VIP • ${currentUser.title}`;
+            currentUser.title = newTitle;
+            if (!currentUser.titlesOwned.includes(newTitle)) {
+              currentUser.titlesOwned.push(newTitle);
+            }
             extraResultText = `👑 Bạn đã có được thân phận tôn quý **VIP Tông Môn** lẫy lừng! Chúc mừng tôn phong.`;
             shouldUpdateRole = true;
           } else if (selectedItem.id === 'exclusive_title') {
-            currentUser.title = `🏵️ Đệ Nhất Ma Tôn Hoàng Kim 🏵️`;
+            const newTitle = `🏵️ Đệ Nhất Ma Tôn Hoàng Kim 🏵️`;
+            currentUser.title = newTitle;
+            if (!currentUser.titlesOwned.includes(newTitle)) {
+              currentUser.titlesOwned.push(newTitle);
+            }
             extraResultText = `🔥 Bạn đã hấp thụ hoàn chỉnh Chí Tôn Thần Hoàng Ấn! Danh hiệu được quy đổi thành **Đệ Nhất Ma Tôn Hoàng Kim** cực ngầu!`;
             shouldUpdateRole = true;
           }

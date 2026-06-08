@@ -19,6 +19,7 @@ export interface IUser extends Document {
   lastCoinflip: Date | null;
   lastSlot: Date | null;
   title: string;
+  titlesOwned: string[];
   gachaScrolls: number;
   createdAt: Date;
   updatedAt: Date;
@@ -44,6 +45,7 @@ const UserSchema: Schema = new Schema(
     lastCoinflip: { type: Date, default: null },
     lastSlot: { type: Date, default: null },
     title: { type: String, default: 'Tân Nhân' },
+    titlesOwned: { type: [String], default: [] },
     gachaScrolls: { type: Number, default: 0 }
   },
   { timestamps: true }
