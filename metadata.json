@@ -1,0 +1,6 @@
+{
+  "name": "De Tong Discord Bot",
+  "description": "Discord bot RPG sâm nhập thế giới Đấu La Đại Lục và hệ thống kinh tế độc đáo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
