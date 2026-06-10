@@ -8,6 +8,7 @@ export interface IEventParticipant {
 }
 
 export interface IEvent extends Document {
+  guildId: string; // Multi-guild mapping
   eventId: string;
   title: string;
   description: string;
@@ -32,6 +33,7 @@ const EventParticipantSchema = new Schema({
 
 const EventSchema: Schema = new Schema(
   {
+    guildId: { type: String, required: true, index: true },
     eventId: { type: String, required: true, unique: true, index: true },
     title: { type: String, required: true },
     description: { type: String, required: true },

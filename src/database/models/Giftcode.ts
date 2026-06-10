@@ -6,7 +6,7 @@ export interface IGiftcode extends Document {
   rewardExp: number;
   maxUses: number;
   usedCount: number;
-  usedBy: string[]; // List of user discordIds who claimed it
+  usedBy: string[]; // List of Discord User IDs
   createdAt: Date;
   updatedAt: Date;
 }
@@ -14,14 +14,14 @@ export interface IGiftcode extends Document {
 const GiftcodeSchema: Schema = new Schema(
   {
     code: { type: String, required: true, unique: true, index: true },
-    rewardCoins: { type: Number, required: true, default: 0 },
-    rewardExp: { type: Number, required: true, default: 0 },
-    maxUses: { type: Number, required: true, default: 100 },
+    rewardCoins: { type: Number, required: true },
+    rewardExp: { type: Number, required: true },
+    maxUses: { type: Number, required: true },
     usedCount: { type: Number, default: 0 },
-    usedBy: [{ type: String }]
+    usedBy: { type: [String], default: [] }
   },
   { timestamps: true }
 );
 
-const Giftcode: Model<IGiftcode> = mongoose.models.Giftcode || mongoose.model<IGiftcode>('Giftcode', GiftcodeSchema);
-export default Giftcode;
+const GiftcodeModel: Model<IGiftcode> = mongoose.models.Giftcode || mongoose.model<IGiftcode>('Giftcode', GiftcodeSchema);
+export default GiftcodeModel;

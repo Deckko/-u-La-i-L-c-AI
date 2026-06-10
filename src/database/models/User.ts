@@ -51,7 +51,7 @@ const UserSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-// Mức độ ưu tiên cao về tìm kiếm bảng ngọc xếp hạng tiên bàn
+// Indexes optimized for leaderboard lookup
 UserSchema.index({ level: -1, exp: -1 });
 UserSchema.index({ balance: -1 });
 

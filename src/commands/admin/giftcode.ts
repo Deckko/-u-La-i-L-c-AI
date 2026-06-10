@@ -4,7 +4,7 @@ import {
   EmbedBuilder, 
   PermissionFlagsBits 
 } from 'discord.js';
-import Giftcode from '../../models/Giftcode.js';
+import Giftcode from '../../database/models/Giftcode.js';
 
 export default {
   cooldown: 3,

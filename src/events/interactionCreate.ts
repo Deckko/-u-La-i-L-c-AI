@@ -1,18 +1,22 @@
 import { Interaction, EmbedBuilder, Collection, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
-import User from '../models/User.js';
-import EventModel from '../models/Event.js';
-import { getRankName, updateGuildMemberRole } from '../utils/levelUtils.js';
+import User from '../database/models/User.js';
+import EventModel from '../database/models/Event.js';
+import { levelService } from '../services/LevelService.js';
 import { checkUserSpamLimit } from '../utils/redisUtils.js';
+import { guildConfigRepository } from '../repositories/GuildConfigRepository.js';
+import logger from '../core/logger.js';
 
 export default {
   name: 'interactionCreate',
   async execute(interaction: Interaction, client: any) {
+    const guildId = interaction.guildId || 'global';
+    
     // =======================================================
     // 1. XỬ LÝ SLASH COMMAND
     // =======================================================
     if (interaction.isChatInputCommand()) {
       // 1.0 Chống spam lệnh toàn cục (Anti-Spam Macro Protection)
-      const spamStatus = await checkUserSpamLimit(interaction.user.id);
+      const spamStatus = await checkUserSpamLimit(interaction.user.id, guildId);
       if (spamStatus.isSpamming) {
         const spamEmbed = new EmbedBuilder()
           .setTitle('⚠️ CẢNH BÁO TÔNG MÔN ⚠️')
@@ -33,7 +37,7 @@ export default {
 
       const now = Date.now();
       const timestamps = cooldowns.get(command.data.name);
-      const defaultCooldownDuration = 3; // Cooldown mặc định 3 giây chống spam sập API
+      const defaultCooldownDuration = 3; 
       const cooldownAmount = (command.cooldown || defaultCooldownDuration) * 1000;
 
       if (timestamps.has(interaction.user.id)) {
@@ -48,7 +52,7 @@ export default {
             .setColor('#FF5555')
             .setFooter({ text: 'Hệ thống bảo hộ Linh Lực' });
 
-          return interaction.reply({ embeds: [cooldownEmbed], flags: [64] }); // Ephemeral
+          return interaction.reply({ embeds: [cooldownEmbed], flags: [64] }); 
         }
       }
 
@@ -56,11 +60,11 @@ export default {
       setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
       try {
-        console.log(`[Interaction] Bắt đầu thực thi lệnh /${interaction.commandName} cho user: ${interaction.user.tag} (${interaction.user.id})`);
+        logger.info(`[Interaction] Bắt đầu chạy lệnh /${interaction.commandName} cho user: ${interaction.user.tag} (Guild: ${guildId})`);
         await command.execute(interaction);
-        console.log(`[Interaction] Hoàn thành thực thi lệnh /${interaction.commandName} cho user: ${interaction.user.tag}`);
+        logger.info(`[Interaction] Hoàn thành chạy lệnh /${interaction.commandName} cho user: ${interaction.user.tag}`);
       } catch (error) {
-        console.error(`[Lỗi Lệnh] Có vấn đề đột ngột khi chạy lệnh /${interaction.commandName}:`, error);
+        logger.error(`[Lỗi Lệnh] Có vấn đề đột ngột khi chạy lệnh /${interaction.commandName}:`, error);
         
         const errEmbed = new EmbedBuilder()
           .setTitle('❌ THIÊN PHÁP TRỤC TRẶC ❌')
@@ -94,7 +98,6 @@ export default {
             return interaction.reply({ embeds: [errEmbed] });
           }
 
-          // Lưu hoặc cập nhật thông tin User trong DB
           let user = await User.findOne({ discordId: interaction.user.id });
           if (!user) {
             user = new User({
@@ -102,7 +105,7 @@ export default {
               username: interaction.user.username,
               level: 1,
               exp: 0,
-              balance: 100 // Tặng 100 xu khởi đầu hành trình Đấu La
+              balance: 100 
             });
           }
 
@@ -110,14 +113,12 @@ export default {
           user.serverName = serverName;
           user.combatPower = combatPower;
           user.registered = true;
-          user.title = getRankName(user.level);
+          user.title = levelService.getRankName(user.level);
 
           await user.save();
 
-          // Thiết lập Auto-Role nếu đang thuộc server Discord
           if (interaction.guild && interaction.member) {
-            // Ép kiểu vì interaction.member có thể là APIInteractionGuildMember
-            await updateGuildMemberRole(interaction.member as any, user.level);
+            await levelService.updateGuildMemberRole(interaction.member as any, user.level);
           }
 
           const successEmbed = new EmbedBuilder()
@@ -137,7 +138,7 @@ export default {
 
           await interaction.reply({ embeds: [successEmbed] });
         } catch (error) {
-          console.error('[Modal Submit] Lỗi đăng ký:', error);
+          logger.error('[Modal Submit] Lỗi đăng ký:', error);
           await interaction.reply({ content: 'Đăng ký thất bại, có lỗi xuất hiện khi lưu thiên thư.' });
         }
       }
@@ -157,7 +158,6 @@ export default {
             return interaction.reply({ embeds: [errEmbed] });
           }
 
-          // Cập nhật thông tin trong DB
           const user = await User.findOne({ discordId: interaction.user.id });
           if (!user) {
             return interaction.reply('Tông môn không tìm thấy hồ sơ của bạn.');
@@ -168,9 +168,8 @@ export default {
           user.combatPower = combatPower;
           await user.save();
 
-          // Đồng bộ lại biệt danh và vai trò
           if (interaction.guild && interaction.member) {
-            await updateGuildMemberRole(interaction.member as any, user.level);
+            await levelService.updateGuildMemberRole(interaction.member as any, user.level);
           }
 
           const successEmbed = new EmbedBuilder()
@@ -188,7 +187,7 @@ export default {
 
           await interaction.reply({ embeds: [successEmbed] });
         } catch (error) {
-          console.error('[Modal Submit] Lỗi sửa hồ sơ:', error);
+          logger.error('[Modal Submit] Lỗi sửa hồ sơ:', error);
           await interaction.reply({ content: 'Không thể cập nhật thông tin do lỗi bảo điển.' });
         }
       }
@@ -201,17 +200,16 @@ export default {
           const description = interaction.fields.getTextInputValue('sukien_description_input').trim();
           const style = interaction.fields.getTextInputValue('sukien_style_input').trim() || 'Huyền ảo đấu la';
 
-          // Tạo mã ID sự kiện ngẫu nhiên dạng SKXXXX
           const eventId = 'SK' + Math.floor(1000 + Math.random() * 9000);
 
-           // Tạo Prompt vẽ banner cho Pollinations AI (Tối ưu hóa cực kỳ đẳng cấp, loại bỏ chữ méo)
           const cleanStyle = style ? `, style ${style}` : '';
           const promptText = `masterpiece official art, epic glowing fantasy scene for event "${title}"${cleanStyle}, stunning visual, magical light effects, concept art, highly detailed, horizontal landscape layout, wide aspect ratio banner, cinematic lighting --no text, no watermark`;
           const encodedPrompt = encodeURIComponent(promptText);
           const bannerUrl = `https://image.pollinations.ai/p/${encodedPrompt}?width=1200&height=600&nologo=true&seed=${Math.floor(Math.random() * 1000000)}`;
 
-          // Lưu sự kiện vào MongoDB
+          // Khởi tạo model sự kiện có guildId
           const newEvent = new EventModel({
+            guildId,
             eventId,
             title,
             description,
@@ -225,7 +223,6 @@ export default {
 
           await newEvent.save();
 
-          // Tạo Embed thông báo
           const eventEmbed = new EmbedBuilder()
             .setTitle(`📣 SỰ KIỆN TÔNG MÔN KHAI MỞ: ${title.toUpperCase()} 📣`)
             .setDescription(`Hỡi chư vị đệ tử Đế Tông! Ban Quản Trị tông môn xin thông cáo khai mở đại sự kiện mới!\n\n${description}`)
@@ -240,21 +237,25 @@ export default {
             .setFooter({ text: `Người khởi tạo: ${interaction.user.username} • Hãy nhanh chóng ghi danh tham gia sự kiện!` })
             .setTimestamp();
 
-          // Tìm kênh thông báo sự kiện bằng ID cấu hình hoặc bằng tên (chứa từ khóa sự-kiện, sukien, event)
-          const configChannelId = process.env.DISCORD_EVENT_CHANNEL_ID;
-          let eventChannel = configChannelId ? interaction.guild?.channels.cache.get(configChannelId) : null;
+          // Lấy kênh sự kiện từ database
+          const guildConfig = await guildConfigRepository.getOrCreate(guildId);
+          let eventChannel = guildConfig.eventChannelId ? interaction.guild?.channels.cache.get(guildConfig.eventChannelId) : null;
 
-          if (!eventChannel) {
-            eventChannel = interaction.guild?.channels.cache.find(c => 
+          if (!eventChannel && interaction.guild) {
+            eventChannel = interaction.guild.channels.cache.find(c => 
               c.isTextBased() && (
                 c.name.toLowerCase().includes('sự-kiện') || 
                 c.name.toLowerCase().includes('sukien') || 
                 c.name.toLowerCase().includes('event')
               )
             );
+            
+            if (eventChannel && !guildConfig.eventChannelId) {
+              guildConfig.eventChannelId = eventChannel.id;
+              await guildConfig.save();
+            }
           }
 
-          // Tạo Nút ghi danh trực tiếp cực kỳ tiện lợi và đẳng cấp
           const registerBtn = new ButtonBuilder()
             .setCustomId(`event_register:${eventId}`)
             .setLabel('Ghi Danh Tham Gia ⚔️')
@@ -263,7 +264,6 @@ export default {
           const registerRow = new ActionRowBuilder<ButtonBuilder>().addComponents(registerBtn);
 
           if (eventChannel && eventChannel.isTextBased()) {
-            // Gửi vào kênh sự kiện và ping @everyone kèm nút click trực tiếp
             const annMsg = await (eventChannel as any).send({ content: '📢 @everyone', embeds: [eventEmbed], components: [registerRow] });
  
             newEvent.announcementChannelId = eventChannel.id;
@@ -278,7 +278,6 @@ export default {
  
             await interaction.reply({ embeds: [successEmbed] });
           } else {
-            // Gửi ở kênh hiện tại và cảnh báo thiếu kênh sự kiện kèm nút click
             const warningEmbed = new EmbedBuilder()
               .setTitle('💮 SỰ KIỆN ĐÃ ĐƯỢC PHÁT HÀNH 💮')
               .setDescription(`⚠️ Tông môn chưa tìm thấy kênh \`#sự-kiện\`. Sự kiện **${title}** (Mã ID: \`${eventId}\`) đã được phát hành tại đây và thông báo @everyone! Hãy tạo kênh \`#sự-kiện\` để các sự kiện sau được quy củ hơn.`)
@@ -292,23 +291,21 @@ export default {
             await newEvent.save();
           }
         } catch (error) {
-          console.error('[Modal Submit] Lỗi tạo sự kiện:', error);
+          logger.error('[Modal Submit] Lỗi tạo sự kiện:', error);
           await interaction.reply({ content: 'Không thể khởi tạo sự kiện do lỗi thiên điển.', flags: [64] });
         }
       }
     }
 
     // =======================================================
-    // 3. XỬ LÝ BUTTON INTERACTION (Hệ thống Shop và BXH Phân Trang)
+    // 3. XỬ LÝ BUTTON INTERACTION
     // =======================================================
     if (interaction.isButton()) {
       const customId = interaction.customId;
       
-      // Xử lý nút Click Ghi Danh Sự Kiện trực tiếp
       if (customId.startsWith('event_register:')) {
         const eventId = customId.split(':')[1];
         try {
-          // 1. Kiểm tra đăng ký tài khoản đệ tử
           const user = await User.findOne({ discordId: interaction.user.id });
           if (!user || !user.registered) {
             const notRegisteredEmbed = new EmbedBuilder()
@@ -318,17 +315,16 @@ export default {
             return interaction.reply({ embeds: [notRegisteredEmbed], flags: [64] });
           }
 
-          // 2. Tìm sự kiện
-          const event = await EventModel.findOne({ eventId });
+          // Kiểm soát sự kiện theo đúng guildId
+          const event = await EventModel.findOne({ eventId, guildId });
           if (!event) {
-            return interaction.reply({ content: `❌ Không tìm thấy sự kiện với ID \`${eventId}\`.`, flags: [64] });
+            return interaction.reply({ content: `❌ Không tìm thấy sự kiện với ID \`${eventId}\` trên Guild này.`, flags: [64] });
           }
 
           if (event.status !== 'active') {
             return interaction.reply({ content: '⚠️ Sự kiện này đã kết thúc, không thể ghi danh tham gia nữa.', flags: [64] });
           }
 
-          // 3. Kiểm tra xem đã ghi danh chưa
           const isJoined = event.participants.some(p => p.userId === interaction.user.id);
           if (isJoined) {
             const alreadyEmbed = new EmbedBuilder()
@@ -338,7 +334,6 @@ export default {
             return interaction.reply({ embeds: [alreadyEmbed], flags: [64] });
           }
 
-          // 4. Thêm đệ tử vào mảng và lưu
           event.participants.push({
             userId: interaction.user.id,
             username: user.characterName || interaction.user.username,
@@ -358,17 +353,14 @@ export default {
             )
             .setTimestamp();
 
-          return interaction.reply({ embeds: [successEmbed], flags: [64] }); // Gửi ẩn tránh làm phiền kênh chung
+          return interaction.reply({ embeds: [successEmbed], flags: [64] });
         } catch (error) {
-          console.error('[Event Button Join] Lỗi:', error);
+          logger.error('[Event Button Join] Lỗi:', error);
           return interaction.reply({ content: 'Lỗi pháp trận, đăng ký tham gia thất bại.', flags: [64] });
         }
       }
       
-      // Chúng ta sẽ hỗ trợ định dạng customId: "action:tab:page:extra" để quản lý phân trang stateless cực xịn
       if (customId.startsWith('shop:') || customId.startsWith('leaderboard:')) {
-        // Các lệnh shop và leaderboard sẽ tự bắt lại sự kiện click qua button của chúng.
-        // Ở đây chúng ta chỉ cần chuyển tiếp hoặc để lệnh xử lý (defer update sẽ do file lệnh đảm nhiệm).
         return; 
       }
     }

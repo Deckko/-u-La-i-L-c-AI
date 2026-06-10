@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import User from '../../models/User.js';
-import Giftcode from '../../models/Giftcode.js';
+import User from '../../database/models/User.js';
+import Giftcode from '../../database/models/Giftcode.js';
 import { checkLevelUp } from '../../utils/levelUtils.js';
 
 export default {

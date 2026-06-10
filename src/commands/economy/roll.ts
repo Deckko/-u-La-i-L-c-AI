@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import User from '../../models/User.js';
+import User from '../../database/models/User.js';
 
 export default {
   cooldown: 4,

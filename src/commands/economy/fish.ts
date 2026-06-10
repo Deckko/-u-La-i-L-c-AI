@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import User from '../../models/User.js';
+import User from '../../database/models/User.js';
 import { checkLevelUp } from '../../utils/levelUtils.js';
 
 const FISH_POOLS = [

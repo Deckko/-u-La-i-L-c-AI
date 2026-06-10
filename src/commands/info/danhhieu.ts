@@ -7,7 +7,7 @@ import {
   ButtonBuilder,
   ButtonStyle
 } from 'discord.js';
-import User from '../../models/User.js';
+import User from '../../database/models/User.js';
 import { getRankName, updateGuildMemberRole } from '../../utils/levelUtils.js';
 
 export default {

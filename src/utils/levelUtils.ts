@@ -1,5 +1,5 @@
 import { Guild, GuildMember } from 'discord.js';
-import User from '../models/User.js';
+import User from '../database/models/User.js';
 
 // RPG level names / Đấu La ranks
 export const RPG_RANKS = [

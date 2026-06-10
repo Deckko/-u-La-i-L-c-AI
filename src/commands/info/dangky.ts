@@ -7,7 +7,7 @@ import {
   ChatInputCommandInteraction,
   EmbedBuilder
 } from 'discord.js';
-import User from '../../models/User.js';
+import User from '../../database/models/User.js';
 
 export default {
   cooldown: 5, // Cooldown 5 giây chống spam lệnh tạo modal liên tục

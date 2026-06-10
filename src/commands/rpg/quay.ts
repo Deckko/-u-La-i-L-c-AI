@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import User from '../../models/User.js';
+import User from '../../database/models/User.js';
 import { checkLevelUp, updateGuildMemberRole } from '../../utils/levelUtils.js';
 
 export default {

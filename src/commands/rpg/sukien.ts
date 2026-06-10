@@ -10,8 +10,8 @@ import {
   ButtonBuilder,
   ButtonStyle
 } from 'discord.js';
-import EventModel from '../../models/Event.js';
-import User from '../../models/User.js';
+import EventModel from '../../database/models/Event.js';
+import User from '../../database/models/User.js';
 
 export default {
   cooldown: 3,

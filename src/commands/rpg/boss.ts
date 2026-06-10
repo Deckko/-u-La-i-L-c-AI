@@ -4,8 +4,8 @@ import {
   EmbedBuilder, 
   PermissionFlagsBits 
 } from 'discord.js';
-import Boss from '../../models/Boss.js';
-import User from '../../models/User.js';
+import Boss from '../../database/models/Boss.js';
+import User from '../../database/models/User.js';
 import { checkLevelUp, updateGuildMemberRole } from '../../utils/levelUtils.js';
 
 /**

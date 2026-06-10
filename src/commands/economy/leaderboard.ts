@@ -7,7 +7,7 @@ import {
   ButtonStyle, 
   ComponentType 
 } from 'discord.js';
-import User from '../../models/User.js';
+import User from '../../database/models/User.js';
 
 const USERS_PER_PAGE = 7;
 

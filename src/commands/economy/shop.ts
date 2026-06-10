@@ -7,7 +7,7 @@ import {
   ButtonStyle, 
   StringSelectMenuBuilder 
 } from 'discord.js';
-import User from '../../models/User.js';
+import User from '../../database/models/User.js';
 import { updateGuildMemberRole } from '../../utils/levelUtils.js';
 
 // Danh sách vật phẩm tiên tông

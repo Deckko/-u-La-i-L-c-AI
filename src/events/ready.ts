@@ -1,21 +1,20 @@
 import { Client, ActivityType } from 'discord.js';
 import { flushXPCacheToDB, addXPToCache } from '../utils/redisUtils.js';
-import User from '../models/User.js';
-import { xpToNextLevel } from '../utils/levelUtils.js';
+import User from '../database/models/User.js';
+import logger from '../core/logger.js';
 
 export default {
   name: 'ready',
   once: true,
   async execute(client: Client) {
-    console.log(`
+    logger.info(`
 ============================================================
               🔥 ĐẾ TÔNG RPG DISCORD BOT 🔥
     Trạng thái: Trực Tuyến & Linh Lực Tràn Đầy
-    Đang phục vụ Server Đấu La Đại Lục quy mô 70,000+ đệ tử!
+    Đang phục vụ Server Đấu La Đại Lục!
 ============================================================
     `);
 
-    // Thiết lập trạng thái hoạt động (Presence)
     client.user?.setActivity('Đấu La Thế Giới RPG', { type: ActivityType.Playing });
 
     // =======================================================
@@ -26,7 +25,7 @@ export default {
       try {
         await flushXPCacheToDB();
       } catch (err) {
-        console.error('[Ready Core] Lỗi định kỳ Batch-Update XP:', err);
+        logger.error('[Ready Core] Lỗi định kỳ Batch-Update XP:', err);
       }
     }, 3 * 60 * 1000);
 
@@ -38,21 +37,17 @@ export default {
       try {
         let voiceUsersRewardCount = 0;
         
-        // Quét qua các guild mà bot đang ở
         for (const guild of client.guilds.cache.values()) {
-          // Lấy tất cả các voice states đang có người kết nối
           const activeVoiceMembers = guild.members.cache.filter(member => 
             member.voice.channelId !== null && 
             !member.user.bot &&
-            !member.voice.deaf && // Không bị điếc (để đảm bảo hoạt động tương tác thực)
-            !member.voice.mute    // Không bị tắt mic
+            !member.voice.deaf && 
+            !member.voice.mute    
           );
 
           for (const member of activeVoiceMembers.values()) {
-            // Kiểm tra xem user này đã đăng ký Đế Tông chưa
             const userInDb = await User.findOne({ discordId: member.id });
             if (userInDb && userInDb.registered) {
-              // Ghi 1 XP vào Cache tạm thời
               await addXPToCache(member.id, 1);
               voiceUsersRewardCount++;
             }
@@ -60,10 +55,10 @@ export default {
         }
         
         if (voiceUsersRewardCount > 0) {
-          console.log(`[Voice Sweeper] Đã phát 1 XP miễn phí cho ${voiceUsersRewardCount} đệ tử trong thiền đường.`);
+          logger.info(`[Voice Sweeper] Đã phát 1 XP miễn phí cho ${voiceUsersRewardCount} đệ tử trong thiền đường.`);
         }
       } catch (err) {
-        console.error('[Voice Sweeper] Lỗi sweeps voice channels:', err);
+        logger.error('[Voice Sweeper] Lỗi sweeps voice channels:', err);
       }
     }, 60 * 1000);
   }
