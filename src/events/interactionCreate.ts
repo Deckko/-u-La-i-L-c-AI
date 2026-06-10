@@ -1,9 +1,11 @@
-import { Interaction, EmbedBuilder, Collection, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
+import { Interaction, EmbedBuilder, Collection, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } from 'discord.js';
 import User from '../database/models/User.js';
 import EventModel from '../database/models/Event.js';
 import { levelService } from '../services/LevelService.js';
 import { checkUserSpamLimit } from '../utils/redisUtils.js';
 import { guildConfigRepository } from '../repositories/GuildConfigRepository.js';
+import { featureFlagService } from '../services/FeatureFlagService.js';
+import { metricsService } from '../services/MetricsService.js';
 import logger from '../core/logger.js';
 
 export default {
@@ -58,6 +60,23 @@ export default {
 
       timestamps.set(interaction.user.id, now);
       setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
+
+      // Theo dõi hoạt động của người chơi để tính toán DAU/WAU/MAU
+      await metricsService.trackUserActivity(interaction.user.id);
+
+      // Kiểm tra Feature Flag động của lệnh
+      if (command.featureFlag) {
+        const isAdmin = interaction.memberPermissions?.has(PermissionFlagsBits.Administrator) || false;
+        const flagCheck = await featureFlagService.isFeatureEnabled(command.featureFlag, interaction.user.id, guildId, isAdmin);
+        if (!flagCheck.enabled) {
+          const disabledEmbed = new EmbedBuilder()
+            .setTitle('⚠️ TÔNG MÔN CẤM THUẬT ⚠️')
+            .setDescription(flagCheck.reason || 'Mật pháp này hiện đang bị Trưởng Lão tạm khóa.')
+            .setColor('#FF5555')
+            .setFooter({ text: 'Hệ thống Feature Flag Đế Tông' });
+          return interaction.reply({ embeds: [disabledEmbed], flags: [64] });
+        }
+      }
 
       try {
         logger.info(`[Interaction] Bắt đầu chạy lệnh /${interaction.commandName} cho user: ${interaction.user.tag} (Guild: ${guildId})`);

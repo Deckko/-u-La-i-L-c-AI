@@ -1,6 +1,8 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import User from '../../database/models/User.js';
 import { checkLevelUp } from '../../utils/levelUtils.js';
+import { eventBus } from '../../core/EventBus.js';
+import { effectEngine } from '../../services/EffectEngine.js';
 
 const FISH_POOLS = [
   { catch: 'Cá Trắm Cỏ Linh Khí 🐟', tier: 'Sơ Cấp', coins: 15, msg: 'Hồ nhỏ rải rác linh thạch, cá chép há miệng đớp nhẹ phao thiền của tôn đạo.' },
@@ -29,10 +31,13 @@ export default {
         return interaction.reply({ embeds: [notRegisteredEmbed] });
       }
 
-      // Kiểm tra cooldown 5 phút (300,000 ms)
+      // Tính toán cooldown động dựa trên Effect Engine (cooldown_reduction)
+      const cooldownReduction = await effectEngine.calculateBoost(userId, 'cooldown_reduction');
+      const baseCooldownMs = 5 * 60 * 1000; // 5 Phút
+      const cooldownMs = Math.floor(baseCooldownMs * (1 - cooldownReduction));
+
       const now = Date.now();
       const lastFishTime = user.lastFish ? new Date(user.lastFish).getTime() : 0;
-      const cooldownMs = 5 * 60 * 1000; // 5 Phút
 
       if (now - lastFishTime < cooldownMs) {
         const timeLeftMs = cooldownMs - (now - lastFishTime);
@@ -60,9 +65,12 @@ export default {
         fish = FISH_POOLS[3];
       }
 
-      // Linh thạch cộng thêm
-      const coinsEarned = fish.coins;
-      const expEarned = Math.floor(Math.random() * 6) + 3; // 3-8 XP
+      // Linh thạch cộng thêm kèm boost từ Effect Engine
+      const coinBoost = await effectEngine.calculateBoost(userId, 'coin_boost');
+      const expBoost = await effectEngine.calculateBoost(userId, 'xp_boost');
+
+      const coinsEarned = Math.floor(fish.coins * (1 + coinBoost));
+      const expEarned = Math.floor((Math.random() * 6 + 3) * (1 + expBoost)); // 3-8 XP
 
       user.balance += coinsEarned;
       user.exp += expEarned;
@@ -70,6 +78,15 @@ export default {
 
       const levelUpResult = await checkLevelUp(user, interaction.member as any);
       await user.save();
+
+      // Phát sự kiện cày cuốc qua Event Bus
+      eventBus.emitEvent('player_fished', {
+        userId,
+        guildId: interaction.guildId || 'global',
+        coinsEarned,
+        expEarned,
+        fishWeight: Math.floor(Math.random() * 10) + 1 // Cân nặng 1-10kg
+      });
 
       let descText = `Vừa kéo cần thiền đạo lên mặt nước linh khí bốc lên nghi ngút!\nĐệ tử nhận về linh ngư: **${fish.catch}** [Cấp bậc: **${fish.tier}**]`;
       if (levelUpResult.leveledUp) {

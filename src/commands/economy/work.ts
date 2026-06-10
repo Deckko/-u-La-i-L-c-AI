@@ -1,6 +1,8 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import User from '../../database/models/User.js';
 import { checkLevelUp } from '../../utils/levelUtils.js';
+import { eventBus } from '../../core/EventBus.js';
+import { effectEngine } from '../../services/EffectEngine.js';
 
 const WORK_ACTIONS = [
   { act: 'Luyện đan dược Thất Phẩm tại Dược Cực Cốc 🧪', msg: 'Đệ tử đã vận chuyển tiên khí đỉnh cấp, kết hợp linh dược hái lượm luyện thành đại đan dược.' },
@@ -29,10 +31,13 @@ export default {
         return interaction.reply({ embeds: [notRegisteredEmbed] });
       }
 
-      // Kiểm tra cooldown thời gian thực 1 giờ (3600000 ms) qua DB
+      // Tính toán cooldown động dựa trên Effect Engine (cooldown_reduction)
+      const cooldownReduction = await effectEngine.calculateBoost(userId, 'cooldown_reduction');
+      const baseCooldownMs = 60 * 60 * 1000; // 1 Giờ
+      const cooldownMs = Math.floor(baseCooldownMs * (1 - cooldownReduction));
+
       const now = Date.now();
       const lastWorkTime = user.lastWork ? new Date(user.lastWork).getTime() : 0;
-      const cooldownMs = 60 * 60 * 1000; // 1 Giờ
 
       if (now - lastWorkTime < cooldownMs) {
         const timeLeftMs = cooldownMs - (now - lastWorkTime);
@@ -48,8 +53,16 @@ export default {
 
       // Chọn ngẫu nhiên công việc tu vị
       const work = WORK_ACTIONS[Math.floor(Math.random() * WORK_ACTIONS.length)];
-      const coinsEarned = Math.floor(Math.random() * 71) + 30; // 30 -> 100 Xu
-      const expEarned = Math.floor(Math.random() * 21) + 10;   // 10 -> 30 XP
+
+      // Linh thạch cộng thêm kèm boost từ Effect Engine
+      const coinBoost = await effectEngine.calculateBoost(userId, 'coin_boost');
+      const expBoost = await effectEngine.calculateBoost(userId, 'xp_boost');
+
+      const rawCoins = Math.floor(Math.random() * 71) + 30; // 30 -> 100 Xu
+      const rawExp = Math.floor(Math.random() * 21) + 10;   // 10 -> 30 XP
+
+      const coinsEarned = Math.floor(rawCoins * (1 + coinBoost));
+      const expEarned = Math.floor(rawExp * (1 + expBoost));
 
       // Lưu trữ kết quả
       user.balance += coinsEarned;
@@ -58,6 +71,14 @@ export default {
 
       const levelUpResult = await checkLevelUp(user, interaction.member as any);
       await user.save();
+
+      // Phát sự kiện cày cuốc qua Event Bus
+      eventBus.emitEvent('player_worked', {
+        userId,
+        guildId: interaction.guildId || 'global',
+        coinsEarned,
+        expEarned
+      });
 
       let descText = `Tông giả đã hoàn thục đạo sự xuất sắc: **${work.act}**\n*${work.msg}*`;
       if (levelUpResult.leveledUp) {

@@ -2,6 +2,8 @@ import { Client, ActivityType } from 'discord.js';
 import { flushXPCacheToDB, addXPToCache } from '../utils/redisUtils.js';
 import User from '../database/models/User.js';
 import logger from '../core/logger.js';
+import { leaderboardService, LeaderboardCategory } from '../services/LeaderboardService.js';
+import { economyAuditService } from '../services/EconomyAuditService.js';
 
 export default {
   name: 'ready',
@@ -16,6 +18,19 @@ export default {
     `);
 
     client.user?.setActivity('Đấu La Thế Giới RPG', { type: ActivityType.Playing });
+
+    // Chạy các snapshot ban đầu khi vừa trực tuyến
+    try {
+      logger.info('[Ready Core] Khởi động: Chạy bản chụp Bảng Xếp Hạng & Kinh Tế ban đầu...');
+      const categories: LeaderboardCategory[] = ['level', 'power', 'coins', 'guild', 'achievements'];
+      for (const cat of categories) {
+        await leaderboardService.takeSnapshot(cat);
+      }
+      await economyAuditService.takeSnapshot();
+      logger.info('[Ready Core] Khởi động: Bản chụp ban đầu hoàn thành.');
+    } catch (err) {
+      logger.error('[Ready Core] Khởi động: Lỗi chạy bản chụp ban đầu:', err);
+    }
 
     // =======================================================
     // 1. KÍCH HOẠT CRON CRITICAL TASK: FLOOD XP CACHE -> DB
@@ -61,5 +76,32 @@ export default {
         logger.error('[Voice Sweeper] Lỗi sweeps voice channels:', err);
       }
     }, 60 * 1000);
+
+    // =======================================================
+    // 3. LEADERBOARD SNAPSHOT CRON (1 giờ chạy 1 lần)
+    // =======================================================
+    setInterval(async () => {
+      try {
+        logger.info('[Ready Core] Đang thực thi chụp ảnh nhanh Bảng Xếp Hạng...');
+        const categories: LeaderboardCategory[] = ['level', 'power', 'coins', 'guild', 'achievements'];
+        for (const cat of categories) {
+          await leaderboardService.takeSnapshot(cat);
+        }
+      } catch (err) {
+        logger.error('[Ready Core] Lỗi khi thực hiện snapshot Bảng Xếp Hạng:', err);
+      }
+    }, 60 * 60 * 1000);
+
+    // =======================================================
+    // 4. ECONOMY AUDIT SNAPSHOT CRON (1 giờ chạy 1 lần)
+    // =======================================================
+    setInterval(async () => {
+      try {
+        logger.info('[Ready Core] Đang thực thi chụp ảnh nhanh Kinh Tế...');
+        await economyAuditService.takeSnapshot();
+      } catch (err) {
+        logger.error('[Ready Core] Lỗi khi thực hiện snapshot Kinh Tế:', err);
+      }
+    }, 60 * 60 * 1000);
   }
 };

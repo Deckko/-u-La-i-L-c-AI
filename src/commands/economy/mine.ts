@@ -1,6 +1,8 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import User from '../../database/models/User.js';
 import { checkLevelUp } from '../../utils/levelUtils.js';
+import { eventBus } from '../../core/EventBus.js';
+import { effectEngine } from '../../services/EffectEngine.js';
 
 const MINE_LOOTS = [
   { ore: 'Phế Thiết Ngũ Kim 🪨', tier: 'Tạp Chất', low: 50, high: 80, msg: 'Đào được vụn quặng kim loại bình thường, rác rưởi nhưng có thể bồi bổ lò rèn.' },
@@ -29,10 +31,13 @@ export default {
         return interaction.reply({ embeds: [notRegisteredEmbed] });
       }
 
-      // Kiểm tra cooldown 10 phút (600,000 ms) qua DB
+      // Tính toán cooldown động dựa trên Effect Engine (cooldown_reduction)
+      const cooldownReduction = await effectEngine.calculateBoost(userId, 'cooldown_reduction');
+      const baseCooldownMs = 10 * 60 * 1000; // 10 Phút
+      const cooldownMs = Math.floor(baseCooldownMs * (1 - cooldownReduction));
+
       const now = Date.now();
       const lastMineTime = user.lastMine ? new Date(user.lastMine).getTime() : 0;
-      const cooldownMs = 10 * 60 * 1000; // 10 Phút
 
       if (now - lastMineTime < cooldownMs) {
         const timeLeftMs = cooldownMs - (now - lastMineTime);
@@ -59,9 +64,15 @@ export default {
         loot = MINE_LOOTS[3];
       }
 
-      // Tính xu nhận được ngẫu nhiên trong khoảng low - high
-      const coinsEarned = Math.floor(Math.random() * (loot.high - loot.low + 1)) + loot.low;
-      const expEarned = Math.floor(Math.random() * 11) + 5; // 5 -> 15 XP
+      // Tính xu nhận được ngẫu nhiên trong khoảng low - high kèm boost từ Effect Engine
+      const coinBoost = await effectEngine.calculateBoost(userId, 'coin_boost');
+      const expBoost = await effectEngine.calculateBoost(userId, 'xp_boost');
+
+      const rawCoins = Math.floor(Math.random() * (loot.high - loot.low + 1)) + loot.low;
+      const rawExp = Math.floor(Math.random() * 11) + 5; // 5 -> 15 XP
+
+      const coinsEarned = Math.floor(rawCoins * (1 + coinBoost));
+      const expEarned = Math.floor(rawExp * (1 + expBoost));
 
       user.balance += coinsEarned;
       user.exp += expEarned;
@@ -69,6 +80,15 @@ export default {
 
       const levelUpResult = await checkLevelUp(user, interaction.member as any);
       await user.save();
+
+      // Phát sự kiện cày cuốc qua Event Bus để Quest & Achievement tự động xử lý
+      eventBus.emitEvent('player_mined', {
+        userId,
+        guildId: interaction.guildId || 'global',
+        coinsEarned,
+        expEarned,
+        lootTier: loot.tier
+      });
 
       let descText = `Vung cuốc thiền định dũng mãnh đập nát lớp thạch phong vũ trụ!\nTông giả tìm thấy quặng khoáng: **${loot.ore}** [Cấp bậc: **${loot.tier}**]`;
       if (levelUpResult.leveledUp) {

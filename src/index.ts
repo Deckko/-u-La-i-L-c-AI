@@ -15,6 +15,32 @@ import './database/models/Event.js';
 import './database/models/Boss.js';
 import './database/models/Giftcode.js';
 import './database/models/Stripe.js';
+import './database/models/Title.js';
+import './database/models/UserTitle.js';
+import './database/models/LeaderboardSnapshot.js';
+import './database/models/GameConfig.js';
+import './database/models/SuspiciousActivity.js';
+import './database/models/LoginStreak.js';
+import './database/models/RewardHistory.js';
+import './database/models/GuildMember.js';
+import './database/models/GuildBank.js';
+import './database/models/GuildTechnology.js';
+import './database/models/GuildTerritory.js';
+import './database/models/GuildRanking.js';
+import './database/models/GuildSeasonStats.js';
+import './database/models/EventLog.js';
+import './database/models/Season.js';
+import './database/models/Dungeon.js';
+import './database/models/GuildWar.js';
+import './database/models/BattlePass.js';
+import './database/models/PlayerStats.js';
+import './database/models/UserEffect.js';
+import './database/models/ItemEffect.js';
+
+import { questService } from './services/QuestService.js';
+import { achievementService } from './services/AchievementService.js';
+import { economyAuditService } from './services/EconomyAuditService.js';
+import { seedGameplayData } from './migration/seedGameplayData.js';
 
 // =======================================================
 // SYSTEM DIAGNOSTICS & LOGGING RECORDER
@@ -238,9 +264,12 @@ app.get('/', basicAuth, (req, res) => {
 });
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok', uptime: process.uptime() }));
-app.listen(PORT, '0.0.0.0', () => {
-  logger.info(`[Express] Health check server listening on port ${PORT}`);
-});
+
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, '0.0.0.0', () => {
+    logger.info(`[Express] Health check server listening on port ${PORT}`);
+  });
+}
 
 // =======================================================
 // 2. KHỞI TẠO DISCORD CLIENT
@@ -285,6 +314,8 @@ async function startBot() {
     if (config.MONGO_URI) {
       await mongoose.connect(config.MONGO_URI);
       logger.info('[Database] Kết nối MongoDB thành công.');
+      // Chạy migration seed dữ liệu cấu hình game
+      await seedGameplayData();
     } else {
       logger.warn('[Database] CẢNH BÁO: Thiếu chuỗi kết nối MONGO_URI.');
     }
@@ -300,6 +331,11 @@ async function startBot() {
     await loadEvents(client);
     await loadCommands(client);
 
+    // Khởi chạy các service nghiệp vụ lắng nghe Event Bus
+    questService.init();
+    achievementService.init();
+    economyAuditService.init();
+
     // 4.4 Đăng nhập Discord Bot
     if (config.DISCORD_TOKEN) {
       await client.login(config.DISCORD_TOKEN);
@@ -311,6 +347,8 @@ async function startBot() {
   }
 }
 
-startBot();
+if (process.env.NODE_ENV !== 'test') {
+  startBot();
+}
 
 export default client;

@@ -7,6 +7,8 @@ import {
 import Boss from '../../database/models/Boss.js';
 import User from '../../database/models/User.js';
 import { checkLevelUp, updateGuildMemberRole } from '../../utils/levelUtils.js';
+import { eventBus } from '../../core/EventBus.js';
+import { effectEngine } from '../../services/EffectEngine.js';
 
 /**
  * Trả về chuỗi Progress Bar vẽ thanh HP của Boss một cách thẩm mỹ
@@ -156,10 +158,12 @@ export default {
       }
 
       try {
-        // 2. Tính toán Thần Sát Thương dựa theo Lực chiến (Combat Power) của người đánh
+        // 2. Tính toán Thần Sát Thương dựa theo Lực chiến (Combat Power) kèm boost từ Effect Engine (boss_damage_boost)
+        const bossDmgBoost = await effectEngine.calculateBoost(userId, 'boss_damage_boost');
         const baseDmg = Math.floor(user.combatPower * 0.05);
         const randomBonus = Math.floor(user.combatPower * Math.random() * 0.10);
-        const finalDamage = baseDmg + randomBonus + 10;
+        const rawDamage = baseDmg + randomBonus + 10;
+        const finalDamage = Math.floor(rawDamage * (1 + bossDmgBoost));
 
         const charName = user.characterName || interaction.user.username;
 
@@ -213,6 +217,22 @@ export default {
           if (finalBossDoc) {
             boss = finalBossDoc;
           }
+        }
+
+        // Phát sự kiện tấn công boss qua Event Bus
+        eventBus.emitEvent('boss_damaged', {
+          userId,
+          guildId: interaction.guildId || 'global',
+          bossId: 'world_boss',
+          damage: actualDamage
+        });
+
+        if (isBossDead) {
+          eventBus.emitEvent('boss_killed', {
+            userId,
+            guildId: interaction.guildId || 'global',
+            bossId: 'world_boss'
+          });
         }
 
         // Tăng tu vi tích lũy khi đánh Boss cho người chơi
