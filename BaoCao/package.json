@@ -1,0 +1,45 @@
+{
+  "name": "net-cafe-report",
+  "version": "1.0.0",
+  "description": "Ứng dụng báo cáo thiếu dư nước uống & nguyên liệu quán NET",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win portable"
+  },
+  "keywords": [
+    "net-cafe",
+    "report",
+    "stock",
+    "electron"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.netcafe.report",
+    "productName": "BaoCaoQuanNet",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "assets/app_icon.png"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "style.css",
+      "renderer.js",
+      "assets/**/*",
+      "src/**/*"
+    ]
+  }
+}

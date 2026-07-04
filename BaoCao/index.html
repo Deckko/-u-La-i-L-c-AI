@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Báo Cáo Thiếu Dư Quán Net - Cyber Inventory</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Global Error Logger for diagnostics -->
+  <script>
+    window.pendingErrors = [];
+    const logErr = function(errStr) {
+      console.error(errStr);
+      if (window.api && window.api.logError) {
+        window.api.logError(errStr);
+      } else {
+        window.pendingErrors.push(errStr);
+      }
+    };
+    window.onerror = function(message, source, lineno, colno, error) {
+      const errStr = `${message} at ${source}:${lineno}:${colno} - ${error ? error.stack : ''}`;
+      logErr(errStr);
+      return false;
+    };
+    window.onunhandledrejection = function(event) {
+      const errStr = `Unhandled Rejection: ${event.reason ? (event.reason.stack || event.reason) : 'Unknown reason'}`;
+      logErr(errStr);
+    };
+  </script>
+  <!-- Application JS Logic -->
+  <script src="renderer.js" defer></script>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Top Cyber Header Bar -->
+    <header class="cyber-header-bar">
+      <div class="header-left">
+        <div class="header-logo"><i class="fa-solid fa-gamepad text-cyan"></i> DECKKO INVENTORY</div>
+        <div class="header-divider"></div>
+        <h1 id="mainTitle">BÁO CÁO THIẾU DƯ QUÁN NET</h1>
+      </div>
+      
+      <div class="header-right">
+        <!-- Live Storage Path Bar -->
+        <div class="storage-info-badge">
+          <i class="fa-solid fa-database"></i>
+          <span>Database: </span>
+          <strong id="storagePathText">Đang tải...</strong>
+          <span class="status-pill active-pill" id="storageLocationType">Local</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Section -->
+    <!-- Main Dashboard Section -->
+    <main class="dashboard-body">
+      
+      <!-- Tab Navigation -->
+      <div class="tab-container-navigation">
+        <button class="tab-nav-btn active" id="btnTabInventory">
+          <i class="fa-solid fa-boxes-stacked"></i> KIỂM KHO NƯỚC & ĐỒ ĂN
+        </button>
+        <button class="tab-nav-btn" id="btnTabCash">
+          <i class="fa-solid fa-calculator"></i> ĐẾM TIỀN KẾT CA
+        </button>
+      </div>
+
+      <!-- TAB 1: INVENTORY DISCREPANCY -->
+      <div id="tabInventoryContent" class="tab-content-panel active">
+        <!-- Stats Cards Row -->
+        <section class="stats-row">
+          <div class="stat-card missing-card">
+            <div class="stat-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div class="stat-data">
+              <span class="stat-label">Tổng nước thiếu</span>
+              <span class="stat-value" id="totalMissingQty">0</span>
+              <span class="stat-desc" id="missingDesc">Hao hụt cần bù kho</span>
+            </div>
+            <div class="card-glow"></div>
+          </div>
+
+          <div class="stat-card excess-card">
+            <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-data">
+              <span class="stat-label">Tổng nước dư</span>
+              <span class="stat-value" id="totalExcessQty">0</span>
+              <span class="stat-desc" id="excessDesc">Thừa kiểm kho ca trực</span>
+            </div>
+            <div class="card-glow"></div>
+          </div>
+
+          <div class="stat-card reports-count-card">
+            <div class="stat-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+            <div class="stat-data">
+              <span class="stat-label">Lượt báo cáo hôm nay</span>
+              <span class="stat-value" id="totalReportsCount">0</span>
+              <span class="stat-desc" id="reportsDesc">Đã ghi nhận trong ngày</span>
+            </div>
+            <div class="card-glow"></div>
+          </div>
+
+          <div class="stat-card active-employees-card">
+            <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="stat-data">
+              <span class="stat-label">Nhân sự trực ca</span>
+              <span class="stat-value" id="activeStaffCount">0</span>
+              <span class="stat-desc" id="staffDesc">Đã thiết lập tên</span>
+            </div>
+            <div class="card-glow"></div>
+          </div>
+        </section>
+
+        <!-- Content Split Grid -->
+        <div class="content-grid">
+          
+          <!-- Left Side: Interactive Drink Menu -->
+          <section class="menu-section">
+            <div class="section-header">
+              <div class="section-title">
+                <i class="fa-solid fa-whiskey-glass text-cyan"></i>
+                <h2>DANH SÁCH NƯỚC UỐNG QUÁN NET</h2>
+              </div>
+              
+              <!-- Category Filter Buttons & Search -->
+              <div class="search-filter-wrapper">
+                <div class="search-box">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input type="text" id="drinkSearchInput" placeholder="Tìm tên nước, món ăn...">
+                </div>
+                <div class="category-filters">
+                  <button class="cat-btn active" data-category="all">Tất cả</button>
+                  <button class="cat-btn" data-category="energy">Tăng Lực</button>
+                  <button class="cat-btn" data-category="softdrink">Nước Ngọt</button>
+                  <button class="cat-btn" data-category="coffee">Trà & Cà Phê</button>
+                  <button class="cat-btn" data-category="snack">Đồ Ăn Vặt</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Drinks Cards Grid -->
+            <div class="drinks-grid" id="drinksGrid">
+              <!-- Dynamically populated by JS -->
+            </div>
+          </section>
+
+          <!-- Right Side: Employee Directory & Active Form -->
+          <aside class="sidebar-section">
+            
+            <!-- Employee Management Card -->
+            <div class="glass-panel employee-panel">
+              <div class="panel-header">
+                <h3><i class="fa-solid fa-user-plus text-purple"></i> THÊM TÊN NHÂN VIÊN</h3>
+              </div>
+              
+              <!-- Form to Add Employee -->
+              <form id="addEmployeeForm" class="cyber-form">
+                <div class="form-group">
+                  <label for="employeeNameInput">Tên Nhân Viên</label>
+                  <input type="text" id="employeeNameInput" placeholder="Ví dụ: Nam Đẹp Trai, Linh Nguyễn..." required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="employeeShiftSelect">Ca trực mặc định</label>
+                  <select id="employeeShiftSelect">
+                    <option value="Ca 1 (22h - 7h)">Ca 1 (22h - 7h)</option>
+                    <option value="Ca 2 (7h - 15h)">Ca 2 (7h - 15h)</option>
+                    <option value="Ca 3 (15h - 22h)">Ca 3 (15h - 22h)</option>
+                  </select>
+                </div>
+
+                <!-- Avatar Selector -->
+                <div class="form-group">
+                  <label>Chọn Avatar Gaming</label>
+                  <div class="avatar-presets" id="avatarPresets">
+                    <!-- Avatars populated by JS -->
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-purple btn-block">
+                  <i class="fa-solid fa-plus-circle"></i> Thêm Nhân Viên
+                </button>
+              </form>
+
+              <div class="divider"></div>
+
+              <!-- Active Employees Directory -->
+              <div class="panel-header-mini" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <h4>Chọn nhân viên đang trực ca:</h4>
+                <button type="button" class="btn btn-outline" id="btnChangePin" style="font-size: 0.7rem; padding: 4px 8px; height: auto; border-color: rgba(127, 0, 255, 0.4);">
+                  <i class="fa-solid fa-key"></i> Đổi PIN
+                </button>
+              </div>
+              <div class="employee-list" id="employeeList">
+                <!-- Dynamically populated by JS -->
+                <div class="no-data-msg">Chưa có nhân viên nào. Vui lòng thêm tên ở trên!</div>
+              </div>
+            </div>
+
+            <!-- Bulk Report Card (Shift Inventory Closure Panel) -->
+            <div class="glass-panel report-form-panel" id="reportFormPanel">
+              <div class="panel-header">
+                <h3><i class="fa-solid fa-file-signature text-cyan"></i> CHỐT SỔ KIỂM KHO</h3>
+              </div>
+              
+              <form id="bulkReportForm" class="cyber-form">
+                <div class="form-group">
+                  <label>Sản phẩm đã điền báo cáo</label>
+                  <div class="selected-products-summary" id="bulkReportSummary">
+                    <span class="no-data-msg">Chưa điền số lượng cho sản phẩm nào. Vui lòng nhập số lượng trực tiếp trên thẻ sản phẩm bên trái!</span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="reporterSelect">Nhân viên báo cáo</label>
+                    <select id="reporterSelect" required>
+                      <option value="">-- Chọn nhân viên --</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="reportShiftSelect">Ca trực</label>
+                    <select id="reportShiftSelect">
+                      <option value="Ca 1 (22h - 7h)">Ca 1 (22h - 7h)</option>
+                      <option value="Ca 2 (7h - 15h)">Ca 2 (7h - 15h)</option>
+                      <option value="Ca 3 (15h - 22h)">Ca 3 (15h - 22h)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="reportNotesInput">Ghi chú chung ca trực</label>
+                  <input type="text" id="reportNotesInput" placeholder="Ví dụ: Đã kiểm tra đầy đủ trước khi giao ca...">
+                </div>
+
+                <button type="submit" class="btn btn-cyan btn-block" id="btnSubmitBulkReport" disabled>
+                  <i class="fa-solid fa-cloud-arrow-up"></i> Gửi Báo Cáo Kiểm Kho (0)
+                </button>
+              </form>
+            </div>
+
+          </aside>
+
+        </div>
+
+        <!-- Bottom Section: Detailed Logs -->
+        <section class="logs-section glass-panel">
+          <div class="section-header" style="flex-wrap: wrap; gap: 15px;">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div class="section-title">
+                <i class="fa-solid fa-list-check text-neon-green"></i>
+                <h2 id="tableSectionTitle">BẢNG TỔNG HỢP BÀN GIAO CA (LỆCH NƯỚC)</h2>
+              </div>
+              <!-- Sub-tab Navigation Buttons -->
+              <div class="sub-tab-navigation" style="display: flex; gap: 8px;">
+                <button type="button" class="sub-tab-btn active" id="btnSubTabHandover">
+                  <i class="fa-solid fa-right-from-bracket"></i> TỔNG HỢP GIAO CA
+                </button>
+                <button type="button" class="sub-tab-btn" id="btnSubTabDetailed">
+                  <i class="fa-solid fa-clock-rotate-left"></i> NHẬT KÝ CHI TIẾT
+                </button>
+              </div>
+            </div>
+            
+            <!-- Table Filters -->
+            <div class="table-filters" id="tableFiltersContainer">
+              <div class="filter-group">
+                <label>Lọc ca:</label>
+                <select id="filterShiftSelect">
+                  <option value="all">Tất cả các ca</option>
+                  <option value="Ca 1 (22h - 7h)">Ca 1 (22h - 7h)</option>
+                  <option value="Ca 2 (7h - 15h)">Ca 2 (7h - 15h)</option>
+                  <option value="Ca 3 (15h - 22h)">Ca 3 (15h - 22h)</option>
+                </select>
+              </div>
+
+              <div class="filter-group detailed-filter-only" style="display: none;">
+                <label>Lọc nhân viên:</label>
+                <select id="filterStaffSelect">
+                  <option value="all">Tất cả nhân viên</option>
+                </select>
+              </div>
+
+              <div class="filter-group detailed-filter-only" style="display: none;">
+                <label>Trạng thái:</label>
+                <select id="filterTypeSelect">
+                  <option value="all">Tất cả trạng thái</option>
+                  <option value="thiếu">Chỉ hàng THIẾU</option>
+                  <option value="dư">Chỉ hàng DƯ</option>
+                </select>
+              </div>
+              
+              <button class="btn btn-outline" id="btnClearFilters">
+                <i class="fa-solid fa-filter-circle-xmark"></i> Xóa lọc
+              </button>
+            </div>
+          </div>
+
+          <!-- SUB-TAB 1: HANDOVER SUMMARY TABLE -->
+          <div class="table-responsive" id="handoverSummaryTableWrapper">
+            <table class="cyber-table">
+              <thead>
+                <tr>
+                  <th style="width: 25%">Sản Phẩm</th>
+                  <th style="width: 20%">Danh Mục</th>
+                  <th style="width: 20%" class="text-center">Tổng Thiếu (Hao hụt)</th>
+                  <th style="width: 20%" class="text-center">Tổng Dư (Thừa)</th>
+                  <th style="width: 15%" class="text-center">Lệch Ca (Thực bàn giao)</th>
+                </tr>
+              </thead>
+              <tbody id="handoverSummaryTableBody">
+                <!-- Dynamically populated by JS -->
+              </tbody>
+            </table>
+            
+            <!-- Empty State for Handover Summary -->
+            <div class="empty-table-state" id="emptyHandoverTableState" style="display: flex;">
+              <i class="fa-solid fa-square-check text-neon-green"></i>
+              <p>Mọi thứ khớp ca! Không phát hiện lệch nước uống / đồ ăn nào.</p>
+              <p class="sub-msg">Nhân viên ca trước không để lại bất kỳ chênh lệch thiếu/dư nào.</p>
+            </div>
+          </div>
+
+          <!-- SUB-TAB 2: DETAILED REPORTS TABLE -->
+          <div class="table-responsive" id="detailedReportsTableWrapper" style="display: none;">
+            <table class="cyber-table">
+              <thead>
+                <tr>
+                  <th style="width: 15%">Thời Gian</th>
+                  <th style="width: 20%">Nhân Viên</th>
+                  <th style="width: 15%">Ca Trực</th>
+                  <th style="width: 18%">Sản Phẩm</th>
+                  <th style="width: 10%">Số Lượng</th>
+                  <th style="width: 12%">Trạng Thái</th>
+                  <th style="width: 20%">Lý Do / Ghi Chú</th>
+                  <th style="width: 15%" class="text-center">Thao Tác</th>
+                </tr>
+              </thead>
+              <tbody id="reportsTableBody">
+                <!-- Dynamically populated by JS -->
+              </tbody>
+            </table>
+            
+            <!-- Empty State for Detailed Log -->
+            <div class="empty-table-state" id="emptyTableState" style="display: none;">
+              <i class="fa-solid fa-folder-open"></i>
+              <p>Chưa có báo cáo thiếu dư nào được ghi nhận hôm nay.</p>
+              <p class="sub-msg">Hãy chọn nước từ menu hoặc nhập form ở trên để ghi nhận!</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TAB 2: CASH HANDOVER CALCULATOR -->
+      <div id="tabCashContent" class="tab-content-panel">
+        <div class="content-grid">
+          
+          <!-- Left Side: Banknotes Count Grid -->
+          <section class="menu-section">
+            <div class="section-header">
+              <div class="section-title">
+                <i class="fa-solid fa-money-bill-1-wave text-neon-green"></i>
+                <h2>BẢNG KÊ MỆNH GIÁ TIỀN MẶT KẾT CA</h2>
+              </div>
+              <button class="btn btn-outline" id="btnResetCashCount">
+                <i class="fa-solid fa-rotate-right"></i> Reset bảng đếm
+              </button>
+            </div>
+            
+            <div class="cash-calc-grid" id="cashCalcGrid">
+              <!-- Dynamically populated by JS (500k to 1k) -->
+            </div>
+          </section>
+
+          <!-- Right Side: Cash Summary & Actions -->
+          <aside class="sidebar-section">
+            <div class="glass-panel cash-summary-panel">
+              <div class="panel-header">
+                <h3><i class="fa-solid fa-file-invoice-dollar text-purple"></i> TỔNG HỢP TIỀN MẶT</h3>
+              </div>
+              
+              <div class="total-cash-display">
+                <span class="total-cash-lbl">TỔNG TIỀN MẶT ĐÃ ĐẾM</span>
+                <span class="total-cash-val" id="totalCashVal">0đ</span>
+                <span class="total-cash-words" id="totalCashWords">Không đồng</span>
+              </div>
+              
+              <form id="cashReportForm" class="cyber-form">
+                <div class="form-group">
+                  <label for="cashReporterSelect">Nhân viên bàn giao</label>
+                  <select id="cashReporterSelect" required>
+                    <option value="">-- Chọn nhân viên --</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="cashReportShiftSelect">Ca làm việc bàn giao</label>
+                  <select id="cashReportShiftSelect" required>
+                    <option value="Ca 1 (22h - 7h)">Ca 1 (22h - 7h)</option>
+                    <option value="Ca 2 (7h - 15h)">Ca 2 (7h - 15h)</option>
+                    <option value="Ca 3 (15h - 22h)">Ca 3 (15h - 22h)</option>
+                  </select>
+                </div>
+                  <div class="form-group">
+                  <label for="systemCashInput">Tiền máy trạm (Hệ thống báo)</label>
+                  <input type="text" inputmode="numeric" id="systemCashInput" placeholder="Nhập số tiền trên CSM/GCafe..." style="ime-mode: disabled;">
+                </div>
+                
+                <div class="form-group">
+                  <label>Chênh lệch thực tế</label>
+                  <div class="discrepancy-badge" id="cashDiscrepancyVal">0đ</div>
+                </div>
+
+                <!-- QR Chuyển khoản VietQR -->
+                <div class="form-group qr-container" id="qrContainer" style="display: none; transition: all 0.3s ease;">
+                  <label><i class="fa-solid fa-qrcode text-purple"></i> QR CHUYỂN KHOẢN CHO CHỦ</label>
+                  <div class="qr-box-wrapper" style="text-align: center; background: rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 8px; border: 1px dashed rgba(127, 0, 255, 0.3); margin-top: 5px;">
+                    <div style="font-size: 0.82rem; margin-bottom: 8px; color: var(--text-muted);">Số tiền cần CK: <strong class="text-pink" id="qrTransferAmountVal">0đ</strong></div>
+                    <div class="qr-img-container" style="position: relative; display: inline-block;">
+                      <img id="vietQrImg" src="" alt="Mã QR VietQR Techcombank" style="width: 160px; height: 160px; border-radius: 6px; border: 4px solid #fff; background-color: #fff; display: inline-block; transition: transform 0.2s ease; cursor: zoom-in;">
+                    </div>
+                    <div style="font-size: 0.72rem; color: #a0aec0; margin-top: 8px; line-height: 1.4; text-align: left; background: rgba(0,0,0,0.2); padding: 6px 10px; border-radius: 4px;">
+                      <div><i class="fa-solid fa-building-columns text-cyan" style="width: 16px;"></i> Techcombank: <strong style="color: #fff;">19076481915012</strong></div>
+                      <div><i class="fa-solid fa-user text-purple" style="width: 16px;"></i> Chủ TK: <strong style="color: #fff;">TA QUANG HUY</strong></div>
+                    </div>
+                    <!-- Nút xác nhận đã chuyển khoản -->
+                    <div style="margin-top: 12px;">
+                      <div id="transferWarning" style="font-size: 0.78rem; color: #ff6b6b; margin-bottom: 8px; padding: 6px 10px; background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.3); border-radius: 6px;">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Vui lòng quét QR chuyển khoản trước khi lưu kết ca!
+                      </div>
+                      <button type="button" id="btnConfirmTransfer" style="width: 100%; padding: 10px; background: linear-gradient(135deg, #00c851, #007e33); border: none; border-radius: 8px; color: #fff; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;">
+                        <i class="fa-solid fa-circle-check"></i> XÁC NHẬN ĐÃ CHUYỂN KHOẢN
+                      </button>
+                      <div id="transferConfirmedBadge" style="display: none; margin-top: 8px; padding: 8px; background: rgba(0,200,81,0.15); border: 1px solid rgba(0,200,81,0.4); border-radius: 6px; color: #00c851; font-weight: 600; font-size: 0.85rem;">
+                        <i class="fa-solid fa-circle-check"></i> Đã xác nhận chuyển khoản — có thể lưu kết ca!
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="cashReportNotes">Ghi chú kết ca</label>
+                  <input type="text" id="cashReportNotes" placeholder="Ví dụ: Rút nộp chủ quán, khách nợ nước...">
+                </div>
+
+                <div class="form-row">
+                  <button type="button" class="btn btn-outline" id="btnCopyCashReport" style="padding: 10px 8px;">
+                    <i class="fa-solid fa-copy"></i> Copy Zalo
+                  </button>
+                  <button type="submit" class="btn btn-purple" id="btnSubmitCashReport" style="padding: 10px 8px;">
+                    <i class="fa-solid fa-check-double"></i> Lưu kết ca
+                  </button>
+                </div>
+              </form>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Bottom Section: History of Cash Handovers -->
+        <section class="logs-section glass-panel">
+          <div class="section-header">
+            <div class="section-title">
+              <i class="fa-solid fa-clock-rotate-left text-cyan"></i>
+              <h2>LỊCH SỬ BÀN GIAO TIỀN MẶT TRONG NGÀY</h2>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="cyber-table">
+              <thead>
+                <tr>
+                  <th style="width: 10%">Thời Gian</th>
+                  <th style="width: 12%">Nhân Viên</th>
+                  <th style="width: 10%">Ca Trực</th>
+                  <th style="width: 18%">Chi Tiết Mệnh Giá</th>
+                  <th style="width: 10%">Tiền Mặt</th>
+                  <th style="width: 10%">Tổng Ca</th>
+                  <th style="width: 10%">Chuyển Khoản</th>
+                  <th style="width: 10%">Trạng Thái</th>
+                  <th style="width: 8%" class="text-center">Thao Tác</th>
+                </tr>
+              </thead>
+              <tbody id="cashLogsTableBody">
+                <!-- Dynamically populated by JS -->
+              </tbody>
+            </table>
+            
+            <div class="empty-table-state" id="emptyCashTableState">
+              <i class="fa-solid fa-calculator"></i>
+              <p>Chưa có lượt kết ca đếm tiền nào được ghi nhận hôm nay.</p>
+              <p class="sub-msg">Vui lòng điền số tờ của các mệnh giá ở trên để tính toán và lưu!</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <p>&copy; 2026 Cyber Net Cafe Hub - Vietnam Edition. Thiết kế bởi Deckko & Antigravity. Hỗ trợ chạy offline 24/7.</p>
+      </div>
+      <div class="footer-right">
+        <span>Lưu trữ ổ E: <strong class="text-neon-green" id="footerEDriveStatus">Hoạt động</strong></span>
+        <span class="separator">|</span>
+        <a href="#" id="btnOpenDocs" class="footer-link"><i class="fa-solid fa-book"></i> Hướng Dẫn Sử Dụng</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Instruction Modal -->
+  <div class="modal-backdrop" id="instructionModal">
+    <div class="modal-content glass-panel">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-circle-question text-cyan"></i> Hướng Dẫn Sử Dụng & Sao Lưu</h3>
+        <button class="close-modal" id="btnCloseModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4>1. Cơ chế lưu trữ 24/7 không mất dữ liệu</h4>
+        <p>Ứng dụng tự động phát hiện ổ đĩa <strong>E:</strong> của máy tính và lưu trữ dữ liệu tại đường dẫn <code class="code-tag">E:\NetCafeReportData\</code>. Dữ liệu bao gồm:</p>
+        <ul>
+          <li><code class="code-tag">employees.json</code>: Chứa danh sách nhân viên đã tạo.</li>
+          <li><code class="code-tag">reports.json</code>: Chứa toàn bộ lịch sử báo cáo thiếu dư.</li>
+        </ul>
+        <p>Nếu máy tính của bạn bị đóng băng ổ C (Deep Freeze, shadow defender, GCafe) hoặc cài lại Windows, <strong>dữ liệu ở ổ E sẽ hoàn toàn không bị ảnh hưởng</strong>. Ứng dụng sẽ tự động tải lại dữ liệu cũ ngay khi khởi động.</p>
+        
+        <h4>2. Quy trình kiểm tra thiếu dư nhanh</h4>
+        <ol>
+          <li><strong>Bước 1:</strong> Thêm tên của bạn vào mục <strong>"Thêm Tên Nhân Viên"</strong> (chọn avatar ngầu và ca trực).</li>
+          <li><strong>Bước 2:</strong> Chọn tên của bạn ở ô <strong>"Nhân viên báo cáo"</strong>.</li>
+          <li><strong>Bước 3:</strong> Click trực tiếp vào thẻ nước uống ở danh sách sản phẩm. Form báo cáo nhanh sẽ tự điền tên nước.</li>
+          <li><strong>Bước 4:</strong> Chọn tình trạng (Thiếu/Dư), nhập số lượng và viết ghi chú, sau đó bấm <strong>"Xác nhận báo cáo"</strong>.</li>
+          <li><strong>Bước 5:</strong> Bạn có thể điều chỉnh nhanh số lượng báo cáo bằng cách bấm nút <code class="code-tag">+</code> hoặc <code class="code-tag">-</code> trực tiếp trên Bảng Chi Tiết. Nếu muốn xóa báo cáo, bấm nút Thùng rác <i class="fa-solid fa-trash-can text-red"></i>.</li>
+        </ol>
+        
+        <h4>3. Lưu ý đối với quản lý quán NET</h4>
+        <div class="warning-alert">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div>Để sao lưu dữ liệu sang máy khác, bạn chỉ cần copy thư mục <strong>E:\NetCafeReportData\</strong> và paste vào ổ E của máy mới.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Custom PIN Prompt Modal (Completely independent of stylesheet modal classes) -->
+  <div id="pinPromptModal" style="display: none; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(5px);">
+    <div class="glass-panel" style="max-width: 400px; width: 100%; padding: 24px; text-align: center; margin: auto; position: relative; border: 1px solid rgba(255, 51, 102, 0.35); box-shadow: 0 0 30px rgba(255, 51, 102, 0.15);">
+      <div class="modal-header" style="justify-content: center; border-bottom: none; padding-bottom: 0; margin-bottom: 15px;">
+        <h3 style="color: var(--accent-pink); font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; letter-spacing: 1px;"><i class="fa-solid fa-shield-halved"></i> XÁC THỰC QUẢN LÝ</h3>
+      </div>
+      <div class="modal-body" style="padding: 0;">
+        <p id="pinPromptMessage" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.4;">Nhập mã PIN để thực hiện thao tác này</p>
+        <div class="form-group" style="margin-bottom: 20px;">
+          <input type="password" id="pinPromptInput" placeholder="••••" style="text-align: center; font-size: 1.8rem; letter-spacing: 10px; padding: 12px; border-radius: 8px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-color); color: #fff; width: 100%; font-family: monospace;" maxlength="8">
+        </div>
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <button type="button" class="btn btn-outline" id="btnCancelPinPrompt" style="padding: 10px 24px; height: auto;">Hủy</button>
+          <button type="button" class="btn btn-purple" id="btnConfirmPinPrompt" style="padding: 10px 24px; height: auto; background: var(--accent-pink); border-color: var(--accent-pink); text-shadow: 0 0 10px rgba(255, 51, 102, 0.4); box-shadow: 0 0 15px rgba(255, 51, 102, 0.25);">Xác nhận</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

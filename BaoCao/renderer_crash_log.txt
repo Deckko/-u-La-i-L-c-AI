@@ -1,0 +1,238 @@
+2026-06-18T20:49:15.636Z - Renderer: Uncaught SyntaxError: Identifier 'api' has already been declared at file:///C:/Users/PC/AppData/Local/Temp/3FKEqUKAHVJpUHKeeNc3rQa3dCC/resources/app.asar/renderer.js:1:1 - SyntaxError: Identifier 'api' has already been declared
+2026-06-19T15:48:19.993Z - Renderer: [DEBUG 2026-06-19T15:48:19.992Z] Employee card clicked for: chang (id: emp_1781825217076)
+2026-06-19T15:48:19.994Z - Renderer: [DEBUG 2026-06-19T15:48:19.992Z] Security API verifyPin is available. Prompting PIN.
+2026-06-19T15:48:19.995Z - Renderer: [DEBUG 2026-06-19T15:48:19.992Z] showPinPrompt start. Message: "Nhập mã PIN của nhân viên chang để đăng nhập trực ca (mặc định: 1234):"
+2026-06-19T15:48:19.996Z - Renderer: [DEBUG 2026-06-19T15:48:19.992Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T15:48:19.997Z - Renderer: [DEBUG 2026-06-19T15:48:19.993Z] Attaching click and keydown event listeners
+2026-06-19T15:48:20.045Z - Renderer: [DEBUG 2026-06-19T15:48:20.044Z] Timeout callback: focusing and selecting input
+2026-06-19T15:48:40.509Z - Renderer: [DEBUG 2026-06-19T15:48:40.509Z] btn-del-emp clicked for: Trâm
+2026-06-19T15:48:40.511Z - Renderer: [DEBUG 2026-06-19T15:48:40.509Z] Prompting master PIN for deletion
+2026-06-19T15:48:40.512Z - Renderer: [DEBUG 2026-06-19T15:48:40.510Z] showPinPrompt start. Message: "Nhập PIN Quản lý để xóa nhân viên Trâm (Master PIN: 9999):"
+2026-06-19T15:48:40.512Z - Renderer: [DEBUG 2026-06-19T15:48:40.510Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T15:48:40.513Z - Renderer: [DEBUG 2026-06-19T15:48:40.510Z] Attaching click and keydown event listeners
+2026-06-19T15:48:40.561Z - Renderer: [DEBUG 2026-06-19T15:48:40.561Z] Timeout callback: focusing and selecting input
+2026-06-19T15:55:16.877Z - Renderer: [DEBUG 2026-06-19T15:55:16.876Z] showPinPrompt start. Message: "Nhập mã PIN Quản lý để xóa kết ca 0đ của Khang (PIN mặc định: 9999):"
+2026-06-19T15:55:16.879Z - Renderer: [DEBUG 2026-06-19T15:55:16.877Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T15:55:16.880Z - Renderer: [DEBUG 2026-06-19T15:55:16.877Z] Attaching click and keydown event listeners
+2026-06-19T15:55:16.928Z - Renderer: [DEBUG 2026-06-19T15:55:16.928Z] Timeout callback: focusing and selecting input
+2026-06-19T16:06:11.836Z - Renderer: [DEBUG 2026-06-19T16:06:11.836Z] showPinPrompt start. Message: "Nhập mã PIN Quản lý để xóa kết ca 0đ của Khang (PIN mặc định: 9999):"
+2026-06-19T16:06:11.838Z - Renderer: [DEBUG 2026-06-19T16:06:11.837Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T16:06:11.839Z - Renderer: [DEBUG 2026-06-19T16:06:11.837Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T16:06:11.839Z - Renderer: [DEBUG 2026-06-19T16:06:11.837Z] Attaching click and keydown event listeners
+2026-06-19T16:06:11.889Z - Renderer: [DEBUG 2026-06-19T16:06:11.889Z] Timeout callback: focusing and selecting input
+2026-06-19T16:06:15.731Z - Renderer: [DEBUG 2026-06-19T16:06:15.731Z] onConfirm triggered. Value: "9999"
+2026-06-19T16:06:15.732Z - Renderer: [DEBUG 2026-06-19T16:06:15.731Z] cleanUp triggered. Removing event listeners.
+2026-06-19T16:06:15.733Z - Renderer: [DEBUG 2026-06-19T16:06:15.731Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T16:06:17.390Z - Renderer: [DEBUG 2026-06-19T16:06:17.389Z] showPinPrompt start. Message: "Nhập mã PIN Quản lý để xóa kết ca 3,762,000đ của Khang (PIN mặc định: 9999):"
+2026-06-19T16:06:17.390Z - Renderer: [DEBUG 2026-06-19T16:06:17.389Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T16:06:17.391Z - Renderer: [DEBUG 2026-06-19T16:06:17.390Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T16:06:17.392Z - Renderer: [DEBUG 2026-06-19T16:06:17.390Z] Attaching click and keydown event listeners
+2026-06-19T16:06:17.444Z - Renderer: [DEBUG 2026-06-19T16:06:17.444Z] Timeout callback: focusing and selecting input
+2026-06-19T16:06:20.333Z - Renderer: [DEBUG 2026-06-19T16:06:20.332Z] onConfirm triggered. Value: "9999"
+2026-06-19T16:06:20.334Z - Renderer: [DEBUG 2026-06-19T16:06:20.333Z] cleanUp triggered. Removing event listeners.
+2026-06-19T16:06:20.335Z - Renderer: [DEBUG 2026-06-19T16:06:20.333Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T16:06:21.532Z - Renderer: [DEBUG 2026-06-19T16:06:21.531Z] showPinPrompt start. Message: "Nhập mã PIN Quản lý để xóa kết ca 0đ của Khang (PIN mặc định: 9999):"
+2026-06-19T16:06:21.533Z - Renderer: [DEBUG 2026-06-19T16:06:21.532Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T16:06:21.533Z - Renderer: [DEBUG 2026-06-19T16:06:21.532Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T16:06:21.534Z - Renderer: [DEBUG 2026-06-19T16:06:21.532Z] Attaching click and keydown event listeners
+2026-06-19T16:06:21.584Z - Renderer: [DEBUG 2026-06-19T16:06:21.583Z] Timeout callback: focusing and selecting input
+2026-06-19T16:06:24.181Z - Renderer: [DEBUG 2026-06-19T16:06:24.180Z] onConfirm triggered. Value: "9999"
+2026-06-19T16:06:24.182Z - Renderer: [DEBUG 2026-06-19T16:06:24.180Z] cleanUp triggered. Removing event listeners.
+2026-06-19T16:06:24.182Z - Renderer: [DEBUG 2026-06-19T16:06:24.180Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T16:06:26.782Z - Renderer: [DEBUG 2026-06-19T16:06:26.781Z] Employee card clicked for: chang (id: emp_1781825217076)
+2026-06-19T16:06:26.782Z - Renderer: [DEBUG 2026-06-19T16:06:26.782Z] Security API verifyPin is available. Prompting PIN.
+2026-06-19T16:06:26.783Z - Renderer: [DEBUG 2026-06-19T16:06:26.782Z] showPinPrompt start. Message: "Nhập mã PIN của nhân viên chang để đăng nhập trực ca (mặc định: 1234):"
+2026-06-19T16:06:26.784Z - Renderer: [DEBUG 2026-06-19T16:06:26.782Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T16:06:26.785Z - Renderer: [DEBUG 2026-06-19T16:06:26.782Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T16:06:26.786Z - Renderer: [DEBUG 2026-06-19T16:06:26.782Z] Attaching click and keydown event listeners
+2026-06-19T16:06:26.834Z - Renderer: [DEBUG 2026-06-19T16:06:26.834Z] Timeout callback: focusing and selecting input
+2026-06-19T16:06:30.093Z - Renderer: [DEBUG 2026-06-19T16:06:30.093Z] Enter keydown event inside input
+2026-06-19T16:06:30.094Z - Renderer: [DEBUG 2026-06-19T16:06:30.093Z] onConfirm triggered. Value: "1234"
+2026-06-19T16:06:30.095Z - Renderer: [DEBUG 2026-06-19T16:06:30.093Z] cleanUp triggered. Removing event listeners.
+2026-06-19T16:06:30.095Z - Renderer: [DEBUG 2026-06-19T16:06:30.093Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T16:06:30.096Z - Renderer: [DEBUG 2026-06-19T16:06:30.093Z] PIN prompt returned: value
+2026-06-19T16:06:30.096Z - Renderer: [DEBUG 2026-06-19T16:06:30.093Z] Calling verifyPin API
+2026-06-19T16:06:30.099Z - Renderer: [DEBUG 2026-06-19T16:06:30.099Z] verifyPin returned: true
+2026-06-19T16:06:30.100Z - Renderer: [DEBUG 2026-06-19T16:06:30.099Z] Setting active reporter to emp.id: emp_1781825217076
+2026-06-19T16:06:30.102Z - Renderer: [DEBUG 2026-06-19T16:06:30.102Z] Employee card click handler finished
+2026-06-19T16:06:32.252Z - Renderer: [DEBUG 2026-06-19T16:06:32.252Z] Employee card clicked for: Trân (id: emp_1781825252190)
+2026-06-19T16:06:32.253Z - Renderer: [DEBUG 2026-06-19T16:06:32.252Z] Security API verifyPin is available. Prompting PIN.
+2026-06-19T16:06:32.253Z - Renderer: [DEBUG 2026-06-19T16:06:32.252Z] showPinPrompt start. Message: "Nhập mã PIN của nhân viên Trân để đăng nhập trực ca (mặc định: 1234):"
+2026-06-19T16:06:32.254Z - Renderer: [DEBUG 2026-06-19T16:06:32.252Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T16:06:32.255Z - Renderer: [DEBUG 2026-06-19T16:06:32.252Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T16:06:32.256Z - Renderer: [DEBUG 2026-06-19T16:06:32.252Z] Attaching click and keydown event listeners
+2026-06-19T16:06:32.303Z - Renderer: [DEBUG 2026-06-19T16:06:32.302Z] Timeout callback: focusing and selecting input
+2026-06-19T16:06:34.815Z - Renderer: [DEBUG 2026-06-19T16:06:34.815Z] Enter keydown event inside input
+2026-06-19T16:06:34.832Z - Renderer: [DEBUG 2026-06-19T16:06:34.815Z] onConfirm triggered. Value: "1234"
+2026-06-19T16:06:34.842Z - Renderer: [DEBUG 2026-06-19T16:06:34.815Z] cleanUp triggered. Removing event listeners.
+2026-06-19T16:06:34.846Z - Renderer: [DEBUG 2026-06-19T16:06:34.815Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T16:06:34.847Z - Renderer: [DEBUG 2026-06-19T16:06:34.815Z] PIN prompt returned: value
+2026-06-19T16:06:34.850Z - Renderer: [DEBUG 2026-06-19T16:06:34.815Z] Calling verifyPin API
+2026-06-19T16:06:34.858Z - Renderer: [DEBUG 2026-06-19T16:06:34.857Z] verifyPin returned: true
+2026-06-19T16:06:34.873Z - Renderer: [DEBUG 2026-06-19T16:06:34.857Z] Setting active reporter to emp.id: emp_1781825252190
+2026-06-19T16:06:34.877Z - Renderer: [DEBUG 2026-06-19T16:06:34.859Z] Employee card click handler finished
+2026-06-19T16:06:37.861Z - Renderer: [DEBUG 2026-06-19T16:06:37.860Z] Employee card clicked for: Khang (id: emp_1781816093304)
+2026-06-19T16:06:37.862Z - Renderer: [DEBUG 2026-06-19T16:06:37.861Z] Security API verifyPin is available. Prompting PIN.
+2026-06-19T16:06:37.862Z - Renderer: [DEBUG 2026-06-19T16:06:37.861Z] showPinPrompt start. Message: "Nhập mã PIN của nhân viên Khang để đăng nhập trực ca (mặc định: 1234):"
+2026-06-19T16:06:37.863Z - Renderer: [DEBUG 2026-06-19T16:06:37.861Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T16:06:37.864Z - Renderer: [DEBUG 2026-06-19T16:06:37.861Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T16:06:37.864Z - Renderer: [DEBUG 2026-06-19T16:06:37.861Z] Attaching click and keydown event listeners
+2026-06-19T16:06:37.913Z - Renderer: [DEBUG 2026-06-19T16:06:37.913Z] Timeout callback: focusing and selecting input
+2026-06-19T16:06:40.269Z - Renderer: [DEBUG 2026-06-19T16:06:40.269Z] Enter keydown event inside input
+2026-06-19T16:06:40.270Z - Renderer: [DEBUG 2026-06-19T16:06:40.269Z] onConfirm triggered. Value: "1234"
+2026-06-19T16:06:40.271Z - Renderer: [DEBUG 2026-06-19T16:06:40.269Z] cleanUp triggered. Removing event listeners.
+2026-06-19T16:06:40.272Z - Renderer: [DEBUG 2026-06-19T16:06:40.269Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T16:06:40.273Z - Renderer: [DEBUG 2026-06-19T16:06:40.269Z] PIN prompt returned: value
+2026-06-19T16:06:40.273Z - Renderer: [DEBUG 2026-06-19T16:06:40.270Z] Calling verifyPin API
+2026-06-19T16:06:40.276Z - Renderer: [DEBUG 2026-06-19T16:06:40.274Z] verifyPin returned: true
+2026-06-19T16:06:40.276Z - Renderer: [DEBUG 2026-06-19T16:06:40.274Z] Setting active reporter to emp.id: emp_1781816093304
+2026-06-19T16:06:40.277Z - Renderer: [DEBUG 2026-06-19T16:06:40.277Z] Employee card click handler finished
+2026-06-19T16:06:41.791Z - Renderer: [DEBUG 2026-06-19T16:06:41.791Z] showPinPrompt start. Message: "Nhập mã PIN hiện tại của nhân viên Khang (mặc định là 1234 nếu chưa đổi):"
+2026-06-19T16:06:41.792Z - Renderer: [DEBUG 2026-06-19T16:06:41.791Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T16:06:41.793Z - Renderer: [DEBUG 2026-06-19T16:06:41.791Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T16:06:41.793Z - Renderer: [DEBUG 2026-06-19T16:06:41.791Z] Attaching click and keydown event listeners
+2026-06-19T16:06:41.841Z - Renderer: [DEBUG 2026-06-19T16:06:41.841Z] Timeout callback: focusing and selecting input
+2026-06-19T16:06:47.366Z - Renderer: [DEBUG 2026-06-19T16:06:47.366Z] onConfirm triggered. Value: "1234"
+2026-06-19T16:06:47.367Z - Renderer: [DEBUG 2026-06-19T16:06:47.366Z] cleanUp triggered. Removing event listeners.
+2026-06-19T16:06:47.368Z - Renderer: [DEBUG 2026-06-19T16:06:47.366Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T16:06:47.368Z - Renderer: [DEBUG 2026-06-19T16:06:47.366Z] showPinPrompt start. Message: "Nhập mã PIN mới (chuỗi gồm 4 chữ số):"
+2026-06-19T16:06:47.369Z - Renderer: [DEBUG 2026-06-19T16:06:47.366Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T16:06:47.371Z - Renderer: [DEBUG 2026-06-19T16:06:47.366Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T16:06:47.372Z - Renderer: [DEBUG 2026-06-19T16:06:47.366Z] Attaching click and keydown event listeners
+2026-06-19T16:06:47.429Z - Renderer: [DEBUG 2026-06-19T16:06:47.429Z] Timeout callback: focusing and selecting input
+2026-06-19T16:06:56.096Z - Renderer: [DEBUG 2026-06-19T16:06:56.096Z] Enter keydown event inside input
+2026-06-19T16:06:56.097Z - Renderer: [DEBUG 2026-06-19T16:06:56.096Z] onConfirm triggered. Value: "2002"
+2026-06-19T16:06:56.098Z - Renderer: [DEBUG 2026-06-19T16:06:56.096Z] cleanUp triggered. Removing event listeners.
+2026-06-19T16:06:56.098Z - Renderer: [DEBUG 2026-06-19T16:06:56.096Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T18:23:04.428Z - Renderer: [DEBUG 2026-06-19T18:23:04.428Z] Employee card clicked for: chang (id: emp_1781825217076)
+2026-06-19T18:23:04.430Z - Renderer: [DEBUG 2026-06-19T18:23:04.428Z] Security API verifyPin is available. Prompting PIN.
+2026-06-19T18:23:04.430Z - Renderer: [DEBUG 2026-06-19T18:23:04.428Z] showPinPrompt start. Message: "Nhập mã PIN của nhân viên chang để đăng nhập trực ca (mặc định: 1234):"
+2026-06-19T18:23:04.431Z - Renderer: [DEBUG 2026-06-19T18:23:04.429Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T18:23:04.432Z - Renderer: [DEBUG 2026-06-19T18:23:04.429Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T18:23:04.433Z - Renderer: [DEBUG 2026-06-19T18:23:04.429Z] Attaching click and keydown event listeners
+2026-06-19T18:23:04.481Z - Renderer: [DEBUG 2026-06-19T18:23:04.481Z] Timeout callback: focusing and selecting input
+2026-06-19T18:23:08.461Z - Renderer: [DEBUG 2026-06-19T18:23:08.461Z] Enter keydown event inside input
+2026-06-19T18:23:08.462Z - Renderer: [DEBUG 2026-06-19T18:23:08.461Z] onConfirm triggered. Value: "1234"
+2026-06-19T18:23:08.462Z - Renderer: [DEBUG 2026-06-19T18:23:08.461Z] cleanUp triggered. Removing event listeners.
+2026-06-19T18:23:08.463Z - Renderer: [DEBUG 2026-06-19T18:23:08.461Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T18:23:08.464Z - Renderer: [DEBUG 2026-06-19T18:23:08.461Z] PIN prompt returned: value
+2026-06-19T18:23:08.465Z - Renderer: [DEBUG 2026-06-19T18:23:08.461Z] Calling verifyPin API
+2026-06-19T18:23:08.468Z - Renderer: [DEBUG 2026-06-19T18:23:08.467Z] verifyPin returned: true
+2026-06-19T18:23:08.469Z - Renderer: [DEBUG 2026-06-19T18:23:08.467Z] Setting active reporter to emp.id: emp_1781825217076
+2026-06-19T18:23:08.470Z - Renderer: [DEBUG 2026-06-19T18:23:08.470Z] Employee card click handler finished
+2026-06-19T18:34:49.134Z - Renderer: [DEBUG 2026-06-19T18:34:49.134Z] Employee card clicked for: chang (id: emp_1781825217076)
+2026-06-19T18:34:49.136Z - Renderer: [DEBUG 2026-06-19T18:34:49.134Z] Security API verifyPin is available. Prompting PIN.
+2026-06-19T18:34:49.136Z - Renderer: [DEBUG 2026-06-19T18:34:49.134Z] showPinPrompt start. Message: "Nhập mã PIN của nhân viên chang để đăng nhập trực ca (mặc định: 1234):"
+2026-06-19T18:34:49.137Z - Renderer: [DEBUG 2026-06-19T18:34:49.134Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T18:34:49.138Z - Renderer: [DEBUG 2026-06-19T18:34:49.134Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T18:34:49.139Z - Renderer: [DEBUG 2026-06-19T18:34:49.134Z] Attaching click and keydown event listeners
+2026-06-19T18:34:49.186Z - Renderer: [DEBUG 2026-06-19T18:34:49.186Z] Timeout callback: focusing and selecting input
+2026-06-19T18:34:51.472Z - Renderer: [DEBUG 2026-06-19T18:34:51.472Z] Enter keydown event inside input
+2026-06-19T18:34:51.473Z - Renderer: [DEBUG 2026-06-19T18:34:51.472Z] onConfirm triggered. Value: "1234"
+2026-06-19T18:34:51.473Z - Renderer: [DEBUG 2026-06-19T18:34:51.472Z] cleanUp triggered. Removing event listeners.
+2026-06-19T18:34:51.474Z - Renderer: [DEBUG 2026-06-19T18:34:51.472Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T18:34:51.475Z - Renderer: [DEBUG 2026-06-19T18:34:51.472Z] PIN prompt returned: value
+2026-06-19T18:34:51.475Z - Renderer: [DEBUG 2026-06-19T18:34:51.472Z] Calling verifyPin API
+2026-06-19T18:34:51.478Z - Renderer: [DEBUG 2026-06-19T18:34:51.476Z] verifyPin returned: true
+2026-06-19T18:34:51.479Z - Renderer: [DEBUG 2026-06-19T18:34:51.476Z] Setting active reporter to emp.id: emp_1781825217076
+2026-06-19T18:34:51.480Z - Renderer: [DEBUG 2026-06-19T18:34:51.478Z] Employee card click handler finished
+2026-06-19T18:36:32.471Z - Renderer: [DEBUG 2026-06-19T18:36:32.470Z] Employee card clicked for: Trân (id: emp_1781825252190)
+2026-06-19T18:36:32.471Z - Renderer: [DEBUG 2026-06-19T18:36:32.470Z] Security API verifyPin is available. Prompting PIN.
+2026-06-19T18:36:32.472Z - Renderer: [DEBUG 2026-06-19T18:36:32.470Z] showPinPrompt start. Message: "Nhập mã PIN của nhân viên Trân để đăng nhập trực ca (mặc định: 1234):"
+2026-06-19T18:36:32.473Z - Renderer: [DEBUG 2026-06-19T18:36:32.470Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T18:36:32.474Z - Renderer: [DEBUG 2026-06-19T18:36:32.470Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T18:36:32.474Z - Renderer: [DEBUG 2026-06-19T18:36:32.470Z] Attaching click and keydown event listeners
+2026-06-19T18:36:32.522Z - Renderer: [DEBUG 2026-06-19T18:36:32.521Z] Timeout callback: focusing and selecting input
+2026-06-19T18:36:35.106Z - Renderer: [DEBUG 2026-06-19T18:36:35.105Z] Enter keydown event inside input
+2026-06-19T18:36:35.107Z - Renderer: [DEBUG 2026-06-19T18:36:35.105Z] onConfirm triggered. Value: "1234"
+2026-06-19T18:36:35.107Z - Renderer: [DEBUG 2026-06-19T18:36:35.105Z] cleanUp triggered. Removing event listeners.
+2026-06-19T18:36:35.108Z - Renderer: [DEBUG 2026-06-19T18:36:35.105Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T18:36:35.108Z - Renderer: [DEBUG 2026-06-19T18:36:35.105Z] PIN prompt returned: value
+2026-06-19T18:36:35.109Z - Renderer: [DEBUG 2026-06-19T18:36:35.106Z] Calling verifyPin API
+2026-06-19T18:36:35.110Z - Renderer: [DEBUG 2026-06-19T18:36:35.109Z] verifyPin returned: true
+2026-06-19T18:36:35.110Z - Renderer: [DEBUG 2026-06-19T18:36:35.109Z] Setting active reporter to emp.id: emp_1781825252190
+2026-06-19T18:36:35.111Z - Renderer: [DEBUG 2026-06-19T18:36:35.110Z] Employee card click handler finished
+2026-06-19T18:38:28.649Z - Renderer: [DEBUG 2026-06-19T18:38:28.649Z] Employee card clicked for: Khang (id: emp_1781816093304)
+2026-06-19T18:38:28.653Z - Renderer: [DEBUG 2026-06-19T18:38:28.649Z] Security API verifyPin is available. Prompting PIN.
+2026-06-19T18:38:28.664Z - Renderer: [DEBUG 2026-06-19T18:38:28.649Z] showPinPrompt start. Message: "Nhập mã PIN của nhân viên Khang để đăng nhập trực ca (mặc định: 1234):"
+2026-06-19T18:38:28.665Z - Renderer: [DEBUG 2026-06-19T18:38:28.650Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T18:38:28.666Z - Renderer: [DEBUG 2026-06-19T18:38:28.650Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T18:38:28.667Z - Renderer: [DEBUG 2026-06-19T18:38:28.650Z] Attaching click and keydown event listeners
+2026-06-19T18:38:28.709Z - Renderer: [DEBUG 2026-06-19T18:38:28.709Z] Timeout callback: focusing and selecting input
+2026-06-19T18:38:31.622Z - Renderer: [DEBUG 2026-06-19T18:38:31.622Z] Enter keydown event inside input
+2026-06-19T18:38:31.623Z - Renderer: [DEBUG 2026-06-19T18:38:31.622Z] onConfirm triggered. Value: "2002"
+2026-06-19T18:38:31.624Z - Renderer: [DEBUG 2026-06-19T18:38:31.623Z] cleanUp triggered. Removing event listeners.
+2026-06-19T18:38:31.625Z - Renderer: [DEBUG 2026-06-19T18:38:31.623Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T18:38:31.625Z - Renderer: [DEBUG 2026-06-19T18:38:31.623Z] PIN prompt returned: value
+2026-06-19T18:38:31.626Z - Renderer: [DEBUG 2026-06-19T18:38:31.623Z] Calling verifyPin API
+2026-06-19T18:38:31.627Z - Renderer: [DEBUG 2026-06-19T18:38:31.627Z] verifyPin returned: true
+2026-06-19T18:38:31.628Z - Renderer: [DEBUG 2026-06-19T18:38:31.627Z] Setting active reporter to emp.id: emp_1781816093304
+2026-06-19T18:38:31.629Z - Renderer: [DEBUG 2026-06-19T18:38:31.628Z] Employee card click handler finished
+2026-06-19T19:18:12.252Z - Renderer: [DEBUG 2026-06-19T19:18:12.251Z] showPinPrompt start. Message: "Nhập mã PIN Quản lý để xóa kết ca 0đ của Khang (PIN mặc định: 9999):"
+2026-06-19T19:18:12.253Z - Renderer: [DEBUG 2026-06-19T19:18:12.251Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T19:18:12.254Z - Renderer: [DEBUG 2026-06-19T19:18:12.251Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T19:18:12.255Z - Renderer: [DEBUG 2026-06-19T19:18:12.251Z] Attaching click and keydown event listeners
+2026-06-19T19:18:12.311Z - Renderer: [DEBUG 2026-06-19T19:18:12.311Z] Timeout callback: focusing and selecting input
+2026-06-19T19:18:16.657Z - Renderer: [DEBUG 2026-06-19T19:18:16.656Z] Enter keydown event inside input
+2026-06-19T19:18:16.657Z - Renderer: [DEBUG 2026-06-19T19:18:16.656Z] onConfirm triggered. Value: ""
+2026-06-19T19:18:16.658Z - Renderer: [DEBUG 2026-06-19T19:18:16.656Z] cleanUp triggered. Removing event listeners.
+2026-06-19T19:18:16.659Z - Renderer: [DEBUG 2026-06-19T19:18:16.656Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T19:18:17.871Z - Renderer: [DEBUG 2026-06-19T19:18:17.870Z] showPinPrompt start. Message: "Nhập mã PIN Quản lý để xóa kết ca 0đ của Khang (PIN mặc định: 9999):"
+2026-06-19T19:18:17.872Z - Renderer: [DEBUG 2026-06-19T19:18:17.870Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T19:18:17.872Z - Renderer: [DEBUG 2026-06-19T19:18:17.870Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T19:18:17.872Z - Renderer: [DEBUG 2026-06-19T19:18:17.870Z] Attaching click and keydown event listeners
+2026-06-19T19:18:17.922Z - Renderer: [DEBUG 2026-06-19T19:18:17.921Z] Timeout callback: focusing and selecting input
+2026-06-19T19:18:19.163Z - Renderer: [DEBUG 2026-06-19T19:18:19.163Z] onConfirm triggered. Value: ""
+2026-06-19T19:18:19.164Z - Renderer: [DEBUG 2026-06-19T19:18:19.163Z] cleanUp triggered. Removing event listeners.
+2026-06-19T19:18:19.165Z - Renderer: [DEBUG 2026-06-19T19:18:19.163Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T19:18:20.119Z - Renderer: [DEBUG 2026-06-19T19:18:20.118Z] showPinPrompt start. Message: "Nhập mã PIN Quản lý để xóa kết ca 0đ của Khang (PIN mặc định: 9999):"
+2026-06-19T19:18:20.119Z - Renderer: [DEBUG 2026-06-19T19:18:20.118Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T19:18:20.120Z - Renderer: [DEBUG 2026-06-19T19:18:20.118Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T19:18:20.121Z - Renderer: [DEBUG 2026-06-19T19:18:20.118Z] Attaching click and keydown event listeners
+2026-06-19T19:18:20.171Z - Renderer: [DEBUG 2026-06-19T19:18:20.171Z] Timeout callback: focusing and selecting input
+2026-06-19T19:18:59.332Z - Renderer: [DEBUG 2026-06-19T19:18:59.331Z] onConfirm triggered. Value: "9999"
+2026-06-19T19:18:59.333Z - Renderer: [DEBUG 2026-06-19T19:18:59.331Z] cleanUp triggered. Removing event listeners.
+2026-06-19T19:18:59.334Z - Renderer: [DEBUG 2026-06-19T19:18:59.331Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T19:43:17.723Z - Renderer: [DEBUG 2026-06-19T19:43:17.722Z] deleteReport start for reportId: rep_1781894380488_08vi
+2026-06-19T19:43:17.724Z - Renderer: [DEBUG 2026-06-19T19:43:17.723Z] Found report: "Nước Suối Aquafina"
+2026-06-19T19:43:17.725Z - Renderer: [DEBUG 2026-06-19T19:43:17.723Z] Security API verifyManagerPin is available. Prompting PIN.
+2026-06-19T19:43:17.725Z - Renderer: [DEBUG 2026-06-19T19:43:17.723Z] showPinPrompt start. Message: "Nhập mã PIN Quản lý để xóa báo cáo "Nước Suối Aquafina" (PIN mặc định: 9999):"
+2026-06-19T19:43:17.726Z - Renderer: [DEBUG 2026-06-19T19:43:17.723Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T19:43:17.727Z - Renderer: [DEBUG 2026-06-19T19:43:17.723Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T19:43:17.727Z - Renderer: [DEBUG 2026-06-19T19:43:17.723Z] Attaching click and keydown event listeners
+2026-06-19T19:43:17.774Z - Renderer: [DEBUG 2026-06-19T19:43:17.774Z] Timeout callback: focusing and selecting input
+2026-06-19T19:43:21.218Z - Renderer: [DEBUG 2026-06-19T19:43:21.218Z] Enter keydown event inside input
+2026-06-19T19:43:21.219Z - Renderer: [DEBUG 2026-06-19T19:43:21.218Z] onConfirm triggered. Value: "9999"
+2026-06-19T19:43:21.220Z - Renderer: [DEBUG 2026-06-19T19:43:21.218Z] cleanUp triggered. Removing event listeners.
+2026-06-19T19:43:21.220Z - Renderer: [DEBUG 2026-06-19T19:43:21.218Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T19:43:21.221Z - Renderer: [DEBUG 2026-06-19T19:43:21.218Z] PIN prompt returned: value
+2026-06-19T19:43:21.222Z - Renderer: [DEBUG 2026-06-19T19:43:21.218Z] Calling verifyManagerPin API
+2026-06-19T19:43:21.223Z - Renderer: [DEBUG 2026-06-19T19:43:21.222Z] verifyManagerPin returned: true
+2026-06-19T19:43:21.224Z - Renderer: [DEBUG 2026-06-19T19:43:21.222Z] Calling deleteReportSecure API for reportId: rep_1781894380488_08vi, actor: Khang
+2026-06-19T19:43:21.228Z - Renderer: [DEBUG 2026-06-19T19:43:21.228Z] deleteReportSecure API completed
+2026-06-19T19:43:21.229Z - Renderer: [DEBUG 2026-06-19T19:43:21.228Z] Reloading database and rendering tables
+2026-06-19T19:43:21.236Z - Renderer: [DEBUG 2026-06-19T19:43:21.236Z] deleteReport finished
+2026-06-19T20:18:22.819Z - Renderer: [DEBUG 2026-06-19T20:18:22.819Z] Employee card clicked for: Khang (id: emp_1781816093304)
+2026-06-19T20:18:22.820Z - Renderer: [DEBUG 2026-06-19T20:18:22.819Z] Security API verifyPin is available. Prompting PIN.
+2026-06-19T20:18:22.821Z - Renderer: [DEBUG 2026-06-19T20:18:22.819Z] showPinPrompt start. Message: "Nhập mã PIN của nhân viên Khang để đăng nhập trực ca (mặc định: 1234):"
+2026-06-19T20:18:22.821Z - Renderer: [DEBUG 2026-06-19T20:18:22.819Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T20:18:22.821Z - Renderer: [DEBUG 2026-06-19T20:18:22.819Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T20:18:22.822Z - Renderer: [DEBUG 2026-06-19T20:18:22.819Z] Attaching click and keydown event listeners
+2026-06-19T20:18:22.873Z - Renderer: [DEBUG 2026-06-19T20:18:22.873Z] Timeout callback: focusing and selecting input
+2026-06-19T20:18:25.802Z - Renderer: [DEBUG 2026-06-19T20:18:25.802Z] Enter keydown event inside input
+2026-06-19T20:18:25.803Z - Renderer: [DEBUG 2026-06-19T20:18:25.802Z] onConfirm triggered. Value: "2002"
+2026-06-19T20:18:25.803Z - Renderer: [DEBUG 2026-06-19T20:18:25.802Z] cleanUp triggered. Removing event listeners.
+2026-06-19T20:18:25.803Z - Renderer: [DEBUG 2026-06-19T20:18:25.802Z] Hiding modal (display=none, opacity=0, pointerEvents=none)
+2026-06-19T20:18:25.804Z - Renderer: [DEBUG 2026-06-19T20:18:25.802Z] PIN prompt returned: value
+2026-06-19T20:18:25.804Z - Renderer: [DEBUG 2026-06-19T20:18:25.802Z] Calling verifyPin API
+2026-06-19T20:18:25.806Z - Renderer: [DEBUG 2026-06-19T20:18:25.805Z] verifyPin returned: true
+2026-06-19T20:18:25.807Z - Renderer: [DEBUG 2026-06-19T20:18:25.805Z] Setting active reporter to emp.id: emp_1781816093304
+2026-06-19T20:18:25.808Z - Renderer: [DEBUG 2026-06-19T20:18:25.808Z] Employee card click handler finished
+2026-06-19T22:39:26.045Z - Renderer: [DEBUG 2026-06-19T22:39:26.045Z] showPinPrompt start. Message: "Nhập mã PIN Quản lý để xóa kết ca 1,466,000đ của Khang (PIN mặc định: 9999):"
+2026-06-19T22:39:26.046Z - Renderer: [DEBUG 2026-06-19T22:39:26.045Z] pinPromptModal parent element: <BODY id="" class="">
+2026-06-19T22:39:26.047Z - Renderer: [DEBUG 2026-06-19T22:39:26.045Z] Displaying modal (display=flex, opacity=1, pointerEvents=auto)
+2026-06-19T22:39:26.047Z - Renderer: [DEBUG 2026-06-19T22:39:26.045Z] Attaching click and keydown event listeners
+2026-06-19T22:39:26.096Z - Renderer: [DEBUG 2026-06-19T22:39:26.096Z] Timeout callback: focusing and selecting input
+2026-06-19T22:39:29.755Z - Renderer: [DEBUG 2026-06-19T22:39:29.754Z] onConfirm triggered. Value: "9999"
+2026-06-19T22:39:29.755Z - Renderer: [DEBUG 2026-06-19T22:39:29.754Z] cleanUp triggered. Removing event listeners.
+2026-06-19T22:39:29.756Z - Renderer: [DEBUG 2026-06-19T22:39:29.754Z] Hiding modal (display=none, opacity=0, pointerEvents=none)

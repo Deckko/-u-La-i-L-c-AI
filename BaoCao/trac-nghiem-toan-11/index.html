@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEM Mastery - AI Premium Learning Platform</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Firebase SDK (Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore-compat.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    
+    <!-- KaTeX Mathematical Equations Rendering SDK -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Canvas Confetti Celebration SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <!-- Project Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Mobile Menu Bar Header -->
+    <header id="mobile-nav" class="mobile-header lg:hidden" style="display: flex;">
+        <button id="mobile-menu-btn" class="mobile-menu-btn">☰</button>
+        <div class="text-sm font-black text-white">STEM <span class="text-gradient">MASTERY</span></div>
+        <button onclick="UIManager.openSettings()" class="text-xl">⚙️</button>
+    </header>
+    
+    <!-- Sidebar overlay backdrop -->
+    <div id="sidebar-overlay" class="aside-overlay"></div>
+
+    <!-- Premium Backdrop Elements -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <div class="app-shell">
+        
+        <!-- Sidebar: User Stats & Leaderboard rankings -->
+        <aside class="space-y-6">
+            <!-- Sidebar Card -->
+            <div class="premium-card">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-sky-500 rounded-xl flex items-center justify-center text-xl shadow-lg shadow-sky-500/20">📐</div>
+                        <div>
+                            <h1 class="font-black text-lg tracking-tight">STEM <span class="text-gradient">MASTERY</span></h1>
+                            <p class="text-[9px] text-slate-400 font-extrabold uppercase tracking-widest">AI Intelligent Agent</p>
+                        </div>
+                    </div>
+                    <!-- Settings Button -->
+                    <button onclick="UIManager.openSettings()" class="text-slate-400 hover:text-white transition-all text-xl" title="Cài đặt giao diện">⚙️</button>
+                </div>
+
+                <div id="user-info-box" class="p-4 bg-slate-900/50 rounded-2xl border border-white/5 mb-4">
+                    <p class="text-[10px] text-slate-500 uppercase font-black mb-1">Trạng thái đăng nhập</p>
+                    <h3 id="display-name" class="font-extrabold text-white text-base">Khách tham quan</h3>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="p-3 bg-white/5 rounded-xl text-center border border-white/5">
+                        <div class="text-[9px] text-slate-500 font-bold uppercase mb-1">Học phần</div>
+                        <div class="text-sm font-extrabold text-sky-400">K-12 STEM</div>
+                    </div>
+                    <div class="p-3 bg-white/5 rounded-xl text-center border border-white/5">
+                        <div class="text-[9px] text-slate-500 font-bold uppercase mb-1">Đánh giá</div>
+                        <div class="text-sm font-extrabold text-emerald-400">Mastery</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard Card -->
+            <div class="premium-card">
+                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse-slow"></span> BẢNG XẾP HẠNG
+                </h3>
+                <div id="leaderboard" class="leaderboard-list">
+                    <div class="text-center py-8 text-slate-600 text-xs italic">Đang đồng bộ dữ liệu...</div>
+                </div>
+            </div>
+
+            <!-- Personal History Card -->
+            <div class="premium-card">
+                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse-slow"></span> LỊCH SỬ LUYỆN TẬP
+                </h3>
+                <div id="personal-history" class="history-list">
+                    <div class="text-center py-6 text-slate-600 text-xs italic">Chưa thực hiện bài luyện nào.</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace Area -->
+        <main class="space-y-6">
+            
+            <!-- Setup Section -->
+            <div id="setup-section" class="premium-card h-full flex flex-col justify-center min-h-[480px]">
+                <div class="max-w-lg mx-auto w-full space-y-8 py-6">
+                    <div class="text-center space-y-2">
+                        <span class="px-3 py-1 bg-sky-500/10 text-sky-400 text-[11px] font-extrabold rounded-full uppercase tracking-wider">AI Personal Tutor</span>
+                        <h2 class="text-3xl font-black text-white leading-tight">Khởi tạo đề thi STEM AI</h2>
+                        <p class="text-slate-400 text-sm">AI sẽ dựa trên lựa chọn cấp học, môn học và chương học cụ thể của bạn để thiết kế đề bài tối ưu.</p>
+                    </div>
+
+                    <div class="space-y-5">
+                        <div class="relative">
+                            <label class="text-[11px] font-black text-slate-400 uppercase ml-1 mb-2 block tracking-wider">Họ và tên của bạn</label>
+                            <input type="text" id="username" placeholder="Nhập tên để lưu kết quả..." class="w-full">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-[11px] font-black text-slate-400 uppercase ml-1 mb-2 block tracking-wider">Chọn Cấp lớp</label>
+                                <select id="grade">
+                                    <option value="10">Lớp 10</option>
+                                    <option value="11" selected>Lớp 11</option>
+                                    <option value="12">Lớp 12</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-[11px] font-black text-slate-400 uppercase ml-1 mb-2 block tracking-wider">Chọn Môn học</label>
+                                <select id="subject">
+                                    <option value="Toán học" selected>Toán học</option>
+                                    <option value="Vật lý">Vật lý</option>
+                                    <option value="Hóa học">Hóa học</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-[11px] font-black text-slate-400 uppercase ml-1 mb-2 block tracking-wider">Chọn Chương học / Chủ đề</label>
+                            <select id="topic">
+                                <!-- Populated dynamically by UI.js cascading engine -->
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="text-[11px] font-black text-slate-400 uppercase ml-1 mb-2 block tracking-wider">Mức độ thử thách</label>
+                            <select id="level">
+                                <option value="Cơ bản">Cơ bản (7+)</option>
+                                <option value="Vận dụng">Vận dụng (8+)</option>
+                                <option value="Nâng cao">Nâng cao (9+)</option>
+                            </select>
+                        </div>
+
+                        <button onclick="App.startGeneration()" class="btn-main mt-4">
+                            TẠO ĐỀ THI AI NGAY 🚀
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading View -->
+            <div id="loading-section" class="hidden premium-card h-full flex flex-col items-center justify-center py-24 text-center min-h-[480px]">
+                <div class="loading-spinner mb-8"></div>
+                <h2 class="text-2xl font-black text-white mb-2 tracking-wide">Trợ lý AI đang soạn đề bài...</h2>
+                <p class="text-slate-400 max-w-sm mx-auto text-sm leading-relaxed">Hệ thống đang thiết kế các câu hỏi Toán học kèm theo lời giải chi tiết định dạng LaTeX tối ưu cho học sinh...</p>
+            </div>
+
+            <!-- Active Quiz Screen -->
+            <div id="quiz-section" class="hidden premium-card space-y-6 min-h-[480px]">
+                <div class="flex items-center justify-between border-b border-white/5 pb-4">
+                    <div class="flex items-center gap-4">
+                        <span id="q-number" class="px-3.5 py-1.5 bg-sky-500/20 text-sky-400 text-xs font-black rounded-xl tracking-wider">CÂU 01</span>
+                        <div class="h-1.5 w-36 bg-slate-800 rounded-full overflow-hidden">
+                            <div id="progress" class="h-full bg-gradient-to-r from-sky-400 to-indigo-500 transition-all duration-500" style="width: 10%"></div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">⏱️ Thời gian</span>
+                        <span id="timer" class="text-lg font-black tabular-nums text-white">00:00</span>
+                    </div>
+                </div>
+
+                <!-- Navigation grid panel câu 1-10 -->
+                <div id="quiz-navigation" class="quiz-nav-grid border-b border-white/5 pb-4">
+                    <!-- Circles injected dynamically -->
+                </div>
+
+                <div id="question-box" class="py-8">
+                    <p id="question-text" class="text-xl md:text-2xl font-bold leading-relaxed text-slate-100"></p>
+                </div>
+
+                <div id="options-box" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                    <!-- Dynamic interactive options -->
+                </div>
+
+                <!-- Quiz action bar controls -->
+                <div class="flex justify-between items-center pt-6 gap-4 border-t border-white/5 mt-6">
+                    <button onclick="App.prevQuestion()" class="btn-secondary flex-1 py-3 text-sm">
+                        ⬅️ Câu trước
+                    </button>
+                    <button onclick="App.nextQuestion()" class="btn-secondary flex-1 py-3 text-sm">
+                        Câu tiếp ➡️
+                    </button>
+                    <button onclick="App.finishQuiz()" class="btn-main flex-1 py-3 text-sm" style="box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2); background: linear-gradient(135deg, #10b981, #059669); color: white;">
+                        📥 Nộp bài
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results & Review View -->
+            <div id="result-section" class="hidden premium-card space-y-8 py-12">
+                <div class="text-center space-y-4">
+                    <div class="relative inline-block mx-auto mb-2">
+                        <div class="text-7xl">🏆</div>
+                        <div class="absolute inset-0 animate-ping rounded-full bg-sky-500/10"></div>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-black text-white mb-2">Hoàn thành thử thách!</h2>
+                        <p class="text-slate-400 text-sm">Điểm số và lời giải chi tiết đã được biên soạn bên dưới.</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-8 py-4 bg-white/5 rounded-2xl border border-white/5 max-w-xl mx-auto">
+                    <div class="text-center px-4">
+                        <p class="text-[10px] font-black text-slate-500 uppercase mb-1 tracking-wider">Điểm số</p>
+                        <p id="res-score" class="text-3xl font-black text-sky-400">0/10</p>
+                    </div>
+                    <div class="w-[1px] h-12 bg-white/10 hidden md:block"></div>
+                    <div class="text-center px-4">
+                        <p class="text-[10px] font-black text-slate-500 uppercase mb-1 tracking-wider">Thời gian</p>
+                        <p id="res-time" class="text-3xl font-black text-white">0s</p>
+                    </div>
+                    <div class="w-[1px] h-12 bg-white/10 hidden md:block"></div>
+                    <div class="text-center px-4">
+                        <p class="text-[10px] font-black text-slate-500 uppercase mb-1 tracking-wider">Độ chính xác</p>
+                        <p id="res-acc" class="text-3xl font-black text-emerald-400">0%</p>
+                    </div>
+                </div>
+
+                <!-- Solution review section / drawer key -->
+                <div class="space-y-4 max-w-3xl mx-auto pt-4">
+                    <h3 class="text-sm font-black text-slate-300 uppercase tracking-widest border-b border-white/5 pb-2">
+                        📚 ĐÁP ÁN & LỜI GIẢI CHI TIẾT TỪ AI
+                    </h3>
+                    <div id="review-accordion" class="space-y-3">
+                        <!-- solution keys injected here -->
+                    </div>
+                </div>
+
+                <div class="flex justify-center pt-6">
+                    <button onclick="location.reload()" class="btn-main max-w-xs">
+                        THỬ LẠI CHỦ ĐỀ KHÁC 🔄
+                    </button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Dynamic Interface Settings Modal -->
+    <div id="settings-modal" class="custom-modal-backdrop">
+        <div class="custom-modal-window space-y-6">
+            <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                <h3 class="text-base font-black text-white">⚙️ CÀI ĐẶT GIAO DIỆN & HỆ THỐNG</h3>
+                <button onclick="UIManager.closeSettings()" class="text-slate-500 hover:text-white text-lg">✕</button>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="text-[11px] font-black text-slate-400 uppercase mb-2 block">Chủ đề hiển thị (Theme)</label>
+                    <select id="settings-theme">
+                        <option value="theme-dark">Dark Glassmorphic (Mặc định)</option>
+                        <option value="theme-sakura">Sakura Blossom (Hoa anh đào)</option>
+                        <option value="theme-emerald">Emerald Forest (Xanh tre trúc)</option>
+                        <option value="theme-cyberpunk">Cyberpunk Grid (Neon tương lai)</option>
+                        <option value="theme-light">Light Crystal (Giao diện sáng)</option>
+                    </select>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[11px] font-black text-slate-400 uppercase mb-2 block">Độ mờ kính (Blur)</label>
+                        <select id="settings-blur">
+                            <option value="blur-none">Không mờ (Tắt)</option>
+                            <option value="blur-low">Mờ nhẹ (8px)</option>
+                            <option value="blur-med">Mờ vừa (20px)</option>
+                            <option value="blur-deep">Mờ sâu (45px)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-black text-slate-400 uppercase mb-2 block">Cỡ chữ hiển thị (Scale)</label>
+                        <select id="settings-font-scale">
+                            <option value="font-sm">Nhỏ</option>
+                            <option value="font-md">Vừa (Chuẩn)</option>
+                            <option value="font-lg">Lớn</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 py-2">
+                    <input type="checkbox" id="settings-sound" class="w-4 h-4 rounded accent-sky-500 bg-slate-900 border-white/10">
+                    <label for="settings-sound" class="text-xs font-bold text-slate-300">Bật hiệu ứng âm thanh click & thành công 🔊</label>
+                </div>
+
+                <div class="border-t border-white/5 pt-4">
+                    <label class="text-[11px] font-black text-slate-400 uppercase mb-2 block">Nhập Gemini API Key riêng (Tùy chọn)</label>
+                    <input type="text" id="settings-api-key" placeholder="Nhập API Key của bạn để tăng giới hạn..." class="w-full">
+                    <p class="text-[9px] text-slate-500 mt-1">Lưu ý: API Key của bạn chỉ được lưu cục bộ trên trình duyệt này, hoàn toàn bảo mật.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-3 justify-end pt-4 border-t border-white/5">
+                <button onclick="UIManager.closeSettings()" class="btn-secondary py-2.5 text-xs">Hủy</button>
+                <button onclick="UIManager.saveSettings()" class="btn-main py-2.5 text-xs px-6" style="color: black !important;">Lưu cài đặt</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Past Attempt Review Modal -->
+    <div id="review-modal" class="custom-modal-backdrop">
+        <div class="custom-modal-window space-y-6 max-w-2xl">
+            <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                <div>
+                    <h3 id="review-modal-title" class="text-base font-black text-white">Xem lại bài luyện tập</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mt-0.5">Lịch sử bài làm chi tiết</p>
+                </div>
+                <button onclick="document.getElementById('review-modal').classList.remove('open')" class="text-slate-500 hover:text-white text-lg">✕</button>
+            </div>
+            
+            <div id="review-modal-content" class="space-y-6 max-h-[60vh] overflow-y-auto pr-1">
+                <!-- detailed correction sets injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Draggable & Resizable Scratchpad Workspace -->
+    <button id="scratchpad-toggle" class="scratchpad-toggle-btn" title="Mở bảng nháp">📝</button>
+    
+    <div id="scratchpad-window" class="scratchpad-container hidden">
+        <div id="scratchpad-header" class="scratchpad-handle">
+            <span class="text-[11px] font-black text-slate-300 tracking-wider">📝 BẢNG NHÁP (KÉO DI CHUYỂN VỊ TRÍ)</span>
+            <button id="scratchpad-clear" class="text-xs font-bold text-rose-400 hover:text-rose-300">Xóa 🧹</button>
+        </div>
+        <div class="scratchpad-body">
+            <canvas id="scratchpad-canvas" class="scratchpad-canvas"></canvas>
+            <div id="scratchpad-resize" class="scratchpad-resize-handle"></div>
+        </div>
+        <div class="scratchpad-footer">
+            <span class="text-[10px] text-slate-500 font-bold">Màu:</span>
+            <div class="flex gap-2">
+                <button class="brush-btn active" data-color="#38bdf8" style="background-color: #38bdf8;"></button>
+                <button class="brush-btn" data-color="#10b981" style="background-color: #10b981;"></button>
+                <button class="brush-btn" data-color="#f59e0b" style="background-color: #f59e0b;"></button>
+                <button class="brush-btn" data-color="#f43f5e" style="background-color: #f43f5e;"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script Imports -->
+    <script src="js/storage.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
