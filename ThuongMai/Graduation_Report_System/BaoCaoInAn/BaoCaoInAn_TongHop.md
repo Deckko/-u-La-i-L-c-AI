@@ -1,45 +1,71 @@
-# BÁO CÁO THỰC TẬP TỐT NGHIỆP
+<!-- START OF COVER PAGE -->
+<div style="border: 4px double #0f172a; padding: 25px; margin: 10px; min-height: 92%; font-family: 'Times New Roman', Times, serif; color: #000; background-color: #fff; position: relative; box-sizing: border-box;">
 
----
+  <!-- Decorative Corner Borders -->
+  <div style="position: absolute; top: 15px; left: 15px; font-size: 16px; font-weight: bold; color: #0f172a;">✦</div>
+  <div style="position: absolute; top: 15px; right: 15px; font-size: 16px; font-weight: bold; color: #0f172a;">✦</div>
+  <div style="position: absolute; bottom: 15px; left: 15px; font-size: 16px; font-weight: bold; color: #0f172a;">✦</div>
+  <div style="position: absolute; bottom: 15px; right: 15px; font-size: 16px; font-weight: bold; color: #0f172a;">✦</div>
 
-```
-              TRƯỜNG CAO ĐẲNG KỸ THUẬT CÔNG NGHỆ NHA TRANG
-                          KHOA ĐIỆN - ĐIỆN TỬ
-                            BỘ MÔN TIN HỌC
-```
+  <div align="center" style="font-weight: bold; font-size: 14pt; line-height: 1.5; margin-bottom: 5px;">
+    TRƯỜNG CAO ĐẰNG KỸ THUẬT CÔNG NGHỆ NHA TRANG
+  </div>
+  <div align="center" style="font-weight: bold; font-size: 13pt; line-height: 1.5; margin-bottom: 5px;">
+    KHOA ĐIỆN - ĐIỆN TỬ
+  </div>
+  <div align="center" style="font-weight: bold; font-size: 12pt; text-decoration: underline; margin-bottom: 40px;">
+    BỘ MÔN TIN HỌC
+  </div>
 
-<br/>
+  <div align="center" style="margin-bottom: 50px; margin-top: 30px;">
+    <img src="./logo_truong.png" alt="Logo Trường" width="140" style="object-fit: contain;"/>
+  </div>
 
-<p align="center">
-  <img src="./logo_truong.png" alt="Logo Trường" width="160"/>
-</p>
+  <div align="center" style="font-weight: bold; font-size: 24pt; color: #0f172a; margin-bottom: 10px; letter-spacing: 1px;">
+    BÁO CÁO THỰC TẬP TỐT NGHIỆP
+  </div>
+  <div align="center" style="font-weight: bold; font-size: 15pt; margin-bottom: 60px; font-style: italic;">
+    Nghề: Công Nghệ Thông Tin
+  </div>
 
-<br/>
+  <div align="center" style="font-size: 12pt; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; tracking: 0.1em; color: #475569;">
+    ĐỀ TÀI:
+  </div>
+  <div align="center" style="font-weight: bold; font-size: 18pt; line-height: 1.4; max-width: 90%; margin: 0 auto 100px auto; color: #0f172a; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px;">
+    THIẾT KẾ VÀ XÂY DỰNG WEBSITE TRỰC TUYỂN TÍCH HỢP AI CHATBOT VÀ TRUY VẤN NGỮ NGHĨA SEMANTIC RAG
+  </div>
 
-<h1 align="center">BÁO CÁO THỰC TẬP TỐT NGHIỆP</h1>
-<h3 align="center">Nghề: Công Nghệ Thông Tin</h3>
+  <!-- Information Block -->
+  <div style="margin-left: 20%; font-size: 13pt; line-height: 1.8; margin-bottom: 100px;">
+    <table style="border: none; border-collapse: collapse;">
+      <tr style="border: none;">
+        <td style="padding: 2px 10px 2px 0px; font-weight: bold; border: none; font-family: 'Times New Roman', Times, serif;">Giáo viên hướng dẫn:</td>
+        <td style="padding: 2px 10px; border: none; font-family: 'Times New Roman', Times, serif;">Cô Hồ Thị Thanh Diệu</td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 2px 10px 2px 0px; font-weight: bold; border: none; font-family: 'Times New Roman', Times, serif;">Sinh viên thực hiện:</td>
+        <td style="padding: 2px 10px; border: none; font-family: 'Times New Roman', Times, serif;">Nguyễn Phúc An Khang</td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 2px 10px 2px 0px; font-weight: bold; border: none; font-family: 'Times New Roman', Times, serif;">Lớp:</td>
+        <td style="padding: 2px 10px; border: none; font-family: 'Times New Roman', Times, serif;">TC-CNTT18B</td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 2px 10px 2px 0px; font-weight: bold; border: none; font-family: 'Times New Roman', Times, serif;">MSSV:</td>
+        <td style="padding: 2px 10px; border: none; font-family: 'Times New Roman', Times, serif;">TC-CNTT18B11</td>
+      </tr>
+      <tr style="border: none;">
+        <td style="padding: 2px 10px 2px 0px; font-weight: bold; border: none; font-family: 'Times New Roman', Times, serif;">Doanh nghiệp thực tập:</td>
+        <td style="padding: 2px 10px; border: none; font-family: 'Times New Roman', Times, serif;">Công ty Cổ phần SweetSoft</td>
+      </tr>
+    </table>
+  </div>
 
-<br/>
-
-**Đề tài:**
-<h2 align="center">THIẾT KẾ VÀ XÂY DỰNG WEBSITE TRỰC TUYỂN</h2>
-
-<br/>
-<br/>
-
-**Học sinh thực hiện:**
-* **Họ và tên**: **Nguyễn Phúc An Khang**
-* **Lớp**: **TC-CNTT18B**
-* **MSSV**: **TC-CNTT18B11**
-
-**Giảng viên hướng dẫn:**
-* **Hồ Thị Thanh Diệu**
-
-<br/>
-<br/>
-
----
-<p align="center">Khánh Hòa - 2026</p>
+  <div align="center" style="font-weight: bold; font-size: 13pt; position: absolute; bottom: 40px; width: 100%; left: 0;">
+    Khánh Hòa, năm 2026
+  </div>
+</div>
+<!-- END OF COVER PAGE -->
 
 \newpage
 
@@ -209,7 +235,7 @@ Kiến trúc phần mềm phân tách (Decoupled Architecture hoặc Headless Ar
 
 Trong các kiến trúc truyền thống dạng Monolithic (mã nguồn Frontend và Backend gộp chung trong một ứng dụng duy nhất), sự phụ thuộc chặt chẽ giữa mã nguồn hiển thị và logic dữ liệu làm tăng độ phức tạp khi hệ thống phình to, đồng thời gây khó khăn lớn cho việc mở rộng quy mô (Scale). Khi Frontend và Backend bị ràng buộc, mọi thay đổi nhỏ ở giao diện đều yêu cầu biên dịch và triển khai lại toàn bộ hệ thống máy chủ, gây rủi ro gián đoạn dịch vụ rất cao.
 
-Kiến trúc Decoupled giải quyết triệt để các hạn chế trên nhờ cơ chế phân định trách nhiệm rõ ràng (Separation of Concerns). Backend tập trung toàn bộ tài nguyên vào việc thực thi nghiệp vụ dữ liệu, bảo mật và lưu trữ cơ sở dữ liệu. Nó đóng vai trò là một kho cung cấp tài nguyên thuần túy, xuất bản dữ liệu ra bên ngoài dưới dạng các API RESTful (Representational State Transfer). REST là một phong cách kiến trúc phần mềm dựa trên các ràng buộc tiêu chuẩn, sử dụng các phương thức HTTP cơ bản như GET (đọc dữ liệu), POST (tạo mới dữ liệu), PUT/PATCH (cập nhật dữ liệu), và DELETE (xóa dữ liệu). Mỗi tài nguyên trên hệ thống được định danh bằng một đường dẫn URL (Uniform Resource Locator) duy nhất.
+Kiến trúc Decoupled giải quyết triệt các hạn chế trên nhờ cơ chế phân định trách nhiệm rõ ràng (Separation of Concerns). Backend tập trung toàn bộ tài nguyên vào việc thực thi nghiệp vụ dữ liệu, bảo mật và lưu trữ cơ sở dữ liệu. Nó đóng vai trò là một kho cung cấp tài nguyên thuần túy, xuất bản dữ liệu ra bên ngoài dưới dạng các API RESTful (Representational State Transfer). REST là một phong cách kiến trúc phần mềm dựa trên các ràng buộc tiêu chuẩn, sử dụng các phương thức HTTP cơ bản như GET (đọc dữ liệu), POST (tạo mới dữ liệu), PUT/PATCH (cập nhật dữ liệu), và DELETE (xóa dữ liệu). Mỗi tài nguyên trên hệ thống được định danh bằng một đường dẫn URL (Uniform Resource Locator) duy nhất.
 
 Frontend hoạt động hoàn toàn độc lập như một khách hàng (Client) tiêu thụ dịch vụ API. Nhờ sự phân tách này, nhóm phát triển Frontend có thể tự do lựa chọn các thư viện hiển thị hiện đại nhất mà không bị bó buộc bởi ngôn ngữ lập trình của Backend. Đồng thời, một hệ thống Backend API chuẩn hóa có thể phục vụ đồng thời cho nhiều nền tảng Frontend khác nhau như Website, ứng dụng di động (iOS/Android), thiết bị IoT hoặc các chatbot tích hợp của bên thứ ba mà không cần viết lại mã nguồn xử lý dữ liệu lõi. Điều này tối ưu hóa chi phí phát triển và mang lại tính linh hoạt cực kỳ cao cho doanh nghiệp.
 
