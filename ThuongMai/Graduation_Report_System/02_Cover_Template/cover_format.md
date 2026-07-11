@@ -1,38 +1,30 @@
-# MẪU TRANG BÌA BÁO CÁO TỐT NGHIỆP CHUẨN CAO ĐẲNG CNTT
-*(Định dạng căn lề chuẩn: Top: 2.0cm, Bottom: 2.0cm, Left: 3.0cm, Right: 2.0cm)*
+# TRƯỜNG CAO ĐẲNG KỸ THUẬT CÔNG NGHỆ NHA TRANG
+## KHOA ĐIỆN - ĐIỆN TỬ
+## BỘ MÔN TIN HỌC
 
 ---
 
-```
-             BỘ GIÁO DỤC VÀ ĐÀO TẠO / SỞ GIÁO DỤC & ĐÀO TẠO
-                       TRƯỜNG CAO ĐẲNG CÔNG NGHỆ
-                      KHOA CÔNG NGHỆ THÔNG TIN
-                     ==========================
-                     
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&auto=format&fit=crop&q=80" alt="Logo Trường" width="150"/>
+</p>
 
+<h1 align="center">BÁO CÁO THỰC TẬP TỐT NGHIỆP</h1>
+<h3 align="center">Nghề: Công Nghệ Thông Tin</h3>
 
+<br/>
 
-                       BÁO CÁO TỐT NGHIỆP
-              ĐỀ TÀI: XÂY DỰNG HỆ THỐNG THƯƠNG MẠI ĐIỆN TỬ 
-               TÍCH HỢP AI CHATBOT VÀ SEMANTIC RAG SEARCH
-               
+**Đề tài:**
+<h2 align="center">THIẾT KẾ VÀ XÂY DỰNG WEBSITE TRỰC TUYỂN</h2>
 
+<br/>
 
+**Họ và tên sinh viên thực hiện:**
+* **Nguyễn Phúc An Khang**
+* **Lớp**: TC-CNTT18B
+* **MSSV**: TC-CNTT18B11
 
-              Chuyên ngành : Công nghệ phần mềm / Thiết kế Web
-              Khóa học     : 2023 - 2026
-              
+**Giảng viên hướng dẫn:**
+* **Cô Hồ Thị Thanh Diệu**
 
-
-              SINH VIÊN THỰC HIỆN: [Họ và Tên Sinh Viên]
-              MÃ SỐ SINH VIÊN    : [Mã Số Sinh Viên]
-              LỚP                : [Tên Lớp]
-              
-              GIÁNG VIÊN HƯỚNG DẪN: [Họ và Tên GVHD]
-              CÁN BỘ ĐỒNG HƯỚNG DẪN: [Họ và Tên CBHD tại Doanh nghiệp]
-              
-
-
-
-                             Hà Nội, 2026
-```
+---
+<p align="center">Khánh Hòa - 2026</p>

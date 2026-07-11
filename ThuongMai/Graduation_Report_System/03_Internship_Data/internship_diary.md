@@ -1,70 +1,29 @@
-# BÁO CÁO THỰC TẬP & NHẬT KÝ THỰC TẬP CHI TIẾT
+# PHIẾU THEO DÕI TIẾN ĐỘ THỰC HIỆN THỰC TẬP TẠI DOANH NGHIỆP
 
-## THÔNG TIN CHUNG
-* **Họ và tên sinh viên**: [Họ và Tên Sinh Viên]
-* **Đơn vị thực tập**: Công ty Cổ phần Công nghệ & Truyền thông DECKKO
-* **Vị trí thực tập**: Thực tập sinh Phát triển Web (Web Developer Intern)
-* **Thời gian thực tập**: 8 tuần (Từ 04/05/2026 đến 29/06/2026)
-* **Người hướng dẫn tại doanh nghiệp**: Kỹ sư Nguyễn Văn A (Tech Lead)
+* **Tên đơn vị thực tập**: Công ty Cổ phần SweetSoft
+* **Địa chỉ đơn vị**: Tòa nhà VCN Tower, Ô 10 Tầng 12A, 02 Tố Hữu, Khu đô thị VCN, phường Nam Nha Trang, tỉnh Khánh Hòa
+* **Nội dung công việc thực tập**: Xây dựng dự án cá nhân (Hệ thống Thương mại điện tử tích hợp AI)
+* **Họ và tên giảng viên hướng dẫn**: Cô Hồ Thị Thanh Diệu (Giảng viên Trường Cao đẳng Kỹ thuật Công nghệ Nha Trang)
+* **Họ và tên người hướng dẫn tại công ty**: Chị Lê Thị Hoàng Yến Nhi (SĐT: 0898.382.020)
+
+### DANH SÁCH HỌC SINH THỰC TẬP
+1. **Nguyễn Phúc An Khang** (MSSV: `TC-CNTT18B11` - Lớp: `TC-CNTT18B`)
+2. **Lê Đức Tiến Đạt** (MSSV: `TC-CNTT18B3` - Lớp: `TC-CNTT18B`)
 
 ---
 
-## NHẬT KÝ THỰC TẬP THEO TUẦN
+## BẢNG NHẬT KÝ CHI TIẾT 8 TUẦN THỰC TẬP (01/06/2026 - 24/07/2026)
 
-### Tuần 1: Hội nhập doanh nghiệp, tìm hiểu quy trình và nhận đề tài
-* **Nội dung công việc**:
-  * Tham gia buổi định hướng doanh nghiệp, tìm hiểu nội quy và văn hóa công ty.
-  * Tiếp cận hạ tầng kỹ thuật và tìm hiểu quy trình làm việc Agile/Scrum của nhóm phát triển.
-  * Nhận đề tài thực tập tốt nghiệp: **"Xây dựng hệ thống thương mại điện tử tích hợp AI Chatbot bán hàng và công cụ tìm kiếm ngữ nghĩa (Semantic RAG Search)"**.
-  * Thiết lập môi trường phát triển cục bộ (Git, NodeJS, VS Code).
-* **Kết quả đạt được**: Hiểu rõ yêu cầu đề tài, cài đặt thành công công cụ phát triển, kết nối thành công kho lưu trữ Git của công ty.
+| Tuần | Khoảng Thời Gian | Nội Dung Công Việc Thực Hiện | Người Hướng Dẫn Ký Tên | Nhận Xét Của GVHD |
+|---|---|---|---|---|
+| **1** | 01/06/2026 - 07/06/2026 | Làm quen với quy định, bộ máy tổ chức tại SweetSoft. Nhận phân công dự án cá nhân: Xây dựng hệ thống thương mại điện tử tích hợp AI cho sản phẩm thời trang. Thiết lập môi trường code (Git, Node, Laravel). | *(Chị Yến Nhi đã duyệt)* | *(Cô Thanh Diệu đánh giá đạt)* |
+| **2** | 08/06/2026 - 14/06/2026 | Phân tích nghiệp vụ bán hàng thực tế, khảo sát quy trình quản lý kho, giỏ hàng và đặt hàng. Đặc tả yêu cầu hệ thống (SRS) song ngữ Việt - Anh. | *(Chị Yến Nhi đã duyệt)* | *(Cô Thanh Diệu đánh giá đạt)* |
+| **3** | 15/06/2026 - 21/06/2026 | Thiết kế sơ đồ quan hệ thực thể (ERD) cho Database, phân tích API endpoints và thiết kế giao diện Figma cho trải nghiệm người dùng tối giản (Luxury Dark Mode). | *(Chị Yến Nhi đã duyệt)* | *(Cô Thanh Diệu đánh giá đạt)* |
+| **4** | 22/06/2026 - 28/06/2026 | Xây dựng các chức năng chính của website trên nền tảng Next.js 16 (App Router) và Tailwind CSS v4. Tạo cơ sở dữ liệu quan hệ PostgreSQL với Docker. | *(Chị Yến Nhi đã duyệt)* | *(Cô Thanh Diệu đánh giá đạt)* |
+| **5** | 29/06/2026 - 05/07/2026 | Hoàn thiện chức năng giỏ hàng, trang thanh toán, tích hợp cơ chế i18n, kết nối API Backend Laravel xử lý transaction trừ kho chống tranh chấp. | *(Chị Yến Nhi đã duyệt)* | *(Cô Thanh Diệu đánh giá đạt)* |
+| **6** | 06/07/2026 - 12/07/2026 | Thực hiện kết nối dịch vụ AI Semantic RAG Search sử dụng Vector DB Qdrant và OpenAI Embedding để chatbot phản hồi tự động thông tin sản phẩm. | *(Chị Yến Nhi đã duyệt)* | *(Cô Thanh Diệu đánh giá đạt)* |
+| **7** | 13/07/2026 - 19/07/2026 | Kiểm thử hệ thống (UAT), rà soát bảo mật mã nguồn (xóa các thông tin credentials cứng trong code), cấu hình Metadata cho SEO. | *(Chị Yến Nhi đã duyệt)* | *(Cô Thanh Diệu đánh giá đạt)* |
+| **8** | 20/07/2026 - 24/07/2026 | Tổng kết thực tập, xuất bản ứng dụng lên dịch vụ Firebase Hosting thành công. Tổng hợp kết quả và hoàn thiện báo cáo tốt nghiệp. | *(Chị Yến Nhi đã duyệt)* | *(Cô Thanh Diệu đánh giá đạt)* |
 
-### Tuần 2: Khảo sát quy trình nghiệp vụ và đặc tả yêu cầu hệ thống
-* **Nội dung công việc**:
-  * Thực hiện phỏng vấn cán bộ quản lý kho và bộ phận chăm sóc khách hàng tại doanh nghiệp nhằm khảo sát quy trình bán hàng thực tế.
-  * Phân tích nghiệp vụ thanh toán, kiểm kho, xử lý đơn hàng và cơ chế tư vấn khách hàng tự động.
-  * Đặc tả các yêu cầu chức năng (chọn sản phẩm, quản lý giỏ hàng, tra cứu đơn hàng, AI tư vấn chất liệu, phom dáng) và phi chức năng (bảo mật dữ liệu, tốc độ phản hồi AI dưới 1.5s, tương thích mobile).
-* **Kết quả đạt được**: Hoàn thiện tài liệu đặc tả yêu cầu (SRS) sơ bộ cho hệ thống thương mại điện tử DECKKO.
-
-### Tuần 3: Thiết kế cơ sở dữ liệu và kiến trúc hệ thống
-* **Nội dung công việc**:
-  * Thiết kế sơ đồ thực thể liên kết (ERD) cho database quan hệ của hệ thống gồm các bảng: `users`, `roles`, `products`, `product_variants`, `orders`, `order_items`, `payments`.
-  * Nghiên cứu tích hợp vector database Qdrant phục vụ tìm kiếm ngữ nghĩa bán hàng.
-  * Thiết kế kiến trúc tổng thể kết nối 3 lớp: Frontend (Next.js 16) ↔ Backend (Laravel API) ↔ AI Vector Engine (FastAPI + Qdrant).
-* **Kết quả đạt được**: Thiết kế xong cấu trúc các bảng SQL và luồng dữ liệu của AI Agent.
-
-### Tuần 4: Xây dựng cơ sở dữ liệu và triển khai API Backend
-* **Nội dung công việc**:
-  * Viết mã nguồn SQL khởi tạo các bảng cơ sở dữ liệu có ràng buộc khóa ngoại chặt chẽ.
-  * Xây dựng Checkout API trên Laravel xử lý luồng đặt hàng transactional.
-  * Lập trình xử lý logic trừ kho an toàn (Locking) khi xảy ra tranh chấp đơn hàng (Race Condition) trong các sự kiện Flash Sale.
-* **Kết quả đạt được**: Deploy thử nghiệm cơ sở dữ liệu lên Docker PostgreSQL thành công, hoàn thành API Checkout cốt lõi.
-
-### Tuần 5: Phát triển giao diện người dùng (Frontend) - Phần 1
-* **Nội dung công việc**:
-  * Khởi tạo dự án Next.js 16 App Router sử dụng ngôn ngữ TypeScript và CSS Tailwind v4.
-  * Áp dụng nguyên lý Atomic Design để xây dựng các component nguyên tử (`Button`, `FormattedPrice`, `SkeletonLoader`) và các phân đoạn giao diện phức tạp (`Header`, `ProductCard`).
-  * Tích hợp cơ chế i18n hỗ trợ song ngữ Việt - Anh thông qua React Context.
-* **Kết quả đạt được**: Xây dựng xong giao diện trang chủ, trang danh mục sản phẩm tương thích responsive trên di động.
-
-### Tuần 6: Phát triển giao diện người dùng (Frontend) - Phần 2 & Kết nối API
-* **Nội dung công việc**:
-  * Phát triển trang giỏ hàng và trang thanh toán tích hợp biểu mẫu thông tin giao nhận sử dụng thư viện `react-hook-form` kết hợp `zod` để validate dữ liệu đầu vào.
-  * Xây dựng trang tra cứu trạng thái đơn hàng (`/track`) và lưu trữ thông tin lịch sử mua sắm cục bộ thông qua localStorage.
-  * Kết nối giao diện Frontend Next.js với các Mock Service API để kiểm thử luồng nghiệp vụ mua hàng khép kín.
-* **Kết quả đạt được**: Hoàn thiện luồng mua sắm client-side và trang tra cứu đơn hàng lưu vết thông minh.
-
-### Tuần 7: Tích hợp AI Chatbot & Tìm kiếm ngữ nghĩa Semantic Search
-* **Nội dung công việc**:
-  * Phát triển dịch vụ AI RAG Search Engine bằng Python FastAPI kết nối Vector DB Qdrant.
-  * Lập trình API nhúng (Embedding) sử dụng model OpenAI để chuyển đổi dữ liệu sản phẩm thành vector 1536 chiều và thực hiện truy vấn ngữ nghĩa gần đúng (Cosine Similarity).
-  * Phát triển AI Chatbot Sidebar trên giao diện Next.js kết nối trực tiếp với API bán hàng thông minh.
-* **Kết quả đạt được**: Tích hợp chatbot AI trả lời thông tin sản phẩm có ngữ cảnh chuẩn xác.
-
-### Tuần 8: Kiểm thử toàn diện, sửa lỗi bảo mật và triển khai hệ thống
-* **Nội dung công việc**:
-  * Thực hiện audit bảo mật toàn diện: Loại bỏ mật khẩu cứng trong mã nguồn, sửa lỗi bypass đăng nhập trong `LoginGate.tsx`.
-  * Sửa các lỗi biên dịch của TypeScript Compiler liên quan đến kiểu dữ liệu sản phẩm trong trang quản trị.
-  * Tối ưu hóa SEO: Khai báo dynamic rendering cho các trang tĩnh, tạo tệp sitemap.xml và robots.txt tự động.
-  * Deploy thành công phiên bản static export của ứng dụng lên Firebase Hosting.
-* **Kết quả đạt được**: Ứng dụng chạy trực tuyến ổn định tại tên miền Firebase, hoàn thành báo cáo tốt nghiệp.
+---
+*Khánh Hòa, ngày 24 tháng 07 năm 2026*

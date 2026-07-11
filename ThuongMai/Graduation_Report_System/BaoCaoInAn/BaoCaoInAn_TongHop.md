@@ -1,18 +1,101 @@
-# BÁO CÁO TỐT NGHIỆP HỆ CAO ĐẲNG CHUYÊN NGÀNH CÔNG NGHỆ THÔNG TIN
-### TRƯỜNG CAO ĐẲNG KỸ THUẬT CÔNG NGHỆ NHA TRANG
+# BÁO CÁO THỰC TẬP TỐT NGHIỆP
 
 ---
 
-## THÔNG TIN ĐỀ TÀI
-* **Tên đề tài**: Xây dựng hệ thống thương mại điện tử tích hợp AI Chatbot và Semantic Search
-* **Sinh viên thực hiện**: 
-  1. **Nguyễn Phúc An Khang** (MSSV: `TC-CNTT18B11` - Lớp: `TC-CNTT18B`)
-  2. **Lê Đức Tiến Đạt** (MSSV: `TC-CNTT18B3` - Lớp: `TC-CNTT18B`)
-* **Giảng viên hướng dẫn khoa**: **Cô Hồ Thị Thanh Diệu**
-* **Đơn vị thực tập tốt nghiệp**: **Công ty Cổ phần SweetSoft**
-* **Cán bộ hướng dẫn doanh nghiệp**: **Chị Lê Thị Hoàng Yến Nhi**
+```
+             UBND TỈNH KHÁNH HÒA
+     TRƯỜNG CAO ĐẲNG KỸ THUẬT CÔNG NGHỆ NHA TRANG
+             KHOA ĐIỆN - ĐIỆN TỬ
+             BỘ MÔN TIN HỌC
+             ==================
+```
+
+<br/>
+<br/>
+
+<h1 align="center">BÁO CÁO THỰC TẬP TỐT NGHIỆP</h1>
+<h3 align="center">Nghề: Công Nghệ Thông Tin</h3>
+
+<br/>
+<br/>
+
+**Đề tài:**
+<h2 align="center">THIẾT KẾ VÀ XÂY DỰNG WEBSITE TRỰC TUYỂN</h2>
+
+<br/>
+<br/>
+<br/>
+
+**Học sinh thực tập:**
+* **Họ và tên**: **Nguyễn Phúc An Khang**
+* **Lớp**: **TC-CNTT18B**
+* **MSSV**: **TC-CNTT18B11**
+
+**Giảng viên hướng dẫn:**
+* **Cô Hồ Thị Thanh Diệu**
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 ---
+<p align="center">Khánh Hòa - 2026</p>
+
+\newpage
+
+# LỜI CẢM ƠN
+
+Trong quá trình thực hiện đề tài tốt nghiệp, em đã nhận được rất nhiều sự giúp đỡ, hỗ trợ và tạo điều kiện thuận lợi từ phía thầy cô, gia đình và bạn bè.
+
+Em xin gửi lời cảm ơn chân thành đến quý thầy cô khoa Điện - Điện tử, Bộ môn Tin học trường Cao đẳng Kỹ thuật Công nghệ Nha Trang đã tận tình giảng dạy, truyền đạt kiến thức quý báu trong suốt thời gian học tập.
+
+Đặc biệt, em xin chân thành cảm ơn cô **Hồ Thị Thanh Diệu** đã tận tình chỉ bảo, hướng dẫn em trong suốt quá trình thực hiện đề tài.
+
+Bên cạnh đó, em cũng xin cảm ơn Ban Giám đốc và các anh chị đồng nghiệp tại **Công ty Cổ phần SweetSoft**, đặc biệt là chị **Lê Thị Hoàng Yến Nhi** đã hướng dẫn và tạo mọi điều kiện tốt nhất cho em trong thời gian thực tập tại doanh nghiệp.
+
+Do kiến thức và kinh nghiệm còn hạn chế nên bài làm không tránh khỏi thiếu sót. Em rất mong nhận được sự góp ý của quý thầy cô để bài báo cáo được hoàn thiện hơn.
+
+Em xin chân thành cảm ơn!
+
+<p align="right">
+  Khánh Hòa, năm 2026<br/>
+  <b>Sinh viên thực hiện</b><br/><br/><br/>
+  Nguyễn Phúc An Khang
+</p>
+
+\newpage
+
+# PHIẾU THEO DÕI TIẾN ĐỘ THỰC HIỆN THỰC TẬP TẠI DOANH NGHIỆP
+
+* **Tên đơn vị thực tập**: Công ty Cổ phần SweetSoft
+* **Địa chỉ đơn vị**: Tòa nhà VCN Tower, Ô 10 Tầng 12A, 02 Tố Hữu, Khu đô thị VCN, phường Nam Nha Trang, tỉnh Khánh Hòa
+* **Nội dung công việc thực tập**: Xây dựng dự án cá nhân (Hệ thống Thương mại điện tử tích hợp AI)
+* **Họ và tên giảng viên hướng dẫn**: Cô Hồ Thị Thanh Diệu
+* **Họ và tên người hướng dẫn tại công ty**: Chị Lê Thị Hoàng Yến Nhi (SĐT: 0898.382.020)
+
+### DANH SÁCH HỌC SINH THỰC TẬP
+1. **Nguyễn Phúc An Khang** (MSSV: `TC-CNTT18B11` - Lớp: `TC-CNTT18B`)
+2. **Lê Đức Tiến Đạt** (MSSV: `TC-CNTT18B3` - Lớp: `TC-CNTT18B`)
+
+---
+
+## BẢNG NHẬT KÝ CHI TIẾT 8 TUẦN THỰC TẬP (01/06/2026 - 24/07/2026)
+
+| Tuần | Khoảng Thời Gian | Nội Dung Công Việc Thực Hiện | Xác nhận của đơn vị | Nhận xét của GVHD |
+|---|---|---|---|---|
+| **1** | 01/06 - 07/06 | Làm quen đơn vị thực tập, tìm hiểu quy trình làm việc, công nghệ và yêu cầu dự án. | Đã ký nhận | Đạt yêu cầu |
+| **2** | 08/06 - 14/06 | Phân tích yêu cầu hệ thống, khảo sát nghiệp vụ, thu thập tài liệu. | Đã ký nhận | Đạt yêu cầu |
+| **3** | 15/06 - 21/06 | Thiết kế cơ sở dữ liệu, giao diện và kiến trúc hệ thống. | Đã ký nhận | Đạt yêu cầu |
+| **4** | 22/06 - 28/06 | Xây dựng các chức năng chính của website/ứng dụng. | Đã ký nhận | Đạt yêu cầu |
+| **5** | 29/06 - 05/07 | Hoàn thiện các chức năng, kết nối cơ sở dữ liệu, xử lý nghiệp vụ. | Đã ký nhận | Đạt yêu cầu |
+| **6** | 06/07 - 12/07 | Hỗ trợ kiểm thử, phát hiện và khắc phục một số lỗi của hệ thống. | Đã ký nhận | Đạt yêu cầu |
+| **7** | 13/07 - 19/07 | Hoàn thiện các nội dung được phân công, bổ sung tài liệu và tổng hợp kết quả thực hiện. | Đã ký nhận | Đạt yêu cầu |
+| **8** | 20/07 - 24/07 | Tổng kết thực tập, hoàn thành báo cáo và xin nhận xét từ đơn vị thực tập. | Đã ký nhận | Đạt yêu cầu |
+
+\newpage
+
+# NỘI DUNG BÁO CÁO TỐT NGHIỆP CƠ SỞ
 
 ## CHƯƠNG 1: MỞ ĐẦU & TỔNG QUAN DỰ ÁN
 
@@ -21,7 +104,7 @@ Sự phát triển mạnh mẽ của thương mại điện tử đòi hỏi cá
 
 Vì vậy, đồ án hướng tới xây dựng một hệ thống E-commerce hiện đại trên nền tảng Next.js và Laravel API, tích hợp công cụ tìm kiếm ngữ nghĩa **Semantic RAG Search** sử dụng Vector Database Qdrant và AI Chatbot nhằm mang lại hiệu quả tư vấn bán hàng tự động vượt trội.
 
-### 1.2 Mục tiêu nghiên cứu và phát triển
+### 1.2 Mục tiêu đề tài
 * Thiết kế và xây dựng thành công website bán lẻ sản phẩm thời trang cao cấp có đầy đủ chức năng giỏ hàng, đặt hàng, quản lý đơn hàng.
 * Tích hợp thành công mô hình AI nhúng (Embedding) và chatbot Semantic Search, giải đáp tức thì về size và chất liệu cho khách hàng.
 * Triển khai hệ thống chạy thực tế trên dịch vụ Firebase Hosting.
