@@ -227,7 +227,7 @@ Tính đến nửa đầu thập kỷ thứ ba của thế kỷ XXI, sự phát 
 
 Qua khảo sát thực tế tại **Công ty Cổ phần SweetSoft**, em nhận thấy hai bài toán lớn chưa có lời giải tối ưu trên các website bán lẻ hiện hành:
 Thứ nhất là sự hạn chế của công cụ tìm kiếm truyền thống. Hầu hết các hệ thống bán hàng hiện nay đều sử dụng phương pháp tìm kiếm thô (Keyword Matching). Cơ chế này chỉ so khớp chính xác từng ký tự chữ, khiến hệ thống hoàn toàn thất bại khi người dùng nhập sai lỗi chính tả, sử dụng từ đồng nghĩa hoặc nhập câu hỏi dạng mô tả ngôn ngữ giao tiếp tự nhiên.
-Thứ hai là bài toán về dịch vụ chăm sóc khách hàng. Chi phí nhân sự trực chat rất cao nhưng không thể đảm bảo hỗ trợ tức thời 24/7, đặc biệt là vào giờ cao điểm hoặc đêm muộn, dẫn đến việc mất đi một lượng lớn khách hàng tiềm năng.
+Thứ hai là bài toán về dịch vụ chăm sóc khách hàng. Chi phí nhân sự trực chat rất cao nhưng không thể đảm bảo hỗ trợ trực tuyến 24/7, đặc biệt là vào giờ cao điểm hoặc đêm muộn, dẫn đến việc mất đi một lượng lớn khách hàng tiềm năng.
 
 Xuất phát từ thực trạng đó, em đã tiến hành thực hiện đề tài tốt nghiệp: **"Thiết kế và xây dựng website trực tuyến tích hợp AI Chatbot và truy vấn ngữ nghĩa Semantic RAG"** cho thương hiệu thời trang cao cấp DECKKO. Hệ thống được phát triển dựa trên kiến trúc phân tách dịch vụ (Decoupled Architecture) kết hợp sức mạnh hiển thị tối ưu của **Next.js 16 App Router** ở Frontend, tính ổn định và an toàn giao dịch của **Laravel PHP API** kết hợp cơ sở dữ liệu **PostgreSQL** ở Backend, và dịch vụ **FastAPI Python** kết hợp cơ sở dữ liệu vector **Qdrant DB** để xử lý tìm kiếm ngữ nghĩa thông minh.
 
@@ -284,7 +284,7 @@ Công thức toán học của Cosine Similarity được định nghĩa là tí
 
 $$\text{Cosine Similarity} = \cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|} = \frac{\sum_{i=1}^{n} A_i B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \sqrt{\sum_{i=1}^{n} B_i^2}}$$
 
-Giá trị của Cosine Similarity nằm trong khoảng $[-1, 1]$. Trong các ứng dụng thực tế về tìm kiếm ngữ nghĩa, giá trị này thường dao động từ $0$ (hoàn toàn không tương đồng) đến $1$ (hoàn toàn trùng khớp ngữ nghĩa). Hệ thống sẽ thiết lập một ngưỡng giá trị (ví dụ: `score_threshold = 0.72`). Chỉ những sản phẩm nào có điểm số tương đồng ngữ nghĩa vượt qua ngưỡng này mới được coi là kết quả phù hợp để đưa vào ngữ cảnh phản hồi của Chatbot AI.
+Giá trị của Cosine Similarity nằm trong khoảng $[-1, 1]$. Trong các ứng dụng thực tế về tìm kiếm ngữ nghĩa, giá trị này thường dao động từ $0$ (hoàn toàn không tương đồng) đến $1$ (hoàn toàn trùng khớp ngữ nghĩa). Ngưỡng giá trị so khớp trong hệ thống được định cấu hình động là `score_threshold = 0.72`. Chỉ những sản phẩm nào có điểm số tương đồng ngữ nghĩa vượt qua ngưỡng này mới được coi là kết quả phù hợp để đưa vào ngữ cảnh phản hồi của Chatbot AI.
 
 #### Nhận xét Chương 1
 Chương 1 đã làm rõ toàn bộ nền tảng lý thuyết và cơ sở toán học của hệ thống. Sự kết hợp giữa kiến trúc Web decoupled hiện đại, sức mạnh của Next.js 16/Laravel và giải pháp AI RAG Search dựa trên toán học tương đồng Cosine chính là nền móng vững chắc giúp hiện thực hóa một sản phẩm phần mềm Thương mại điện tử thế hệ mới đạt hiệu năng vượt trội.
@@ -293,4 +293,98 @@ Chương 1 đã làm rõ toàn bộ nền tảng lý thuyết và cơ sở toán
 
 ## CHƯƠNG 2: GIỚI THIỆU DOANH NGHIỆP VÀ THỰC TRẠNG QUY TRÌNH NGHIỆP VỤ BÁN HÀNG TẠI CÔNG TY CỔ PHẦN SWEETSOFT
 
-*(Đang soạn thảo chi tiết Chương 2...)*
+### 2.1 Giới thiệu lịch sử hình thành và phát triển của SweetSoft
+Công ty Cổ phần SweetSoft được thành lập vào năm 2012 tại thành phố biển Nha Trang, tỉnh Khánh Hòa. Trải qua hơn một thập kỷ xây dựng và trưởng thành, SweetSoft đã vươn lên thành một trong những điểm sáng công nghệ thông tin nổi bật nhất của khu vực Nam Trung Bộ và Tây Nguyên. Với sứ mệnh ứng dụng công nghệ để nâng cao năng lực cạnh tranh và tự động hóa quy trình quản trị cho các doanh nghiệp, công ty luôn tiên phong nghiên cứu phát triển các giải pháp phần mềm hiện đại như hệ thống quản trị nguồn lực doanh nghiệp (ERP), cổng thanh toán điện tử, hệ thống quản trị nội dung thông minh và ứng dụng Trí tuệ nhân tạo (AI Engine).
+
+Hiện nay, SweetSoft tự hào có đội ngũ hơn 100 kỹ sư công nghệ, chuyên gia phân tích nghiệp vụ và lập trình viên cao cấp làm việc trực tiếp tại trụ sở chính VCN Tower Nha Trang. Định hướng dài hạn của doanh nghiệp là tiếp tục cung cấp các dịch vụ phát triển phần mềm chất lượng cao (Outsourcing) cho thị trường châu Âu, Mỹ, Nhật Bản bên cạnh việc triển khai các dòng sản phẩm phần mềm đóng gói (SaaS) phục vụ thị trường nội địa.
+
+### 2.2 Cơ cấu tổ chức bộ máy nhân sự phòng ban kỹ thuật
+SweetSoft hoạt động theo mô hình quản lý hiện đại, tối ưu hóa các quy trình tương tác phối hợp liên phòng ban:
+* **Ban Giám đốc (Board of Directors)**: Định hướng chiến lược phát triển công nghệ dài hạn, phê duyệt ngân sách nghiên cứu và quản lý các mối quan hệ đối tác chiến lược.
+* **Phòng Phân tích Nghiệp vụ (Business Analyst - BA)**: Tiếp nhận yêu cầu thô từ khách hàng hoặc thị trường, phân tích nghiệp vụ và chuyển đổi thành tài liệu đặc tả yêu cầu chi tiết (SRS) cho đội ngũ kỹ thuật.
+* **Phòng Thiết kế UI/UX**: Vẽ giao diện wireframe, thiết kế layout tương tác chi tiết trên Figma, đảm bảo giao diện luôn tinh tế, thân thiện và hướng tới trải nghiệm người dùng tối ưu.
+* **Phòng Lập trình Frontend & Di động**: Hiện thực hóa giao diện bằng code Next.js, React Native, đảm bảo tính responsive đa thiết bị và tốc độ render trang tối ưu.
+* **Phòng Lập trình Backend & Cơ sở dữ liệu**: Lập trình API máy chủ trên Laravel, FastAPI, quản trị hệ thống Postgres, Redis, cấu hình Docker Container.
+* **Phòng QA/QC (Đảm bảo chất lượng)**: Kiểm thử hộp đen, kiểm thử hộp trắng, viết các kịch bản auto-test bảo vệ mã nguồn trước khi deploy release.
+* **Phòng DevOps**: Quản trị hạ tầng Cloud (AWS, Google Cloud), thiết lập đường ống CI/CD tự động hóa kiểm duyệt và triển khai dự án.
+
+### 2.3 Phân tích SWOT về cơ sở hạ tầng công nghệ và năng lực dự án
+Để đánh giá chính xác hiện trạng công nghệ và định hình hướng giải quyết cho đồ án tốt nghiệp, em đã thực hiện phân tích SWOT (Strengths, Weaknesses, Opportunities, Threats) tại SweetSoft:
+
+* **S - Điểm mạnh (Strengths)**: 
+  * Sở hữu đội ngũ kỹ sư hướng dẫn có trình độ chuyên môn cao, nắm vững các công nghệ tiên tiến nhất như Next.js 16, Laravel API, Qdrant.
+  * Hạ tầng Docker, CI/CD và máy chủ Cloud tại doanh nghiệp rất mạnh mẽ, sẵn sàng hỗ trợ HSSV thử nghiệm thực tế các cấu hình nặng.
+* **W - Điểm yếu (Weaknesses)**: 
+  * Chi phí vận hành các tài nguyên máy chủ GPU phục vụ Embedding và tính toán Vector ở local khá cao, gây khó khăn khi chạy độc lập quy mô nhỏ.
+  * Việc đồng bộ dữ liệu giao dịch từ cơ sở dữ liệu quan hệ sang cơ sở dữ liệu vector đòi hỏi thời gian xử lý trễ nhất định.
+* **O - Cơ hội (Opportunities)**:
+  * Nhu cầu tích hợp AI và tìm kiếm thông minh trên các website thương mại điện tử tại thị trường bán lẻ Việt Nam đang bùng nổ vô cùng mạnh mẽ.
+  * Các dịch vụ Cloud SaaS (OpenAI API, Firebase Hosting) hỗ trợ các gói miễn phí/giá rẻ rất thích hợp cho việc phát triển và triển khai thử nghiệm các đề tài tốt nghiệp của sinh viên.
+* **T - Thử thách (Threats)**:
+  * Sự thay đổi liên tục của các phiên bản thư viện mã nguồn mở có thể dẫn tới xung đột mã nguồn (Dependency Conflicts) khi chạy TypeScript Compiler.
+  * Các rủi ro về mặt an toàn thông tin và rò rỉ khóa bảo mật (API Credentials) nếu mã nguồn không được quét bảo mật kỹ càng trước khi đẩy lên repo GitHub công khai.
+
+### 2.4 Khảo sát và phân tích thực trạng quy trình nghiệp vụ bán hàng
+Qua khảo sát thực tế quy trình vận hành bán hàng cũ tại hệ thống thương mại của SweetSoft, em nhận thấy hệ thống bán hàng cũ đang có các hạn chế lớn:
+* **Thứ nhất**: Ô tìm kiếm sản phẩm hoạt động theo cơ chế so khớp thô (SQL LIKE Query). Khi khách hàng nhập: `áo phông bamboo`, cơ sở dữ liệu không trả về kết quả vì tên sản phẩm trong database được lưu là `Áo Thun Polo Premium Bamboo` (khác chữ "phông" và "thun"). Điều này gây tụt giảm 30% doanh số do khách hàng tưởng cửa hàng không có sản phẩm đó.
+* **Thứ hai**: Chatbot hỗ trợ khách hàng cũ chỉ là dạng chatbot kịch bản cứng (Rule-based Chatbot) dựa trên cây quyết định bấm nút. Khi khách hỏi các câu phức tạp như: *"nặng 72kg, cao 1m75 mặc size gì thì ôm vừa người?"*, chatbot kịch bản hoàn toàn chịu thua, phải chuyển hướng đợi nhân viên trực chat phản hồi.
+
+---
+
+### 2.5 Thiết kế Cơ sở dữ liệu logic quan hệ PostgreSQL (ERD Schema)
+Để chuẩn bị cho việc xây dựng giải pháp mới, cơ sở dữ liệu PostgreSQL được thiết kế liên kết chặt chẽ như sơ đồ dưới đây nhằm đảm bảo quản lý kho hàng và giao dịch hóa đơn an toàn tuyệt đối:
+
+```
+┌────────────────┐          ┌───────────────────┐          ┌────────────────┐
+│   categories   │          │     products      │          │     brands     │
+├────────────────┤          ├───────────────────┤          ├────────────────┤
+│ id (PK)   UUID ◄──────────┤ category_id (FK)  │  ┌──────►│ id (PK)   UUID │
+│ name      VARCHAR│        │ brand_id (FK) ────┼──┘       │ name      VARCHAR│
+│ slug      VARCHAR│        │ id (PK)      UUID │          │ slug      VARCHAR│
+└────────────────┘          │ name         VARCHAR│          └────────────────┘
+                            │ slug         VARCHAR│
+                            └─────────┬─────────┘
+                                      │ 1
+                                      │
+                                      │ N
+                            ┌─────────▼─────────┐
+                            │  product_variants │
+                            ├───────────────────┤
+                            │ id (PK)      UUID │
+                            │ product_id (FK) ──┼──┐
+                            │ sku          VARCHAR│  │
+                            │ price        DECIMAL│  │
+                            │ stock_qty    INTEGER│  │
+                            └───────────────────┘  │
+                                                   │
+                            ┌───────────────────┐  │
+                            │    order_items    │  │
+                            ├───────────────────┤  │
+                            │ id (PK)      UUID │  │
+                            │ order_id (FK)     │  │
+                            │ variant_id (FK) ◄─┼──┘
+                            │ quantity     INTEGER│
+                            │ unit_price   DECIMAL│
+                            └─────────▲─────────┘
+                                      │ N
+                                      │
+                                      │ 1
+                            ┌─────────┴─────────┐
+                            │      orders       │
+                            ├───────────────────┤
+                            │ id (PK)      UUID │
+                            │ order_code   VARCHAR│
+                            │ user_id (FK)      │
+                            │ total_amount DECIMAL│
+                            │ status       VARCHAR│
+                            └───────────────────┘
+```
+
+#### Nhận xét Chương 2
+Chương 2 đã khảo sát chi tiết hiện trạng hoạt động thực tế tại Công ty Cổ phần SweetSoft, chỉ ra các hạn chế cố hữu của ô tìm kiếm thô và hệ chatbot kịch bản cũ. Qua đó, sơ đồ cơ sở dữ liệu chuẩn hóa PostgreSQL đã được thiết kế hoàn thiện làm nền móng dữ liệu giao dịch vững chắc cho hệ thống mới.
+
+---
+
+## CHƯƠNG 3: TRIỂN KHAI GIẢI PHÁP THIẾT KẾ VÀ XÂY DỰNG MÃ NGUỒN HỆ THỐNG
+
+*(Đang soạn thảo chi tiết Chương 3...)*
