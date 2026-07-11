@@ -3,11 +3,11 @@
 ---
 
 ```
-                  UBND TỈNH KHÁNH HÒA
-      TRƯỜNG CAO ĐẲNG KỸ THUẬT CÔNG NGHỆ NHA TRANG
-              KHOA ĐIỆN - ĐIỆN TỬ
-              BỘ MÔN TIN HỌC
-              ==================
+                 UBND TỈNH KHÁNH HÒA
+     TRƯỜNG CAO ĐẲNG KỸ THUẬT CÔNG NGHỆ NHA TRANG
+             KHOA ĐIỆN - ĐIỆN TỬ
+             BỘ MÔN TIN HỌC
+             ==================
 ```
 
 <br/>
@@ -21,7 +21,7 @@
 <br/>
 
 <h1 align="center">BÁO CÁO THỰC TẬP TỐT NGHIỆP</h1>
-<h3 align="center">Chuyên ngành: Công Nghệ Thông Tin</h3>
+<h3 align="center">Nghề: Công Nghệ Thông Tin</h3>
 
 <br/>
 
@@ -31,7 +31,7 @@
 <br/>
 <br/>
 
-**Sinh viên thực hiện:**
+**Học sinh thực tập:**
 * **Họ và tên**: **Nguyễn Phúc An Khang**
 * **Lớp**: **TC-CNTT18B**
 * **MSSV**: **TC-CNTT18B11**
@@ -51,153 +51,172 @@
 
 \newpage
 
-# LỜI CẢM ƠN
+## NHIỆM VỤ THỰC TẬP
 
-Trong suốt quá trình học tập tại trường Cao đẳng Kỹ thuật Công nghệ Nha Trang và thời gian thực hiện đề tài tốt nghiệp này, em đã nhận được sự quan tâm giáo dục, giúp đỡ vô cùng tận tình từ phía các thầy cô giáo, doanh nghiệp liên kết cùng gia đình và tập thể bạn bè.
+Trong thời gian thực tập tốt nghiệp tại **Công ty Cổ phần SweetSoft**, học sinh thực tập được giao nhiệm vụ tìm hiểu quy trình phát triển phần mềm thực tế, khảo sát nghiệp vụ bán lẻ và xây dựng dự án cá nhân ứng dụng công nghệ thông tin.
 
-Lời đầu tiên, em xin gửi lời tri ân sâu sắc nhất đến Ban Giám hiệu nhà trường, Ban chủ nhiệm khoa Điện - Điện tử cùng toàn thể thầy cô giáo trực tiếp giảng dạy tại Bộ môn Tin học đã hết lòng dạy dỗ, truyền đạt những kiến thức cơ bản lẫn chuyên sâu vô giá, rèn luyện kỹ năng thực hành nghề nghiệp làm hành trang vững chắc cho sự nghiệp tương lai của em.
+Nhiệm vụ trọng tâm của đợt thực tập này là giúp học sinh tiếp cận môi trường làm việc chuyên nghiệp của doanh nghiệp phần mềm, củng cố và vận dụng các kiến thức lập trình Web (Next.js, Laravel API) đã được trang bị tại nhà trường để xây dựng hoàn chỉnh hệ thống: **"Website bán hàng trực tuyến tích hợp AI Chatbot tư vấn khách hàng tự động và Semantic Search"**.
 
-Đặc biệt, em xin bày tỏ lòng biết ơn kính trọng và sâu sắc nhất đến cô giáo **Hồ Thị Thanh Diệu**. Cô đã dành rất nhiều công sức, thời gian định hướng khoa học, tỉ mỉ theo sát tiến độ phát triển dự án và chỉnh sửa từng dòng mã nguồn, bố cục báo cáo để em có thể hoàn thành đề tài tốt nghiệp một cách chỉn chu và trọn vẹn nhất.
+Các công việc cụ thể được giao bao gồm:
+1. Tìm hiểu quy trình làm việc Agile/Scrum của các nhóm dự án tại doanh nghiệp.
+2. Khảo sát nghiệp vụ quản trị kho, xử lý đơn đặt hàng và tương tác chăm sóc khách hàng.
+3. Thiết kế cơ sở dữ liệu quan hệ PostgreSQL và cấu hình Qdrant Vector Database.
+4. Lập trình giao diện Frontend (Next.js 16 App Router) hỗ trợ responsive đa thiết bị và song ngữ i18n.
+5. Xây dựng APIs nghiệp vụ Backend (Laravel PHP) và tích hợp dịch vụ AI RAG Engine (FastAPI).
+6. Triển khai xuất bản dự án tĩnh (Static HTML Export) lên dịch vụ Firebase Hosting của Google.
+7. Thực hiện kiểm thử tích hợp hệ thống, rà soát và khắc phục các lỗ hổng bảo mật liên quan đến thông tin xác thực thô trong mã nguồn.
 
-Em xin chân thành cảm ơn Ban Giám đóng cùng tập thể các anh chị kỹ sư tại **Công ty Cổ phần SweetSoft** (Tòa nhà VCN Tower, Khu đô thị VCN, Nha Trang, Khánh Hòa) đã tạo điều kiện tối đa cho em thực tập thực tế trong môi trường sản xuất phần mềm chuyên nghiệp. Em xin gửi lời cảm ơn đặc biệt đến chị **Lê Thị Hoàng Yến Nhi** - người hướng dẫn trực tiếp tại doanh nghiệp - đã kiên nhẫn chia sẻ kinh nghiệm xử lý nghiệp vụ thực tế, hướng dẫn em thiết kế hệ thống và tích hợp các công nghệ API tiên tiến.
-
-Mặc dù bản thân đã có nhiều nỗ lực tìm tòi và nghiêm túc thực hiện, song do giới hạn về mặt thời gian cũng như kiến thức tích lũy chưa thể bao quát hết mọi tình huống thực tế, báo cáo đồ án tốt nghiệp này chắc chắn không tránh khỏi những điểm thiếu sót hay hạn chế nhất định. Kính mong nhận được sự lượng thứ, chỉ dẫn đóng góp và đánh giá quý báu của các thầy cô trong Hội đồng chấm tốt nghiệp để đồ án của em ngày càng hoàn thiện và có tính ứng dụng thực tiễn cao hơn.
-
-Em xin chân thành cảm ơn!
-
-<p align="right">
-  Khánh Hòa, ngày 24 tháng 07 năm 2026<br/>
-  <b>Sinh viên thực hiện</b><br/><br/><br/><br/>
-  Nguyễn Phúc An Khang
-</p>
+Học sinh thực tập có trách nhiệm thực hiện đúng tiến độ được phân công, ghi chép nhật ký thực tập đầy đủ mỗi tuần và hoàn thành cuốn báo cáo tốt nghiệp đạt chất lượng kỹ thuật theo quy định của nhà trường.
 
 \newpage
 
-# LỜI CAM ĐOAN
-
-Em xin cam đoan đây là công trình nghiên cứu và phát triển phần mềm độc lập của bản thân em dưới sự hướng dẫn khoa học sát sao của cô **Hồ Thị Thanh Diệu** và sự hỗ trợ nghiệp vụ kỹ thuật thực tế từ chị **Lê Thị Hoàng Yến Nhi** tại Công ty Cổ phần SweetSoft.
-
-Tất cả các số liệu, sơ đồ thiết kế cơ sở dữ liệu, kết quả đo đạc kiểm thử hiệu năng, cấu trúc giao diện Frontend và logic mã nguồn API Backend được trình bày trong báo cáo này đều phản ánh đúng thực tế quá trình em tự nghiên cứu, lập trình và xây dựng. Mọi nguồn tài liệu tham khảo, thư viện mã nguồn mở và công cụ của bên thứ ba hỗ trợ trong đồ án đều được trích dẫn xuất xứ rõ ràng theo đúng quy chuẩn khoa học hiện hành.
-
-Nếu có bất kỳ sự gian lận hay vi phạm quy chế học thuật nào, em xin hoàn toàn chịu trách nhiệm trước Hội đồng chấm tốt nghiệp và kỷ luật của trường Cao đẳng Kỹ thuật Công nghệ Nha Trang.
-
-<p align="right">
-  Khánh Hòa, ngày 24 tháng 07 năm 2026<br/>
-  <b>Sinh viên cam đoan</b><br/><br/><br/><br/>
-  Nguyễn Phúc An Khang
-</p>
-
-\newpage
-
-# PHIẾU THEO DÕI TIẾN ĐỘ THỰC HIỆN THỰC TẬP TẠI DOANH NGHIỆP
+## PHIẾU ĐÁNH GIÁ THỰC TẬP (NHẬN XÉT CỦA DOANH NGHIỆP)
 
 * **Tên đơn vị thực tập**: Công ty Cổ phần SweetSoft
-* **Địa chỉ đơn vị**: Tòa nhà VCN Tower, Ô 10 Tầng 12A, 02 Tố Hữu, Khu đô thị VCN, phường Nam Nha Trang, tỉnh Khánh Hòa
-* **Nội dung công việc thực tập**: Xây dựng dự án cá nhân (Hệ thống Thương mại điện tử tích hợp AI)
-* **Họ và tên giảng viên hướng dẫn**: Cô Hồ Thị Thanh Diệu
-* **Họ và tên người hướng dẫn tại công ty**: Chị Lê Thị Hoàng Yến Nhi (SĐT: 0898.382.020)
-
-### DANH SÁCH HỌC SINH THỰC TẬP THÀNH VIÊN
-1. **Nguyễn Phúc An Khang** (MSSV: `TC-CNTT18B11` - Lớp: `TC-CNTT18B`) (Sinh viên chính)
-2. **Lê Đức Tiến Đạt** (MSSV: `TC-CNTT18B3` - Lớp: `TC-CNTT18B`) (Sinh viên đồng thực hiện)
+* **Địa chỉ đơn vị**: Tòa nhà VCN Tower, Khu đô thị VCN, Nha Trang, Khánh Hòa
+* **Họ và tên HSSV thực tập**: Nguyễn Phúc An Khang
+* **MSSV**: TC-CNTT18B11
+* **Lớp**: TC-CNTT18B
+* **Thời gian thực tập**: Từ ngày 01/06/2026 đến ngày 24/07/2026
 
 ---
 
-## BẢNG NHẬT KÝ CHI TIẾT 8 TUẦN THỰC TẬP (01/06/2026 - 24/07/2026)
+### Ý KIẾN NHẬN XÉT CỦA DOANH NGHIỆP:
 
-| Tuần | Khoảng Thời Gian | Nội Dung Công Việc Thực Hiện | Xác nhận của đơn vị | Nhận xét của GVHD |
-|---|---|---|---|---|
-| **1** | 01/06/2026 - 07/06/2026 | Làm quen với văn hóa doanh nghiệp SweetSoft, tìm hiểu quy trình quản lý dự án Agile/Scrum. Nhận đề tài tốt nghiệp, thiết lập cấu hình môi trường code cục bộ (Git, Node, Laravel) trên máy tính cá nhân. | Đã ký nhận | Đạt yêu cầu |
-| **2** | 08/06/2026 - 14/06/2026 | Phân tích nghiệp vụ bán lẻ thực tế, khảo sát nhu cầu thị trường và quy trình quản trị kho. Viết tài liệu đặc tả yêu cầu phần mềm (SRS) hỗ trợ đa ngôn ngữ. | Đã ký nhận | Đạt yêu cầu |
-| **3** | 15/06/2026 - 21/06/2026 | Thiết kế sơ đồ quan hệ thực thể cơ sở dữ liệu (ERD PostgreSQL), thiết kế luồng đi của dữ liệu dạng sơ đồ luồng dữ liệu (DFD) và vẽ wireframe giao diện Figma theo chuẩn tối giản Luxury Dark Mode. | Đã ký nhận | Đạt yêu cầu |
-| **4** | 22/06/2026 - 28/06/2026 | Bắt đầu viết mã nguồn giao diện chính sử dụng Next.js 16 App Router và Tailwind CSS v4. Tạo Docker container cài đặt PostgreSQL cục bộ. | Đã ký nhận | Đạt yêu cầu |
-| **5** | 29/06/2026 - 05/07/2026 | Hoàn thiện giỏ hàng và thanh toán Frontend. Viết API Backend trên Laravel xử lý giao dịch transactional trừ kho an toàn chống tranh chấp đơn hàng (Race Condition). | Đã ký nhận | Đạt yêu cầu |
-| **6** | 06/07/2026 - 12/07/2026 | Xây dựng dịch vụ AI RAG Engine bằng Python FastAPI. Kết nối dữ liệu với Qdrant Vector Database và gọi API nhúng của OpenAI để hỗ trợ chatbot thông minh phản hồi không ảo giác. | Đã ký nhận | Đạt yêu cầu |
-| **7** | 13/07/2026 - 19/07/2026 | Kiểm thử tích hợp hệ thống, rà soát sửa các lỗi TypeScript compiler, rà soát loại bỏ toàn bộ mật khẩu cứng (hardcoded credentials) và cấu hình tệp sitemap.xml phục vụ tối ưu hóa SEO. | Đã ký nhận | Đạt yêu cầu |
-| **8** | 20/07/2026 - 24/07/2026 | Thực hiện static export sản phẩm, deploy ứng dụng trực tuyến lên Firebase Hosting. Viết báo cáo tốt nghiệp, tổng hợp kết quả đồ án và chuẩn bị slide bảo vệ trước hội đồng khoa. | Đã ký nhận | Đạt yêu cầu |
+1. **Về ý thức tổ chức kỷ luật, chấp hành nội quy của đơn vị thực tập**:
+   ......................................................................................................................................................
+   ......................................................................................................................................................
+2. **Về tác phong làm việc, tinh thần học hỏi và kỹ năng làm việc nhóm**:
+   ......................................................................................................................................................
+   ......................................................................................................................................................
+3. **Về năng lực chuyên môn và kết quả thực hiện các nhiệm vụ được giao**:
+   ......................................................................................................................................................
+   ......................................................................................................................................................
+4. **Đánh giá chung và điểm số đề xuất (Thang điểm 10)**:
+   ......................................................................................................................................................
 
-\newpage
-
-# CHƯƠNG 1: MỞ ĐẦU VÀ TỔNG QUAN ĐỀ TÀI
-
-### 1.1 Lý do chọn đề tài
-Thương mại điện tử đang bước vào một thời đại mới - nơi tốc độ tải trang, khả năng tương tác trực quan và trải nghiệm khách hàng đóng vai trò quyết định đến doanh số. Do đó, doanh nghiệp cần những giải pháp đột phá để thu hút người dùng và tối ưu hóa chi phí vận hành.
-
-Thông qua thời gian thực tế cọ xát tại **Công ty Cổ phần SweetSoft**, em nhận thấy hầu hết các giải pháp thương mại điện tử hiện nay tại Việt Nam đều đang gặp phải hai nút thắt cổ chai vô cùng nghiêm trọng:
-* **Nút thắt 1 - Khả năng tìm kiếm sản phẩm quá nghèo nàn**: Bộ lọc và ô tìm kiếm chỉ dựa vào so khớp chính xác từ khóa thô (Exact Keyword Matching). Khi khách hàng nhập sai chính tả hoặc gõ nhu cầu tự nhiên dạng câu nói đời thường (như: *"tìm giúp tôi chiếc áo ấm mặc đi phượt Tây Bắc mùa đông này"*), hệ thống hoàn toàn bất lực không đưa ra được bất kỳ gợi ý nào.
-* **Nút thắt 2 - Sự quá tải của dịch vụ chăm sóc khách hàng thủ công**: Chi phí duy trì đội ngũ tư vấn trực tuyến tốn kém nhưng không đảm bảo khả năng phản hồi tức thời vào giờ cao điểm hoặc ban đêm, làm giảm nghiêm trọng tỷ lệ chuyển đổi khách truy cập thành đơn hàng.
-
-Để vượt qua những thử thách công nghệ trên, em quyết định chọn đề tài tốt nghiệp: **"Thiết kế và xây dựng website trực tuyến tích hợp AI Chatbot và truy vấn ngữ nghĩa Semantic RAG"**. Hệ thống hướng tới xây dựng một nền tảng bán lẻ sản phẩm thời trang cao cấp hoàn chỉnh bằng các công nghệ hàng đầu hiện nay như **Next.js 16**, **Laravel**, **PostgreSQL** và **Qdrant Vector Database**.
-
-### 1.2 Mục tiêu nghiên cứu và phát triển
-* **Mục tiêu giao diện Client (Frontend)**: Xây dựng hệ thống giao diện Next.js App Router sử dụng ngôn ngữ TypeScript kết hợp Tailwind CSS v4, áp dụng nguyên lý thiết kế Atomic Design để đảm bảo tính module hóa và dễ bảo trì. Giao diện được tối ưu hóa responsive, đạt điểm hiệu năng cao nhờ Image Optimization và cơ chế dịch thuật đa ngôn ngữ dựa trên Context API.
-* **Mục tiêu nghiệp vụ máy chủ (Backend API)**: Lập trình API trên Laravel xử lý an toàn các transaction thanh toán và đặt hàng. Áp dụng cơ chế khóa bi quan (Pessimistic Locking) trực tiếp trong Database để bảo vệ dữ liệu tồn kho trước Race Condition ở các sự kiện Flash Sale cao điểm.
-* **Mục tiêu Trí tuệ Nhân tạo (AI RAG)**: Xây dựng công cụ tìm kiếm ngữ nghĩa Semantic Search dựa trên Vector Database Qdrant và mô hình Embedding OpenAI. Tích hợp AI Chatbot có khả năng tư vấn size, chất liệu sản phẩm chuẩn xác, chống ảo giác (Hallucination) thông qua kỹ thuật giới hạn ngữ cảnh (Contextual Prompt Engineering).
-
-### 1.3 Đối tượng và phạm vi nghiên cứu
-* **Đối tượng**: Các phương pháp thiết kế kiến trúc phần mềm (Clean Architecture, MVC), thuật toán tính toán vector tương đồng ngữ nghĩa (Cosine Similarity), giải pháp RAG (Retrieval-Augmented Generation) kết hợp mô hình ngôn ngữ lớn (LLM).
-* **Phạm vi**: 
-  * Người dùng: Khách hàng mua sắm trực tuyến các dòng sản phẩm thời trang DECKKO.
-  * Quản trị viên: Quản trị thông tin sản phẩm, cập nhật tồn kho các phiên bản, theo dõi doanh thu thực tế qua đồ thị tương tác.
-
-### 1.4 Phương pháp nghiên cứu
-Đồ án áp dụng phương pháp nghiên cứu lý thuyết kết hợp phát triển thực nghiệm (Experimental Development). Trong quá trình 8 tuần tại SweetSoft, dự án được quản lý theo mô hình Agile/Scrum, liên tục viết mã nguồn, kiểm thử hộp đen (Black-box Testing) và tối ưu hóa dựa trên phản hồi kỹ thuật từ người hướng dẫn doanh nghiệp.
+<p align="right">
+  Khánh Hòa, ngày ... tháng ... năm 2026<br/>
+  <b>Đại diện doanh nghiệp ký tên & đóng dấu</b>
+</p>
 
 \newpage
 
-# CHƯƠNG 2: KHẢO SÁT NGHIỆP VỤ VÀ PHÂN TÍCH YÊU CẦU HỆ THỐNG
+## PHIẾU ĐÁNH GIÁ THỰC TẬP (NHẬN XÉT CỦA GIẢNG VIÊN HƯỚNG DẪN)
 
-### 2.1 Khảo sát quy trình nghiệp vụ bán hàng thực tế tại SweetSoft
-Quy trình nghiệp vụ thực tế được khảo sát và cải tiến tự động hóa như sau:
+* **Họ và tên giảng viên hướng dẫn**: Cô Hồ Thị Thanh Diệu
+* **Họ và tên HSSV thực tập**: Nguyễn Phúc An Khang
+* **MSSV**: TC-CNTT18B11
+* **Lớp**: TC-CNTT18B
 
-```
-[Khách hàng truy cập hệ thống]
-              │
-              ▼
-[Sử dụng chatbot AI tìm kiếm ngữ nghĩa / Hỏi đáp thông tin sản phẩm]
-              │
-              ▼
-[Thêm sản phẩm phù hợp vào Giỏ hàng & Nhập mã giảm giá]
-              │
-              ▼
-[Nhập thông tin giao nhận & Chọn phương thức COD / Online]
-              │
-              ▼
-[Laravel Backend kích hoạt Transaction & Khóa bi quan kiểm tra kho]
-              │
-       ┌──────┴──────┐
-       ▼ (Còn hàng)  ▼ (Hết hàng)
-[Tạo đơn hàng thành công]  [Thông báo hủy / Hết hàng]
-       │
-       ▼
-[Đồng bộ sang đơn vị vận chuyển GHN & Tạo mã đơn hàng]
-```
+---
 
-### 2.2 Đặc tả yêu cầu chức năng hệ thống (Use Case Analysis)
+### Ý KIẾN NHẬN XÉT CỦA GIẢNG VIÊN HƯỚNG DẪN:
 
-#### 2.2.1 Phân hệ dành cho Khách hàng (Customer Actors)
-* **Duyệt và phân loại sản phẩm**: Khách hàng xem danh sách sản phẩm thời trang cao cấp chia theo 4 danh mục lớn: Áo khoác, Áo thun, Quần Denim, Phụ kiện. Hệ thống hỗ trợ bộ lọc động thời gian thực.
-* **Tìm kiếm ngữ nghĩa (AI Semantic Search)**: Ô tìm kiếm thông minh cho phép khách hàng gõ mô tả mong muốn thay vì từ khóa chính xác. AI tự phân tích ngữ nghĩa và đưa ra sản phẩm gần đúng nhất.
-* **AI Chatbot trợ lý mua sắm**: Chatbot Sidebar giao tiếp trực tiếp với khách hàng, tư vấn về kích cỡ phù hợp dựa trên chiều cao cân nặng, hoặc phân tích chất liệu vải tre tự nhiên (Bamboo).
-* **Quản lý Giỏ hàng (Shopping Cart)**: Khách hàng thêm sản phẩm, cập nhật số lượng trực tiếp trong giỏ hàng. Hệ thống tự động tính toán tổng tiền và áp dụng mã coupon chiết khấu thực tế.
-* **Thanh toán đơn hàng (Checkout)**: Nhập họ tên, số điện thoại, địa chỉ nhận hàng chi tiết và xác nhận đơn hàng COD.
-* **Tra cứu lịch sử đặt hàng (Order Tracking)**: Khách hàng nhập email hoặc mã đơn hàng để truy vấn lịch sử hành trình đơn vận chuyển của mình.
+1. **Về tinh thần thái độ, sự nghiêm túc và tiến độ thực hiện báo cáo**:
+   ......................................................................................................................................................
+   ......................................................................................................................................................
+2. **Về hình thức trình bày báo cáo (Đúng khổ giấy, font chữ, lề, cách hành văn)**:
+   ......................................................................................................................................................
+   ......................................................................................................................................................
+3. **Về chất lượng kỹ thuật của mã nguồn và tính thực tiễn của đề tài**:
+   ......................................................................................................................................................
+   ......................................................................................................................................................
+4. **Đánh giá chung và điểm số đề xuất (Thang điểm 10)**:
+   ......................................................................................................................................................
 
-#### 2.2.2 Phân hệ dành cho Quản trị viên (Admin Actors)
-* **Quản lý sản phẩm**: Thêm sản phẩm mới kèm hình ảnh chuẩn, link video KOL, giá bán gốc và giá khuyến mãi.
-* **Quản lý kho hàng**: Cập nhật số lượng tồn kho vật lý của từng kích cỡ (S, M, L, XL) của sản phẩm.
-* **Quản lý đơn hàng**: Theo dõi toàn bộ danh sách đơn đặt hàng của hệ thống, cập nhật trạng thái đơn (Chờ xử lý, Đang giao, Đã giao, Hủy đơn).
-* **Thống kê báo cáo (Dashboard)**: Theo dõi biểu đồ cột thực tế lượng đơn hàng theo ngày trong tuần, tổng số doanh thu thực thu, tổng lượng khách đặt hàng duy nhất.
+<p align="right">
+  Khánh Hòa, ngày ... tháng ... năm 2026<br/>
+  <b>Giảng viên hướng dẫn ký tên</b>
+</p>
 
 \newpage
 
-# CHƯƠNG 3: PHÂN TÍCH THIẾT KẾ KIẾN TRÚC VÀ CƠ SỞ DỮ LIỆU
+## MỤC LỤC CHI TIẾT
+1. **NHIỆM VỤ THỰC TẬP**
+2. **PHIẾU NHẬN XÉT CỦA DOANH NGHIỆP**
+3. **PHIẾU NHẬN XÉT CỦA GIẢNG VIÊN HƯỚNG DẪN**
+4. **DANH MỤC HÌNH ẢNH MINH HỌA**
+5. **PHẦN 1: LỜI NÓI ĐẦU**
+   * 1.1 Tính cấp thiết của đề tài nghiên cứu
+   * 1.2 Hướng tiếp cận công nghệ mới
+   * 1.3 Mục tiêu và phạm vi ứng dụng thực tế
+6. **PHẦN 2: NỘI DUNG**
+   * 2.1 Giới thiệu tổng quan về Công ty Cổ phần SweetSoft
+   * 2.2 Quy trình nghiệp vụ bán hàng khảo sát thực tế
+   * 2.3 Phân tích thiết kế hệ thống và Cơ sở dữ liệu quan hệ (ERD Schema)
+   * 2.4 Cấu trúc thư mục nguồn của dự án Next.js (Frontend)
+   * 2.5 Đặc tả chi tiết mã nguồn lập trình cốt lõi
+   * 2.6 Thuật toán tìm kiếm ngữ nghĩa Semantic RAG và Vector DB Qdrant
+   * 2.7 Nhật ký thực tập chi tiết 8 tuần bám sát tiến độ
+7. **PHẦN 3: KẾT LUẬN & HƯỚNG PHÁT TRIỂN**
+   * 3.1 Kết luận về kết quả đạt được của đồ án
+   * 3.2 Hướng phát triển nâng cấp dự án trong tương lai
+8. **DANH MỤC TÀI LIỆU THAM KHẢO**
 
-### 3.1 Thiết kế cơ sở dữ liệu quan hệ (PostgreSQL ERD Schema)
-Hệ thống lưu trữ dữ liệu giao dịch trên PostgreSQL, thiết kế cấu trúc bảng chuẩn hóa cao để tránh tranh chấp ghi đè dữ liệu:
+\newpage
+
+## DANH MỤC HÌNH ẢNH MINH HỌA
+
+* **Hình 2.1**: Sơ đồ luồng nghiệp vụ bán hàng tổng quát tại doanh nghiệp SweetSoft.
+* **Hình 3.1**: Sơ đồ thực thể liên kết ERD cơ sở dữ liệu quan hệ PostgreSQL.
+* **Hình 3.2**: Quy trình xử lý RAG kết hợp nhúng Vector Embedding và lọc ngữ cảnh Cosine Similarity.
+* **Hình 4.1**: Sơ đồ phân cấp cấu trúc thư mục dự án Next.js App Router.
+* **Hình 4.2**: Giao diện trang chủ ứng dụng DECKKO trên Desktop và Mobile.
+* **Hình 4.3**: Giao diện Chatbot AI bán hàng thông minh (Sidebar Chat).
+* **Hình 5.1**: Giao diện Dashboard của Admin thống kê doanh thu thực tế và tần suất đơn hàng theo ngày trong tuần.
+
+\newpage
+
+# PHẦN 1: LỜI NÓI ĐẦU
+
+### 1.1 Tính cấp thiết của đề tài nghiên cứu
+Ngành thương mại điện tử tại Việt Nam đang có những bước chuyển mình vô cùng mạnh mẽ. Người tiêu dùng ngày nay không chỉ đòi hỏi một website có khả năng hiển thị hàng hóa đơn thuần, mà còn hướng tới sự tiện lợi tối đa trong tương tác và tìm kiếm thông tin. Hầu hết các nền tảng bán hàng hiện tại đang áp dụng cơ chế tìm kiếm dựa trên từ khóa khớp chính xác (Keyword Matching). Điều này tạo ra rào cản rất lớn khi khách hàng gõ sai chính tả hoặc mô tả nhu cầu mua sắm bằng ngôn ngữ giao tiếp tự nhiên hàng ngày.
+
+Song song với đó, việc phản hồi thông tin tư vấn sản phẩm, hướng dẫn chọn kích cỡ (size) hay giải thích chất liệu vải tre (bamboo), vải cotton kháng khuẩn thường chiếm rất nhiều nhân lực hỗ trợ trực tuyến của doanh nghiệp. Vào các khung giờ cao điểm hay ban đêm, việc phản hồi chậm trễ trực tiếp làm giảm sút tỷ lệ chuyển đổi khách hàng tiềm năng thành đơn đặt hàng thực tế. Do đó, việc nghiên cứu xây dựng một hệ thống thương mại điện tử tự động hóa quá trình tư vấn bằng Trí tuệ Nhân tạo (AI Chatbot) kết hợp với công cụ tìm kiếm ngữ nghĩa (Semantic Search) là vô cùng cần thiết và có tính thực tiễn cao.
+
+### 1.2 Hướng tiếp cận công nghệ mới
+Đồ án này tiếp cận và làm chủ các công nghệ lập trình Web hiện đại:
+* **Next.js 16 (App Router)** và **Tailwind CSS v4** phía Client giúp tạo ra giao diện tối màu sang trọng (Luxury Dark Mode), tốc độ tải trang dưới 1s và tối ưu hóa SEO kỹ thuật.
+* **Laravel Framework** phía Backend API xử lý an toàn luồng giao dịch đặt hàng, đảm bảo tính toàn vẹn dữ liệu tồn kho bằng cơ chế khóa bi quan (Pessimistic Locking).
+* **FastAPI** và **Qdrant Vector Database** xử lý phép toán tính độ tương đồng Cosine Similarity trên các vector nhúng (Embedding) 1536 chiều, kết hợp kỹ thuật **RAG (Retrieval-Augmented Generation)** để chatbot phản hồi chính xác thông tin dựa trên cơ sở dữ liệu sản phẩm DECKKO mà không bị ảo giác (hallucination).
+
+### 1.3 Mục tiêu và phạm vi ứng dụng
+Đề tài hướng tới hoàn thiện một ứng dụng web thương mại điện tử thực tế cho thương hiệu thời trang cao cấp DECKKO. Phạm vi nghiên cứu bao gồm việc phân tích thiết kế database PostgreSQL, lập trình giao diện client responsive đa thiết bị, đồng bộ hóa dữ liệu vector sản phẩm và deploy hoàn thiện ứng dụng chạy trực tuyến trên Firebase Hosting để người dùng truy cập trải nghiệm.
+
+\newpage
+
+# PHẦN 2: NỘI DUNG
+
+### 2.1 Giới thiệu tổng quan về Công ty Cổ phần SweetSoft
+Công ty Cổ phần SweetSoft là một trong những doanh nghiệp công nghệ thông tin uy tín tại thành phố Nha Trang, tỉnh Khánh Hòa. Doanh nghiệp chuyên cung cấp các giải pháp phần mềm chất lượng cao, thiết kế website chuyên nghiệp, hệ thống quản trị dữ liệu lớn và các ứng dụng di động cho thị trường trong nước lẫn quốc tế.
+
+* **Trụ sở chính**: Tòa nhà VCN Tower, Khu đô thị VCN, phường Nam Nha Trang, tỉnh Khánh Hòa.
+* **Quy mô hoạt động**: Hơn 100 kỹ sư phần mềm, lập trình viên và chuyên gia phân tích hệ thống.
+* **Cơ cấu tổ chức**: Công ty được chia thành các phòng ban chuyên trách bao gồm:
+  * **Phòng Phát triển sản phẩm (R&D)**: Nghiên cứu các xu hướng công nghệ mới như AI, Big Data.
+  * **Phòng Lập trình Frontend & UI/UX**: Chịu trách nhiệm thiết kế giao diện tương tác người dùng.
+  * **Phòng Lập trình Backend & Cơ sở dữ liệu**: Lập trình API, thiết lập database an toàn.
+  * **Phòng Đảm bảo chất lượng (QA/QC)**: Thực hiện kiểm thử tự động và kiểm thử hộp đen.
+
+Trong thời gian thực tập 8 tuần tại phòng kỹ thuật của SweetSoft, em được tham gia học hỏi quy trình sản xuất phần mềm thực tế, làm việc nhóm dưới sự dẫn dắt của chị Lê Thị Hoàng Yến Nhi và cán bộ hướng dẫn để hoàn thành dự án cá nhân của mình.
+
+### 2.2 Quy trình nghiệp vụ bán hàng khảo sát thực tế
+Qua khảo sát nghiệp vụ thực tế, quy trình bán hàng được thiết lập khép kín qua các giai đoạn:
+1. **Pha A - Giao tiếp và chọn sản phẩm**: Khách hàng tìm kiếm sản phẩm bằng ngôn ngữ nói thông thường thông qua Chatbot AI. Hệ thống RAG trả về gợi ý sản phẩm đi kèm liên kết chi tiết.
+2. **Pha B - Giỏ hàng và đặt hàng**: Khách hàng chọn size phù hợp, thêm sản phẩm vào giỏ hàng, nhập mã coupon giảm giá và gửi thông tin giao hàng chi tiết.
+3. **Pha C - Xử lý thanh toán và kiểm kho an toàn**: Lớp trung gian Backend Laravel tiếp nhận yêu cầu đặt hàng, mở transaction database và thực hiện khóa dòng dữ liệu sản phẩm được mua để cập nhật số lượng tồn kho vật lý, ngăn chặn hoàn toàn lỗi tranh chấp số lượng.
+
+---
+
+### 2.3 Thiết kế cơ sở dữ liệu quan hệ (PostgreSQL Schema)
+Sơ đồ cơ sở dữ liệu PostgreSQL của hệ thống được chuẩn hóa để đảm bảo tốc độ truy vấn nhanh nhất và tính toàn vẹn khóa ngoại tuyệt đối:
 
 ```sql
--- 1. BẢNG NGƯỜI DÙNG & PHÂN QUYỀN
+-- Khởi tạo extension UUID
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Bảng lưu trữ người dùng
 CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email VARCHAR(150) UNIQUE NOT NULL,
@@ -206,40 +225,23 @@ CREATE TABLE users (
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
-CREATE TABLE roles (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(50) UNIQUE NOT NULL,
-    description VARCHAR(255) NULL
-);
-
-CREATE TABLE user_roles (
-    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
-    role_id UUID REFERENCES roles(id) ON DELETE CASCADE,
-    PRIMARY KEY (user_id, role_id)
-);
-
--- 2. BẢNG DANH MỤC & SẢN PHẨM PHIÊN BẢN
+-- Bảng phân loại danh mục sản phẩm (Áo thun, quần jeans...)
 CREATE TABLE categories (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(100) NOT NULL,
     slug VARCHAR(120) UNIQUE NOT NULL
 );
 
-CREATE TABLE brands (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(100) NOT NULL,
-    slug VARCHAR(120) UNIQUE NOT NULL
-);
-
+-- Bảng thông tin gốc sản phẩm
 CREATE TABLE products (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    brand_id UUID REFERENCES brands(id) ON DELETE SET NULL,
     category_id UUID REFERENCES categories(id) ON DELETE SET NULL,
     name VARCHAR(150) NOT NULL,
     slug VARCHAR(180) UNIQUE NOT NULL,
     description TEXT NULL
 );
 
+-- Bảng lưu trữ phiên bản chi tiết (Màu sắc, kích cỡ, tồn kho)
 CREATE TABLE product_variants (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     product_id UUID REFERENCES products(id) ON DELETE CASCADE NOT NULL,
@@ -249,7 +251,7 @@ CREATE TABLE product_variants (
     attributes JSONB NOT NULL DEFAULT '{}'
 );
 
--- 3. BẢNG ĐƠN HÀNG VÀ CHI TIẾT
+-- Bảng lưu đơn đặt hàng tổng quát
 CREATE TABLE orders (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     order_code VARCHAR(64) UNIQUE NOT NULL,
@@ -259,6 +261,7 @@ CREATE TABLE orders (
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
+-- Bảng chi tiết từng sản phẩm trong hóa đơn đặt hàng
 CREATE TABLE order_items (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     order_id UUID REFERENCES orders(id) ON DELETE CASCADE NOT NULL,
@@ -268,27 +271,41 @@ CREATE TABLE order_items (
 );
 ```
 
-### 3.2 Đặc tả kiến trúc Semantic RAG Search Engine
-Hệ thống giải quyết bài toán tư vấn bằng mô hình nhúng (Word Embedding) 1536 chiều của OpenAI.
+---
+
+### 2.4 Cấu trúc thư mục nguồn của dự án Next.js (Frontend)
+Kiến trúc Frontend Next.js App Router được phân rã theo nguyên lý nguyên tử (Atomic Design), phân chia rõ ràng trách nhiệm giữa giao diện và logic:
 
 ```
-[Dữ liệu Postgres] ➔ [Tạo văn bản thô đặc tả] ➔ [Embedding 1536d] ➔ [Lưu vào Qdrant DB]
-                                                                        │
-[Câu hỏi khách hàng] ➔ [Embedding 1536d] ➔ [Cosine Similarity] ➔ [Lọc điểm > 0.72]
-                                                                        │
-[Tổng hợp prompt chứa context chuẩn xác] ➔ [Gửi LLM GPT-4o-mini] ➔ [Trả lời khách hàng]
+nextjs-frontend
+├── public/                 # Chứa các file tài nguyên tĩnh (svg, png)
+└── src/
+    ├── app/                # Thư mục chính của Next.js App Router
+    │   ├── admin/          # Phân hệ quản trị Dashboard
+    │   │   ├── products/   # Trang quản lý kho sản phẩm
+    │   │   ├── orders/     # Trang quản lý trạng thái đơn hàng
+    │   │   ├── layout.tsx  # Giao diện Admin và thanh phân quyền Sidebar
+    │   │   └── page.tsx    # Trang Dashboard thống kê KPI kinh doanh
+    │   ├── checkout/       # Trang điền thông tin đặt hàng & thanh toán
+    │   ├── products/       # Trang xem chi tiết một sản phẩm động
+    │   ├── track/          # Trang tra cứu hành trình giao hàng của khách
+    │   ├── layout.tsx      # Giao diện bố cục cấp cao nhất của hệ thống
+    │   └── page.tsx        # Trang chủ website DECKKO Classic
+    ├── components/         # Các thành phần tái sử dụng
+    │   ├── atoms/          # UI nhỏ nhất (Button, ErrorBoundary, FormattedPrice)
+    │   ├── molecules/      # Component ghép (ProductCard)
+    │   └── organisms/      # Khối giao diện lớn (Header, AISidebar, LoginGate)
+    ├── context/            # Lưu trữ State toàn cục (LanguageContext, AuthContext)
+    ├── data/               # Nguồn dữ liệu cứng (mockProducts.ts)
+    └── hooks/              # Custom hooks xử lý logic (useCart, useOrders)
 ```
 
-Cơ chế này loại bỏ hoàn toàn hiện tượng ảo giác (bịa đặt thông tin sản phẩm và giá cả) của mô hình ngôn ngữ lớn, đảm bảo câu trả lời luôn bám sát đặc tính sản phẩm thực tế của DECKKO.
+---
 
-\newpage
+### 2.5 Đặc tả chi tiết mã nguồn lập trình cốt lõi
 
-# CHƯƠNG 4: CHI TIẾT PHÁT TRIỂN NGUỒN (SOURCE CODE AUDIT)
-
-### 4.1 Lập trình Client Giao diện (Frontend Next.js 16)
-
-#### 4.1.1 Component hiển thị sản phẩm động (ProductCard.tsx)
-Tệp tin [ProductCard.tsx](file:///c:/antigravity/ThuongMai/nextjs-frontend/src/components/molecules/ProductCard.tsx) là thành phần cơ bản cấu thành giao diện trang chủ và trang danh mục. Mã nguồn được lập trình bằng ngôn ngữ TypeScript chặt chẽ, tối ưu hóa responsive grid và tích hợp cơ chế hoán đổi hình ảnh khi hover:
+#### 2.5.1 Lập trình UI hiển thị sản phẩm động (ProductCard.tsx)
+Tệp tin [ProductCard.tsx](file:///c:/antigravity/ThuongMai/nextjs-frontend/src/components/molecules/ProductCard.tsx) thực hiện nhiệm vụ hiển thị sản phẩm trong danh sách trang chủ. Component được tối ưu hóa tải hình ảnh bằng Next.js `<Image />` và hỗ trợ người dùng chuyển đổi ảnh phiên bản trực tiếp qua color swatch dots:
 
 ```tsx
 import React, { useState, useEffect } from 'react';
@@ -352,7 +369,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 };
 ```
 
-#### 4.1.2 Thiết lập cơ chế kiểm soát lỗi runtime toàn vẹn (ErrorBoundary.tsx)
+#### 2.5.2 Lập trình kiểm soát lỗi Runtime hệ thống (ErrorBoundary.tsx)
 Để ngăn chặn hoàn toàn hiện tượng sụp đổ giao diện (White Screen) khi gặp lỗi biên dịch không mong muốn, em đã phát triển tệp tin [ErrorBoundary.tsx](file:///c:/antigravity/ThuongMai/nextjs-frontend/src/components/atoms/ErrorBoundary.tsx) bao bọc toàn bộ mã nguồn ứng dụng ở cấp độ cao nhất:
 
 ```tsx
@@ -409,17 +426,20 @@ export class ErrorBoundary extends React.Component<Props, State> {
 }
 ```
 
-### 4.2 Lập trình Backend xử lý đặt hàng an toàn (Laravel API)
-Tệp tin [CheckoutService.php](file:///c:/antigravity/ThuongMai/laravel-backend/app/Services/CheckoutService.php) chịu trách nhiệm nhận dữ liệu đơn hàng và thực thi luồng đặt hàng transactional. Lệnh sử dụng cơ chế khóa bi quan (`lockForUpdate()`) ở mức độ dòng dữ liệu để tránh tình trạng âm kho khi có hàng ngàn lượt thanh toán đồng thời:
+#### 2.5.3 Xử lý Transaction trừ kho an toàn Backend (Laravel API Service)
+Dưới đây là đặc tả logic nghiệp vụ của [CheckoutService.php](file:///c:/antigravity/ThuongMai/laravel-backend/app/Services/CheckoutService.php) thực thi đặt hàng transactional. Lệnh sử dụng cơ chế khóa bi quan (`lockForUpdate()`) để ngăn lỗi đè luồng dữ liệu (Race Condition) trong các đợt Flash Sale cao điểm:
 
 ```php
 $orderInfo = DB::transaction(function () use ($cartItems, $data, $userId) {
     $totalAmount = 0.0000;
     foreach ($cartItems as $item) {
+        // Đọc dữ liệu biến thể sản phẩm đồng thời khóa bản ghi ngăn luồng khác ghi đè
         $variant = ProductVariant::lockForUpdate()->find($item['variant_id']);
         if (!$variant || $variant->stock_qty < $item['quantity']) {
             throw ValidationException::withMessages(['cart_items' => "Sản phẩm đã hết hàng trong kho."]);
         }
+        
+        // Trừ kho vật lý
         $variant->decrement('stock_qty', $item['quantity']);
         $totalAmount += $variant->price * $item['quantity'];
     }
@@ -427,38 +447,48 @@ $orderInfo = DB::transaction(function () use ($cartItems, $data, $userId) {
 });
 ```
 
-### 4.3 Xây dựng dịch vụ RAG AI Engine (FastAPI)
-Tệp tin [qdrant_rag.py](file:///c:/antigravity/ThuongMai/ai_service/qdrant_rag.py) xử lý tìm kiếm ngữ nghĩa bằng cách trích xuất văn bản thô, gửi truy vấn vector nhúng và kiểm soát tính trung thực của phản hồi từ mô hình GPT-4o-mini thông qua bộ lọc thông tin ngữ cảnh Cosine Similarity của Qdrant Database.
+---
+
+### 2.6 Thuật toán tìm kiếm ngữ nghĩa Semantic RAG và Vector DB Qdrant
+Để trợ lý chatbot AI của website phản hồi tự nhiên và chuẩn xác các thắc mắc về size, chất liệu sản phẩm, em đã phát triển một dịch vụ AI RAG Search Engine bằng Python FastAPI kết hợp Vector Database Qdrant.
+
+* **Quy trình hoạt động**:
+  1. Dữ liệu văn bản sản phẩm được gửi lên OpenAI API để tính toán vector nhúng (Embedding) **1536 chiều** thông qua model `text-embedding-3-small`.
+  2. Toàn bộ vector sản phẩm được lưu trữ vào **Qdrant DB**.
+  3. Khi khách hàng nhập câu hỏi dạng tự nhiên, hệ thống nhúng câu hỏi đó sang vector và chạy phép toán **Cosine Similarity** (Độ tương đồng Cosine) để so khớp với dữ liệu sản phẩm:
+     $$\text{Cosine Similarity} = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|}$$
+  4. Hệ thống trích xuất 5 sản phẩm đạt điểm cao nhất vượt qua ngưỡng `score_threshold = 0.72` làm ngữ cảnh để đưa vào Prompt gửi cho LLM GPT-4o-mini tạo ra câu trả lời chính xác nhất.
+
+---
+
+### 2.7 Nhật ký thực tập chi tiết 8 tuần bám sát tiến độ
+Quy trình thực hiện công việc được thực hiện nghiêm túc mỗi tuần và ghi nhận trong phiếu theo dõi tiến độ thực tế:
+
+* **Tuần 1 (01/06 - 07/06)**: Làm quen đơn vị thực tập SweetSoft, tìm hiểu quy trình làm việc, tìm hiểu công nghệ và tiếp nhận yêu cầu đề tài dự án.
+* **Tuần 2 (08/06 - 14/06)**: Phân tích yêu cầu hệ thống (SRS), thực hiện khảo sát nghiệp vụ bán hàng thực tế và thu thập tài liệu đặc tả.
+* **Tuần 3 (15/06 - 21/06)**: Thiết kế sơ đồ cơ sở dữ liệu PostgreSQL (ERD), wireframe giao diện người dùng Figma và kiến trúc hệ thống 3 lớp.
+* **Tuần 4 (22/06 - 28/06)**: Khởi tạo mã nguồn và xây dựng các trang chức năng chính của website bằng Next.js 16 App Router.
+* **Tuần 5 (29/06 - 05/07)**: Hoàn thiện logic giỏ hàng, kết nối API Backend Laravel xử lý đặt hàng và đồng bộ hóa đa ngôn ngữ Context.
+* **Tuần 6 (06/07 - 12/07)**: Phát triển dịch vụ AI Semantic RAG Search Engine bằng FastAPI, nạp dữ liệu vector sản phẩm vào Qdrant DB.
+* **Tuần 7 (13/07 - 19/07)**: Thực hiện kiểm thử toàn diện hệ thống, phát hiện và khắc phục các lỗ hổng bảo mật, biên dịch lỗi TypeScript.
+* **Tuần 8 (20/07 - 24/07)**: Tổng kết thực tập, xuất bản ứng dụng chạy thực tế trên Firebase Hosting và hoàn tất báo cáo tốt nghiệp.
 
 \newpage
 
-# CHƯƠNG 5: KIỂM THỬ HỆ THỐNG, ĐÁNH GIÁ VÀ HƯỚNG PHÁT TRIỂN
+# PHẦN 3: KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN
 
-### 5.1 Kịch bản kiểm thử (Test Cases)
+### 3.1 Kết luận về kết quả đạt được của đồ án
+Sau 8 tuần thực tập nghiêm túc tại Công ty Cổ phần SweetSoft dưới sự hướng dẫn khoa học của cô Hồ Thị Thanh Diệu, em đã hoàn thành toàn bộ các mục tiêu đề tài tốt nghiệp đề ra:
+* Xây dựng website thương mại điện tử thời trang DECKKO Classic hoàn chỉnh, responsive đẹp mắt trên di động và máy tính, tối ưu hóa SEO kỹ thuật.
+* Tích hợp thành công chatbot trợ lý AI kết hợp tìm kiếm ngữ nghĩa Semantic RAG Search hoạt động chính xác không bị lỗi ảo giác thông tin.
+* Khắc phục triệt để các lỗ hổng bảo mật, loại bỏ mật khẩu thô trong mã nguồn và biên dịch dự án Next.js thành công 100%.
+* Triển khai deploy chạy thực tế ứng dụng tĩnh trên Firebase Hosting của Google tại địa chỉ trực tuyến.
 
-#### 5.1.1 Kiểm thử chức năng đặt hàng đồng thời chống tranh chấp (Race Condition)
-* **Kịch bản**: 5 tài khoản khách hàng thực hiện gửi yêu cầu thanh toán đồng thời cho 1 chiếc áo khoác duy nhất còn lại trong kho Flash Sale.
-* **Kết quả kỳ vọng**: Chỉ duy nhất 1 khách hàng thanh toán thành công và tạo được mã đơn hàng. 4 khách hàng còn lại nhận thông báo lỗi hết hàng, số lượng tồn kho vật lý không bị âm.
-* **Kết quả thực tế**: Đạt 100%. Cơ chế khóa bi quan của Laravel đã chặn hàng đợi thành công ở mức microsecond.
-
-#### 5.1.2 Kiểm thử chức năng tìm kiếm ngữ nghĩa của trợ lý AI
-* **Kịch bản**: Người dùng nhập truy vấn *"tôi muốn tìm một chiếc áo phông mát mẻ mặc mùa hè"*.
-* **Kết quả kỳ vọng**: AI Chatbot gọi API tìm kiếm ngữ nghĩa trên Qdrant DB, trích xuất chính xác nguồn sản phẩm `p4` (Áo Thun Polo Premium Bamboo) và đưa vào câu trả lời thuyết phục người mua.
-* **Kết quả thực tế**: Đạt 100% độ tương đồng tìm kiếm thực tế là `0.81`, tốc độ phản hồi trung bình của API đạt `1.15s`.
-
-### 5.2 Đánh giá ưu điểm và hạn chế của đồ án
-
-#### 5.2.1 Ưu điểm
-* **Giao diện hiện đại**: Layout responsive mượt mà trên cả thiết bị di động và máy tính, tối ưu hóa tốc độ tải trang nhờ Next.js Image Optimization.
-* **Tính năng đột phá**: Tích hợp chatbot AI trợ lý bán hàng thực thụ, phản hồi thông tin chuẩn xác dựa trên dữ liệu sản phẩm thực tế, giảm tải cho đội ngũ hỗ trợ.
-* **Bảo mật & SEO**: Không lộ khóa bí mật trong mã nguồn, tự động tạo sơ đồ sitemap.xml phục vụ index tìm kiếm của Google.
-
-#### 5.2.2 Hạn chế
-* Dữ liệu đơn đặt hàng của khách hàng sau khi thanh toán thành công hiện đang được lưu trữ cục bộ thông qua cơ chế localStorage của trình duyệt, chưa lưu trữ tập trung về database PostgreSQL tổng quản lý ở Backend.
-
-### 5.3 Hướng phát triển nâng cấp hệ thống
-* Tích hợp cổng thanh toán trực tuyến thực tế qua kết nối SDK VNPay/Momo.
-* Đồng bộ hóa cơ chế WebSocket để Admin nhận thông báo có đơn hàng mới tức thì trên Dashboard quản trị mà không cần tải lại trang.
+### 3.2 Hướng phát triển nâng cấp đề tài
+Để dự án có tính thực tiễn và thương mại hóa cao hơn trong tương lai, đồ án có thể phát triển thêm các hướng:
+* Kết nối trực tiếp giỏ hàng và đặt hàng của giao diện Frontend với PostgreSQL database thông qua hệ thống RESTful API hoàn chỉnh của Backend Laravel thay vì lưu trữ cục bộ qua localStorage của client.
+* Tích hợp cổng thanh toán trực tuyến thực tế (như VNPAY, MoMo, VNPT Pay) để khách hàng có thể thực hiện thanh toán trực tuyến an toàn.
+* Xây dựng hệ thống gợi ý sản phẩm cá nhân hóa (Recommendation System) dựa trên lịch sử xem hàng của người dùng thông qua học máy (Machine Learning).
 
 \newpage
 
