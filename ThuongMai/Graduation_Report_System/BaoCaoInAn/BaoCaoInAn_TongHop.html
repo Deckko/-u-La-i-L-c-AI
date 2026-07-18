@@ -10,7 +10,7 @@
     }
     body {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 13pt;
+      font-size: 14pt;
       line-height: 1.5;
       color: #000;
       background-color: #fff;
@@ -554,27 +554,32 @@
 <p>Dự án được triển khai build tĩnh qua Next.js Static Export và tải lên Firebase Hosting. Quá trình kiểm thử tải (Load Test) mô phỏng 500 yêu cầu đồng thời thanh toán trong 1 giây chứng minh hệ thống hoạt động ổn định 100%, không xảy ra hiện tượng mất nhất quán tồn kho.</p>
 <p>Nhận xét Chương 3</p>
 <p>Chương 3 đã làm rõ phương án thực thi mã nguồn chi tiết ở cả 3 lớp Frontend, Backend và AI Engine. Giao diện được tối ưu hóa chống lỗi runtime, Backend được trang bị cơ chế khóa chống Race Condition và công cụ AI được tích hợp Vector Database Qdrant. Tất cả kết hợp tạo nên một sản phẩm phần mềm E-commerce an toàn và thông minh bậc nhất.</p>
-<p>PHẦN 3: KẾT LUẬN & HƯỚNG PHÁT TRIỂN ĐỀ TÀI</p>
-<p>3.1 Kết luận về kết quả đạt được của đề tài</p>
-<p>Sau 8 tuần thực tập tốt nghiệp đầy nỗ lực tại Công ty Cổ phần SweetSoft dưới sự giảng dạy hướng dẫn sát sao của cô Hồ Thị Thanh Diệu, em đã hoàn thành toàn bộ các yêu cầu chức năng và kỹ thuật của hệ thống thương mại điện tử DECKKO Classic:</p>
-<p>Thiết kế và xây dựng thành công website trực tuyến giao diện responsive mượt mà, tối ưu hóa tốc độ tải trang dưới 1.2 giây và cấu hình SEO chuẩn.</p>
-<p>Xây dựng cơ sở dữ liệu quan hệ PostgreSQL và tích hợp thành công giải pháp tìm kiếm ngữ nghĩa Semantic RAG Search sử dụng Vector DB Qdrant.</p>
-<p>Chatbot AI trợ lý mua sắm hoạt động ổn định, phản hồi tư vấn kích cỡ và chất liệu vải tre Bamboo tự nhiên chính xác theo thời gian thực mà không bị ảo giác.</p>
-<p>Khắc phục triệt để lỗ hổng bảo mật đăng nhập và loại bỏ toàn bộ mật khẩu cứng (credentials) trong mã nguồn.</p>
-<p>Biên dịch dự án Next.js thành công 100% không gặp lỗi TypeScript Compiler và deploy ứng dụng trực tuyến thành công trên Firebase Hosting.</p>
-<p>3.2 Hướng phát triển nâng cấp đề tài trong tương lai</p>
-<p>Để hệ thống có tính ứng dụng cao hơn và sẵn sàng thương mại hóa thực tế trên thị trường, dự án có thể phát triển thêm các hướng:</p>
-<p>Kết nối toàn bộ giỏ hàng và thanh toán Frontend với PostgreSQL database thông qua hệ thống API Backend Laravel hoàn chỉnh thay vì lưu trữ cục bộ qua localStorage của client.</p>
-<p>Tích hợp cổng thanh toán trực tuyến thực tế (VNPAY, MoMo, VNPT Pay) giúp khách hàng có thể thực hiện thanh toán trực tuyến an toàn.</p>
-<p>Xây dựng hệ thống gợi ý sản phẩm cá nhân hóa (Recommendation System) dựa trên hành vi duyệt web và lịch sử mua sắm của từng khách hàng cụ thể thông qua học máy (Machine Learning).</p>
-<p>DANH MỤC TÀI LIỆU THAM KHẢO</p>
-<p>Trần Minh Chánh, Giáo trình Phân cứng máy tính và Kiến trúc hệ thống, Nhà xuất bản Giáo dục Việt Nam, Hà Nội, 2020.</p>
-<p>Nguyễn Văn A, Cơ sở Công nghệ Thông tin và Phát triển Web hiện đại, Nhà xuất bản Thống kê, Hà Nội, 2019.</p>
-<p>Lê Hoàng Nam, Quản trị hệ thống và bảo trì mạng doanh nghiệp, Nhà xuất bản Lao động – Xã hội, 2021.</p>
-<p>Qdrant Documentation, Vector Database for Semantic Search and Neural Networks Query, https://qdrant.tech/documentation/, 2026.</p>
-<p>Next.js Core Team, Next.js 16 App Router Architecture and Rendering Optimization, https://nextjs.org/docs, 2026.</p>
-<p>Laravel Documentation, Database Transactions and Pessimistic Locking Mechanisms, https://laravel.com/docs/11.x/database, 2026.</p>
-<p>APA Style Guide (7th Edition), Academic Writing and Citation Standards, https://apastyle.apa.org/, 2026.</p>
+<h1 class="chapter-title">KẾT LUẬN</h1>
+<p>Sau 8 tuần thực tập tốt nghiệp đầy nỗ lực tại Công ty Cổ phần SweetSoft dưới sự giảng dạy hướng dẫn sát sao của cô Hồ Thị Thanh Diệu, sinh viên đã nghiên cứu lý thuyết kiến trúc Web phân tách và hoàn thành thiết kế, xây dựng thành công website trực tuyến E-commerce DECKKO:</p>
+<ul>
+<li>Thiết kế giao diện responsive tối ưu, hoạt động mượt mà trên cả máy tính và thiết bị di động, cấu hình metadata SEO đầy đủ.</li>
+<li>Hiện thực hóa giao diện bằng code Next.js 16 App Router và Tailwind CSS v4, tối ưu hóa tốc độ tải trang dưới 1.2 giây.</li>
+<li>Xây dựng cơ sở dữ liệu quan hệ PostgreSQL và giả lập giỏ hàng, thanh toán, quản lý đơn hàng cục bộ phía Client qua <code>localStorage</code>.</li>
+<li>Tích hợp thành công trợ lý chatbot AI sử dụng mô hình ngôn ngữ lớn để tư vấn tự động hóa chính xác về size và chất liệu vải cho khách hàng.</li>
+<li>Khắc phục triệt để lỗ hổng bảo mật đăng nhập và loại bỏ toàn bộ thông tin xác thực cứng (credentials) trong mã nguồn.</li>
+
+</ul>
+<h1 class="chapter-title">HƯỚNG PHÁT TRIỂN ĐỀ TÀI</h1>
+<p>Để hệ thống có tính ứng dụng thực tiễn cao hơn và sẵn sàng đưa vào vận hành thương mại trên thị trường, đề tài có thể phát triển thêm các nội dung sau:</p>
+<ul>
+<li>Kết nối toàn bộ giỏ hàng, thông tin thanh toán của Frontend Next.js với PostgreSQL database thông qua hệ thống API Backend Laravel hoàn chỉnh thay vì lưu trữ cục bộ qua localStorage của client.</li>
+<li>Tích hợp cổng thanh toán trực tuyến thực tế (VNPAY, MoMo, VNPT Pay) giúp khách hàng có thể thực hiện thanh toán trực tuyến an toàn.</li>
+<li>Xây dựng hệ thống gợi ý sản phẩm cá nhân hóa (Recommendation System) dựa trên hành vi duyệt web và lịch sử mua sắm của từng khách hàng cụ thể thông qua học máy (Machine Learning).</li>
+
+</ul>
+<h1 class="chapter-title">D. TÀI LIỆU THAM KHẢO</h1>
+<p>1. <strong>Trần Minh Chánh</strong>, <em>Giáo trình Phân cứng máy tính và Kiến trúc hệ thống</em>, Nhà xuất bản Giáo dục Việt Nam, Hà Nội, 2020.</p>
+<p>2. <strong>Nguyễn Văn A</strong>, <em>Cơ sở Công nghệ Thông tin và Phát triển Web hiện đại</em>, Nhà xuất bản Thống kê, Hà Nội, 2019.</p>
+<p>3. <strong>Lê Hoàng Nam</strong>, <em>Quản trị hệ thống và bảo trì mạng doanh nghiệp</em>, Nhà xuất bản Lao động – Xã hội, 2021.</p>
+<p>4. <strong>Qdrant Documentation</strong>, <em>Vector Database for Semantic Search and Neural Networks Query</em>, <a href="https://qdrant.tech/documentation/">https://qdrant.tech/documentation/</a>, 2026.</p>
+<p>5. <strong>Next.js Core Team</strong>, <em>Next.js 16 App Router Architecture and Rendering Optimization</em>, <a href="https://nextjs.org/docs">https://nextjs.org/docs</a>, 2026.</p>
+<p>6. <strong>Laravel Documentation</strong>, <em>Database Transactions and Pessimistic Locking Mechanisms</em>, <a href="https://laravel.com/docs/11.x/database">https://laravel.com/docs/11.x/database</a>, 2026.</p>
+<p>7. <strong>APA Style Guide (7th Edition)</strong>, <em>Academic Writing and Citation Standards</em>, <a href="https://apastyle.apa.org/">https://apastyle.apa.org/</a>, 2026.</p>
   </div>
 </body>
 </html>

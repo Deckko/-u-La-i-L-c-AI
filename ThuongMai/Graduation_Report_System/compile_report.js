@@ -248,7 +248,7 @@ const htmlTemplate = `<!DOCTYPE html>
     }
     body {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 13pt;
+      font-size: 14pt;
       line-height: 1.5;
       color: #000;
       background-color: #fff;
