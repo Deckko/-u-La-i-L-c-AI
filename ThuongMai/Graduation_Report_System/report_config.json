@@ -1,0 +1,23 @@
+{
+  "school": "TRƯỜNG CAO ĐẲNG KỸ THUẬT CÔNG NGHỆ NHA TRANG",
+  "faculty": "KHOA ĐIỆN – ĐIỆN TỬ",
+  "department": "BỘ MÔN TIN HỌC",
+  "occupation": "Công Nghệ Thông Tin",
+  "title": "THIẾT KẾ VÀ XÂY DỰNG WEBSITE TÍCH HỢP AI",
+  "students": [
+    {
+      "name": "Nguyễn Phúc An Khang",
+      "mssv": "TC-CNTT18B11",
+      "class": "TC-CNTT18B",
+      "role": "Sinh viên thực hiện"
+    }
+  ],
+  "advisor": "Hồ Thị Thanh Diệu",
+  "company": "Công ty Cổ phần SweetSoft",
+  "companyAddress": "Tòa nhà VCN Tower, Khu đô thị VCN, Nha Trang, Khánh Hòa",
+  "supervisor": "Lê Thị Hoàng Yến Nhi",
+  "supervisorPhone": "0898.382.020",
+  "internshipPeriod": "Từ ngày 01/06/2026 đến ngày 24/07/2026",
+  "year": "2026",
+  "location": "Khánh Hòa"
+}
