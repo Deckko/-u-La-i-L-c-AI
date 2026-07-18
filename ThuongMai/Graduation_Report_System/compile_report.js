@@ -1,5 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Target Directories & Files
 const BASE_DIR = __dirname;
@@ -20,7 +24,6 @@ if (!fs.existsSync(CONFIG_FILE)) {
 const config = JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
 console.log(`[INFO] Đã nạp cấu hình thành công:`);
 console.log(` - Sinh viên 1: ${config.students[0]?.name} (${config.students[0]?.mssv})`);
-console.log(` - Sinh viên 2: ${config.students[1]?.name} (${config.students[1]?.mssv})`);
 console.log(` - Giảng viên hướng dẫn: ${config.advisor}`);
 
 // 2. Scan and Extract Metrics from Source Code (04_Project_Source)
@@ -138,7 +141,6 @@ console.log('\n[INFO] Đang chuyển đổi báo cáo sang định dạng HTML c
 function markdownToHtml(md) {
   let html = md;
 
-  // Preserve code blocks before doing other inline formatting
   const codeBlocks = [];
   html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
     const placeholder = `<!--CODE_BLOCK_${codeBlocks.length}-->`;
@@ -146,7 +148,6 @@ function markdownToHtml(md) {
     return placeholder;
   });
 
-  // Table parser
   html = html.replace(/\n(\|.*\|)\n(\|[-:| ]*\|)\n((?:\|.*\|\n?)*)/g, (match, header, separator, body) => {
     const headers = header.split('|').slice(1, -1).map(h => h.trim());
     const rows = body.trim().split('\n').map(row => row.split('|').slice(1, -1).map(r => r.trim()));
@@ -167,7 +168,6 @@ function markdownToHtml(md) {
     return '\n' + tableHtml + '\n';
   });
 
-  // Basic markdown inline parser
   html = html
     .replace(/\\newpage/g, '<div class="page-break"></div>')
     .replace(/^# (.*)$/gm, '<h1 class="chapter-title">$1</h1>')
@@ -180,11 +180,9 @@ function markdownToHtml(md) {
     .replace(/!\[(.*?)\]\((.*?)\)/g, '<div class="image-container"><img src="$2" alt="$1"><p class="image-caption">$1</p></div>')
     .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
 
-  // Parse lists (very simple handler)
   html = html.replace(/^\*\s(.*)$/gm, '<li>$1</li>');
   html = html.replace(/((?:<li>.*<\/li>\s*)+)/g, '<ul>\n$1</ul>\n');
 
-  // Parse paragraphs (any lines that are not html tags, headers, lists)
   const lines = html.split('\n');
   const parsedLines = lines.map(line => {
     const trimmed = line.trim();
@@ -218,7 +216,6 @@ function markdownToHtml(md) {
   });
   html = parsedLines.join('\n');
 
-  // Put code blocks back
   codeBlocks.forEach((block, index) => {
     const placeholder = `<!--CODE_BLOCK_${index}-->`;
     const blockHtml = `<pre class="code-block"><code class="language-${block.lang}">${block.code}</code></pre>`;
@@ -247,7 +244,7 @@ const htmlTemplate = `<!DOCTYPE html>
   <style>
     @page {
       size: A4;
-      margin: 20mm 15mm 20mm 30mm; /* Top: 2cm, Right: 1.5cm, Bottom: 2cm, Left: 3cm */
+      margin: 20mm 15mm 20mm 30mm;
     }
     body {
       font-family: 'Times New Roman', Times, serif;
@@ -264,7 +261,7 @@ const htmlTemplate = `<!DOCTYPE html>
       clear: both;
     }
     p {
-      text-indent: 1.27cm; /* Standard paragraph indent */
+      text-indent: 1.27cm;
       margin-top: 0;
       margin-bottom: 6pt;
     }
@@ -277,7 +274,6 @@ const htmlTemplate = `<!DOCTYPE html>
       margin-bottom: 24pt;
       page-break-before: always;
     }
-    /* Disable page break on the very first H1 */
     h1.chapter-title:first-of-type {
       page-break-before: avoid;
     }
@@ -362,17 +358,6 @@ const htmlTemplate = `<!DOCTYPE html>
     a {
       color: #000;
       text-decoration: none;
-    }
-    /* Cover page custom styling */
-    .cover-border {
-      border: 4px double #000;
-      padding: 20mm;
-      box-sizing: border-box;
-      min-height: 250mm;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-align: center;
     }
   </style>
 </head>
