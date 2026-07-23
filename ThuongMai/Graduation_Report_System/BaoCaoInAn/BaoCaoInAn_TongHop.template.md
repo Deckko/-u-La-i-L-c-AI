@@ -425,8 +425,379 @@ $totalAmount += $variant->price * $item['quantity'];
 Trình AI Engine RAG được lập trình độc lập bằng FastAPI kết nối trực tiếp với Vector DB Qdrant. Các mô tả sản phẩm được nhúng sang vector qua mô hình text-embedding-3-small. Khi khách hàng hỏi, FastAPI chạy phép toán khoảng cách vector và trích xuất ngữ cảnh liên quan để làm Prompt sạch gửi sang mô hình LLM, đảm bảo chatbot không bị lỗi ảo giác thông tin và tư vấn size chính xác.
 3.5 Lộ trình triển khai Firebase Hosting và Kết quả kiểm thử hiệu năng chịu tải
 Dự án được triển khai build tĩnh qua Next.js Static Export và tải lên Firebase Hosting. Quá trình kiểm thử tải (Load Test) mô phỏng 500 yêu cầu đồng thời thanh toán trong 1 giây chứng minh hệ thống hoạt động ổn định 100%, không xảy ra hiện tượng mất nhất quán tồn kho.
-Nhận xét Chương 3
-Chương 3 đã làm rõ phương án thực thi mã nguồn chi tiết ở cả 3 lớp Frontend, Backend và AI Engine. Giao diện được tối ưu hóa chống lỗi runtime, Backend được trang bị cơ chế khóa chống Race Condition và công cụ AI được tích hợp Vector Database Qdrant. Tất cả kết hợp tạo nên một sản phẩm phần mềm E-commerce an toàn và thông minh bậc nhất.
+# CHƯƠNG 5: HÌNH ẢNH MINH HỌA HỆ THỐNG
+
+## 5.1 Giao diện đăng nhập hệ thống
+
+**Hình 5.1. Giao diện đăng nhập người dùng ứng dụng DECKKO Classic**
+
+### Mô tả chức năng
+Giao diện đăng nhập hệ thống đóng vai trò là điểm truy cập đầu tiên đối với người dùng đã đăng ký tài khoản trên nền tảng thương mại điện tử DECKKO Classic. Chức năng này phục vụ mục đích xác thực danh tính khách hàng, thiết lập phiên làm việc bảo mật và truy xuất dữ liệu cá nhân hóa bao gồm ưu đãi thành viên và lịch sử tích điểm. Đối tượng sử dụng chức năng là khách hàng thành viên và người dùng ghé thăm ứng dụng. Chức năng được kích hoạt khi người dùng bắt đầu truy cập hệ thống hoặc thực hiện các thao tác yêu cầu định danh tài khoản.
+
+### Phân tích giao diện
+Giao diện được thiết kế theo phong cách tối giản trên tông nền tối chủ đạo, tập trung vào khung biểu mẫu định danh trung tâm. Các khu vực chính bao gồm:
+- **Khối nhận diện thương hiệu:** Đặt tại vị trí trên cùng của khung biểu mẫu, hiển thị logo biểu tượng hình khối màu cam kết hợp tên thương hiệu "DECKKO CLASSIC" và thông điệp hướng dẫn người dùng.
+- **Biểu mẫu nhập thông tin:** Gồm ô nhập định danh Email (có văn bản gợi ý `name@example.com`) và ô nhập Mật khẩu tích hợp biểu tượng ẩn/hiện ký tự trực quan.
+- **Nút thao tác chính:** Nút "ĐĂNG NHẬP" sử dụng gam màu cam nổi bật nhằm định hướng hành động chính của người dùng.
+- **Tùy chọn truy cập phụ:** Nút "DUYỆT VỚI TƯ CÁCH KHÁCH" cho phép người dùng trải nghiệm các chức năng mua sắm cơ bản mà không bắt buộc đăng nhập ngay lập tức.
+- **Thành phần phụ trợ:** Góc phải phía trên màn hình tích hợp bộ chuyển đổi ngôn ngữ giao diện song ngữ Tiếng Việt (VI) và Tiếng Anh (EN). Phía dưới biểu mẫu bố trí dòng ghi chú hướng dẫn chế độ thử nghiệm.
+
+### Quy trình sử dụng
+1. Người dùng nhập địa chỉ email cá nhân và mật khẩu tương ứng vào các trường thông tin quy định trên biểu mẫu.
+2. Người dùng nhấn nút "ĐĂNG NHẬP" để gửi yêu cầu xác thực về máy chủ Backend.
+3. Hệ thống kiểm tra thông tin định danh, khởi tạo mã xác thực phiên làm việc và điều hướng người dùng về trang chủ với trạng thái đã đăng nhập.
+4. Trường hợp người dùng chưa muốn đăng nhập, người dùng nhấn nút "DUYỆT VỚI TƯ CÁCH KHÁCH" để chuyển thẳng vào giao diện mua sắm.
+
+### Ý nghĩa trong hệ thống
+Chức năng đăng nhập đóng vai trò then chốt trong việc kiểm soát truy cập và bảo vệ dữ liệu người dùng trên hệ thống thương mại điện tử. Việc phân định giữa phiên làm việc thành viên và phiên làm việc của khách truy cập tự do giúp hệ thống thu thập chính xác hành vi người dùng, quản lý giỏ hàng cá nhân hóa, đồng thời tạo tiền đề cho các tính năng gợi ý sản phẩm thông minh và quản lý đơn hàng an toàn.
+
+---
+
+## 5.2 Giao diện trang chủ hệ thống
+
+**Hình 5.2. Giao diện trang chủ hệ thống thương mại điện tử DECKKO Classic**
+
+### Mô tả chức năng
+Trang chủ là giao diện trung tâm của hệ thống thương mại điện tử, phục vụ mục đích cung cấp tổng quan về thương hiệu, định hình phong cách sản phẩm và điều hướng người dùng đến các khu vực chức năng khác nhau. Chức năng hỗ trợ người dùng khám phá chiến dịch thời trang mới, theo dõi các chương trình khuyến mãi theo thời gian thực và truy cập nhanh các công cụ hỗ trợ mua sắm. Đối tượng sử dụng bao gồm toàn bộ khách hàng truy cập ứng dụng web trên các thiết bị màn hình rộng.
+
+### Phân tích giao diện
+Giao diện trang chủ được chia thành các khu vực hiển thị cấu trúc rõ ràng:
+- **Thanh điều hướng cố định (Header/Navbar):** Nằm ở cạnh trên màn hình, chứa logo thương hiệu, danh mục sản phẩm thanh ngang (SẢN PHẨM, FLASH SALE, ÁO KHOÁC, ÁO THUN, QUẦN DENIM, PHỤ KIỆN, THANH TOÁN, TRA CỨU ĐƠN), bộ chuyển đổi ngôn ngữ (VI/EN), nút kích hoạt "TRỢ LÝ AI", biểu tượng giỏ hàng và biểu tượng tài khoản.
+- **Khu vực Banner chính (Hero Section):** Chiếm diện tích lớn với hình ảnh minh họa chất lượng cao, hiển thị tiêu đề chiến dịch "LOOKBOOK CAMPAIGN 2026 - TIÊU CHUẨN THỜI TRANG Ý", đi kèm văn bản giới thiệu về chất liệu sợi tự nhiên kháng khuẩn và nút kêu gọi hành động "XEM BỘ SƯU TẬP".
+- **Thanh thông tin ưu đãi dòng (Promo Bar):** Tích hợp đồng hồ đếm ngược chương trình "FLASH SALE TRONG NGÀY" hiển thị thời gian chính xác (giờ:phút:giây) và thông báo chính sách miễn phí vận chuyển cho đơn hàng đạt giá trị tối thiểu.
+- **Khối giá trị thương hiệu:** Trình bày các cam kết chất lượng sản phẩm như sử dụng sợi tre tự nhiên (Bamboo), độ bền màu nâng cao và thiết kế phom dáng tiêu chuẩn.
+
+### Quy trình sử dụng
+1. Người dùng truy cập vào địa chỉ website và quan sát thông tin chiến dịch nổi bật tại khu vực Banner chính.
+2. Người dùng có thể nhấn nút "XEM BỘ SƯU TẬP" để chuyển tiếp sang danh sách sản phẩm thuộc chiến dịch quảng bá.
+3. Người dùng sử dụng menu trên thanh điều hướng để di chuyển trực tiếp đến từng danh mục thời trang hoặc nhấp vào nút "TRỢ LÝ AI" để mở cửa sổ tương tác thông minh.
+4. Hệ thống phản hồi tức thì bằng việc tải dữ liệu tương ứng hoặc điều hướng màn hình theo thời gian thực mà không làm gián đoạn trải nghiệm người dùng.
+
+### Ý nghĩa trong hệ thống
+Giao diện trang chủ đóng vai trò là điểm kết nối trải nghiệm đầu tiên, ảnh hưởng trực tiếp đến tỷ lệ giữ chân khách hàng và hiệu quả điều hướng của ứng dụng. Việc tích hợp các yếu tố đếm ngược Flash Sale và nút kích hoạt AI Trợ lý ngay tại trang chủ giúp tăng cường khả năng tương tác, kích thích nhu cầu mua sắm và tối ưu hóa luồng hành trình khách hàng trong hệ thống.
+
+---
+
+## 5.3 Giao diện danh mục thời trang
+
+**Hình 5.3. Giao diện danh mục thời trang trên trang chủ hệ thống**
+
+### Mô tả chức năng
+Giao diện danh mục thời trang cung cấp cấu trúc phân loại sản phẩm theo nhóm ngành hàng, giúp người dùng dễ dàng định hình và truy cập vào dòng sản phẩm phù hợp với nhu cầu tìm kiếm. Chức năng hỗ trợ hiển thị tổng quan các bộ sưu tập trọng tâm cùng số lượng sản phẩm khả dụng trong từng phân khúc. Đối tượng sử dụng là khách hàng đang có nhu cầu phân loại và lọc sản phẩm theo nhóm chủng loại cụ thể.
+
+### Phân tích giao diện
+Khu vực danh mục thời trang được bố trí cân đối dạng lưới khối trên nền tối đồng nhất với các thành phần chi tiết:
+- **Tiêu đề phân đoạn:** Hiển thị dòng chữ nổi bật "DANH MỤC THỜI TRANG" kèm chú thích phụ "Khám phá các dòng sản phẩm chọn lọc" ở vị trí trung tâm phía trên.
+- **Lưới thẻ danh mục (Category Grid):** Gồm 4 thẻ danh mục sản phẩm chính được sắp xếp theo chiều ngang:
+  1. *Áo thun & Polo:* Hiển thị hình ảnh minh họa sản phẩm áo thun trắng đi kèm thông tin "19 sản phẩm".
+  2. *Quần Denim & Jeans:* Hiển thị hình ảnh người mẫu mặc quần jeans kèm thông tin "13 sản phẩm".
+  3. *Áo khoác Luxury:* Hiển thị hình ảnh áo khoác da cao cấp kèm thông tin "9 sản phẩm".
+  4. *Phụ kiện cao cấp:* Hiển thị hình ảnh đồng hồ đeo tay kỹ nghệ kèm thông tin "27 sản phẩm".
+- **Đồ họa và tương tác:** Mỗi thẻ tích hợp hình ảnh nền chất lượng cao với lớp phủ làm tối (overlay) nhằm nổi bật tên danh mục màu vàng/trắng và số lượng sản phẩm bên dưới.
+
+### Quy trình sử dụng
+1. Người dùng cuộn trang chủ xuống khu vực "DANH MỤC THỜI TRANG".
+2. Người dùng quan sát hình ảnh đại diện và số lượng sản phẩm được thống kê trên từng thẻ danh mục.
+3. Người dùng rê chuột hoặc nhấn trực tiếp vào thẻ danh mục mong muốn (ví dụ: Áo thun & Polo hoặc Quần Denim & Jeans).
+4. Hệ thống ghi nhận thao tác lựa chọn và điều hướng người dùng sang trang danh sách sản phẩm đã được lọc tự động theo danh mục tương ứng.
+
+### Ý nghĩa trong hệ thống
+Chức năng phân loại danh mục đóng vai trò quan trọng trong việc tổ chức kiến trúc thông tin cho cơ sở dữ liệu sản phẩm. Việc hiển thị minh bạch số lượng sản phẩm theo từng nhóm ngành hàng giúp người dùng tiết kiệm thời gian tìm kiếm, hỗ trợ hệ thống quản lý danh mục một cách khoa học và tối ưu hóa luồng phân phối dữ liệu từ Backend PostgreSQL lên giao diện người dùng.
+
+---
+
+## 5.4 Giao diện danh sách sản phẩm khuyên dùng
+
+**Hình 5.4. Giao diện danh sách sản phẩm khuyên dùng trên trang chủ**
+
+### Mô tả chức năng
+Giao diện danh sách sản phẩm khuyên dùng hiển thị danh sách các sản phẩm được hệ thống đề xuất dựa trên thuật toán cá nhân hóa dữ liệu mua sắm. Chức năng giúp giới thiệu trực quan các mặt hàng thời trang nổi bật, thông tin ưu đãi giá bán và cung cấp cái nhìn tổng thể về danh mục hàng hóa đang được phân phối. Đối tượng sử dụng là khách hàng đang tìm kiếm gợi ý mua sắm hoặc duyệt danh sách sản phẩm ưu đãi.
+
+### Phân tích giao diện
+Giao diện được tổ chức theo cấu trúc lưới sản phẩm chuẩn thương mại điện tử với các thành phần bao gồm:
+- **Tiêu đề khu vực:** Dòng chữ "SẢN PHẨM KHUYÊN DÙNG" đi kèm mô tả phụ "Gợi ý sản phẩm thông minh cá nhân hóa" và chỉ số tổng lượng "73 sản phẩm" phía bên phải.
+- **Lưới sản phẩm (Product Grid):** Hiển thị các thẻ sản phẩm sắp xếp thành các cột đồng đều. Mỗi thẻ sản phẩm bao gồm:
+  - *Hình ảnh đại diện:* Ảnh chụp sản phẩm chất lượng cao với tỷ lệ khung hình chuẩn.
+  - *Nhãn khuyến mãi:* Thẻ màu cam hiển thị tỷ lệ giảm giá (ví dụ: `-25%`) đặt ở góc trên bên trái ảnh.
+  - *Các chấm chọn màu sắc (Color Swatches):* Cho phép xem trước các phiên bản màu sắc sẵn có của sản phẩm.
+  - *Thông tin thương hiệu và tên:* Hiển thị dòng sản phẩm (DECKKO STREETWEAR / DECKKO PERFORMANCE) và tên đầy đủ của sản phẩm.
+  - *Thông tin giá bán:* Trình bày song song giá bán đã giảm (nổi bật màu trắng) và giá gốc ban đầu (gạch ngang màu xám).
+
+### Quy trình sử dụng
+1. Người dùng di chuyển màn hình đến phân đoạn "SẢN PHẨM KHUYÊN DÙNG".
+2. Người dùng xem danh sách các thẻ sản phẩm được hiển thị trực quan trên lưới.
+3. Người dùng có thể di chuột qua các chấm màu sắc để xem thông tin biến thể màu tương ứng của sản phẩm.
+4. Khi nhấn vào thẻ sản phẩm bất kỳ, hệ thống sẽ tiếp nhận sự kiện và chuyển hướng người dùng truy cập trực tiếp vào trang chi tiết của sản phẩm đó.
+
+### Ý nghĩa trong hệ thống
+Danh sách sản phẩm khuyên dùng là công cụ thúc đẩy doanh số và tăng cường tỷ lệ chuyển đổi cho hệ thống thương mại điện tử. Việc trình bày đầy đủ thông tin giảm giá, thương hiệu phân cấp và tùy chọn màu sắc ngay trên giao diện danh sách giúp nâng cao hiệu quả hiển thị dữ liệu, giảm thiểu các bước thao tác trung gian và tối ưu hóa trải nghiệm duyệt hàng của người tiêu dùng.
+
+---
+
+## 5.5 Giao diện chi tiết sản phẩm
+
+**Hình 5.5. Giao diện thông tin chi tiết sản phẩm Áo Khoác Dạ Blazer Classic**
+
+### Mô tả chức năng
+Giao diện chi tiết sản phẩm là nơi cung cấp đầy đủ thông tin kỹ thuật, thông số thương mại, hình ảnh đa góc độ và các tùy chọn mua sắm cho một sản phẩm cụ thể (trong hình minh họa là Áo Khoác Dạ Blazer Classic). Chức năng cho phép người dùng lựa chọn thông số biến thể (màu sắc, kích thước, số lượng) và thực hiện các hành động đặt hàng trực tiếp hoặc thêm sản phẩm vào giỏ hàng cá nhân.
+
+### Phân tích giao diện
+Giao diện chi tiết sản phẩm được chia thành hai cột chức năng chính rõ ràng:
+- **Cột bên trái (Khu vực hình ảnh truyền thông):** Gồm danh sách các ảnh thu nhỏ (thumbnails) sắp xếp theo chiều dọc, hỗ trợ nút "XEM VIDEO" trải nghiệm trực quan, kết hợp với khung hiển thị ảnh sản phẩm kích thước lớn ở trung tâm.
+- **Cột bên phải (Khu vực thông tin và thao tác mua hàng):**
+  - *Định danh và Giá cả:* Hiển thị mã định danh hàng hóa SKU (`CLASSIC-WOOL-BLAZER-M`), giá bán hiện tại (`2.750.000 đ`), giá gốc gạch ngang (`3.437.500 đ`) và nhãn phần trăm giảm giá (`-20% OFF`).
+  - *Khối đặc tính chất liệu:* Thẻ thông báo tính năng nổi bật "SỢI TRE TỰ NHIÊN (BAMBOO)" nêu rõ ưu điểm thoáng khí và kháng khuẩn.
+  - *Khu vực chọn biến thể:* Nút chọn màu sắc (MÀU SẮC: ĐEN), khối chọn kích thước (S, M, L, XL với size M đang được kích hoạt) và liên kết tra cứu "BẢNG QUY ĐỔI SIZE".
+  - *Điều chỉnh số lượng & Nút hành động:* Bộ tăng giảm số lượng sản phẩm, nút "THÊM VÀO GIỎ" (dạng viền) và nút "MUA NGAY" (dạng khối màu cam).
+  - *Khối mô tả chi tiết:* Khu vực cuộn hiển thị chất liệu, phong cách và thông số kỹ thuật của sản phẩm.
+
+### Quy trình sử dụng
+1. Người dùng xem các hình ảnh đại diện và video giới thiệu sản phẩm ở cột bên trái.
+2. Người dùng thực hiện lựa chọn màu sắc, chọn kích thước phù hợp (như S, M, L, XL) và điều chỉnh số lượng cần mua.
+3. Người dùng nhấn nút "THÊM VÀO GIỎ" để lưu sản phẩm vào giỏ hàng tạm thời hoặc nhấn nút "MUA NGAY" để chuyển thẳng đến quy trình thanh toán đơn hàng.
+4. Hệ thống kiểm tra số lượng tồn kho của biến thể đã chọn trong cơ sở dữ liệu và phản hồi trạng thái tương ứng lên giao diện.
+
+### Ý nghĩa trong hệ thống
+Giao diện chi tiết sản phẩm là mắt xích quyết định trong luồng giao dịch mua sắm trực tuyến. Việc số hóa chi tiết từ mã SKU, thuộc tính biến thể màu sắc/kích thước đến các nút lệnh thao tác giúp hệ thống Backend Laravel quản lý chính xác tồn kho theo từng biến thể, đồng thời hỗ trợ người dùng đưa ra quyết định mua hàng chính xác dựa trên đầy đủ dữ liệu kỹ thuật được cung cấp.
+
+---
+
+## 5.6 Giao diện tải thêm sản phẩm và chân trang
+
+**Hình 5.6. Giao diện tải thêm sản phẩm và thông tin chân trang hệ thống**
+
+### Mô tả chức năng
+Chức năng tải thêm sản phẩm và chân trang (Footer) đóng vai trò điều hướng cuộn mở rộng và cung cấp các thông tin pháp lý, bản quyền thương hiệu cho hệ thống thương mại điện tử. Chức năng giúp người dùng tiếp cận danh mục hàng hóa mở rộng mà không cần thực hiện chuyển trang phức tạp, đồng thời xác nhận quyền sở hữu trí tuệ của ứng dụng. Đối tượng sử dụng bao gồm tất cả khách hàng đang duyệt danh sách sản phẩm trên hệ thống.
+
+### Phân tích giao diện
+Thành phần giao diện được đặt ở phần cuối của danh sách sản phẩm trang chủ, bao gồm hai khu vực chính:
+- **Nút điều hướng tải thêm sản phẩm:** Nằm ở vị trí trung tâm màn hình, có dạng khối hình chữ nhật viền xám nổi bật trên nền tối. Nút hiển thị nội dung "XEM THÊM (49 CÒN LẠI)" đi kèm biểu tượng mũi tên hướng xuống, cho biết số lượng sản phẩm khả dụng chưa được tải lên giao diện.
+- **Khu vực thông tin chân trang (Footer):** Đặt ở đáy màn hình với bố cục căn giữa, trình bày tên thương hiệu "DECKKO CLASSIC", dòng thông tin bản quyền "© 2026 DECKKO CLASSIC. All rights reserved." và các từ khóa định hình định hướng sản phẩm "Thời trang cao cấp - Tích hợp AI - Chất liệu tự nhiên".
+
+### Quy trình sử dụng
+1. Người dùng cuộn danh sách sản phẩm xuống vị trí cuối cùng của trang hiện tại.
+2. Người dùng quan sát chỉ số sản phẩm còn lại hiển thị trên nút "XEM THÊM (49 CÒN LẠI)".
+3. Người dùng nhấn vào nút lệnh để gửi yêu cầu truy xuất dữ liệu sản phẩm tiếp theo.
+4. Hệ thống tải bổ sung dữ liệu sản phẩm từ máy chủ và cập nhật trực tiếp vào lưới sản phẩm phía trên mà không làm tải lại toàn bộ trang web.
+
+### Ý nghĩa trong hệ thống
+Chức năng tải thêm sản phẩm dạng lazy-loading kết hợp với khu vực chân trang giúp tối ưu hóa hiệu năng truyền tải dữ liệu của hệ thống Frontend Next.js. Phương pháp này giảm thiểu tải ban đầu cho máy chủ, tiết kiệm băng thông mạng và mang lại trải nghiệm duyệt hàng liên tục, không bị đứt đoạn cho người dùng cuối.
+
+---
+
+## 5.7 Giao diện thông báo phản hồi trạng thái giỏ hàng
+
+**Hình 5.7. Giao diện thông báo phản hồi trạng thái thêm sản phẩm vào giỏ hàng**
+
+### Mô tả chức năng
+Chức năng thông báo phản hồi trạng thái (Toast Notification) cung cấp phản hồi tức thì dưới dạng vệt thông báo nổi khi người dùng thực hiện tương tác thêm hàng hóa vào giỏ. Chức năng phục vụ mục đích xác nhận kết quả xử lý của hệ thống đối với thao tác của khách hàng, đảm bảo tính minh bạch và tin cậy trong quá trình mua sắm. Đối tượng tác động là khách hàng đang thực hiện hành vi chọn mua sản phẩm.
+
+### Phân tích giao diện
+Thông báo nổi được thiết kế theo dạng hộp thoại nhỏ gọn, hiển thị tạm thời trên giao diện với các thành phần chính:
+- **Biểu tượng xác nhận (Status Icon):** Nằm ở góc trái hộp thoại, sử dụng hình tròn màu cam chứa dấu tích xác nhận thao tác thành công.
+- **Thông điệp trạng thái:** Hiển thị văn bản ngắn gọn, rõ ràng với nội dung "Đã thêm 1 sản phẩm vào giỏ hàng!".
+- **Nút đóng thông báo:** Nút bấm biểu tượng dấu chữ X đặt ở góc phải, cho phép người dùng chủ động tắt thông báo ngay lập tức.
+- **Khung chứa:** Thiết kế dạng khối hình chữ nhật bo góc nhẹ, viền xám mỏng trên nền tối giúp thông báo nổi bật trên tất cả các lớp giao diện bên dưới.
+
+### Quy trình sử dụng
+1. Người dùng nhấn nút "THÊM VÀO GIỎ" tại trang chi tiết sản phẩm hoặc danh sách sản phẩm.
+2. Hệ thống xử lý thêm sản phẩm vào bộ nhớ giỏ hàng và kích hoạt thành phần thông báo nổi trên màn hình.
+3. Người dùng đọc thông điệp xác nhận thành công để nắm bắt trạng thái cập nhật giỏ hàng.
+4. Thông báo sẽ tự động ẩn sau một khoảng thời gian quy định hoặc tắt ngay khi người dùng nhấn nút biểu tượng dấu X.
+
+### Ý nghĩa trong hệ thống
+Thông báo phản hồi trạng thái là thành phần quan trọng trong việc xây dựng giao diện người dùng tương tác theo thời gian thực (Real-time UI Feedback). Việc cung cấp tín hiệu xác nhận rõ ràng giúp nâng cao tính tiện dụng, ngăn ngừa hành vi bấm lặp lại không mong muốn của người dùng và tăng cường độ tin cậy đối với các thao tác xử lý giỏ hàng phía Client.
+
+---
+
+## 5.8 Giao diện biểu tượng giỏ hàng cập nhật số lượng
+
+**Hình 5.8. Giao diện biểu tượng giỏ hàng cập nhật số lượng sản phẩm mua sắm**
+
+### Mô tả chức năng
+Chức năng biểu tượng giỏ hàng kèm huy hiệu số lượng (Cart Badge Indicator) trên thanh điều hướng hiển thị trạng thái tổng số mặt hàng hiện đang có trong giỏ mua sắm của người dùng. Chức năng phục vụ mục đích nhắc nhở số lượng hàng hóa đã chọn và cung cấp điểm truy cập nhanh vào giao diện quản lý đơn hàng. Đối tượng sử dụng là khách hàng truy cập ở mọi vị trí trên trang web.
+
+### Phân tích giao diện
+Thành phần hiển thị có kích thước nhỏ gọn nhưng có tính định hướng cao, nằm tại góc phải thanh điều hướng chính:
+- **Biểu tượng giỏ hàng (Cart Icon):** Sử dụng đồ họa đơn nét hình túi mua sắm màu trắng trực quan.
+- **Huy hiệu số lượng (Badge Indicator):** Đặt ở góc trên bên phải của biểu tượng giỏ hàng, thiết kế dạng hình tròn màu cam nổi bật.
+- **Số lượng hiển thị:** Con số thể hiện tổng lượng sản phẩm đang có trong giỏ (trong hình minh họa là số `1`).
+
+### Quy trình sử dụng
+1. Người dùng thực hiện chọn mua sản phẩm trên giao diện mua sắm.
+2. Hệ thống cập nhật dữ liệu giỏ hàng và tự động thay đổi con số hiển thị trên huy hiệu màu cam từ `0` lên `1` (hoặc tăng tương ứng theo số lượng mặt hàng).
+3. Người dùng quan sát huy hiệu để nhận biết giỏ hàng đang có sẵn sản phẩm.
+4. Khi người dùng nhấp vào biểu tượng giỏ hàng, hệ thống sẽ mở bảng xem trước giỏ hàng hoặc điều hướng trực tiếp sang trang thanh toán.
+
+### Ý nghĩa trong hệ thống
+Biểu tượng giỏ hàng kèm huy hiệu số lượng đóng vai trò duy trì trạng thái dữ liệu nhất quán (State Persistence) xuyên suốt phiên làm việc của người dùng. Việc hiển thị số lượng trực quan tại thanh header cố định giúp người dùng dễ dàng theo dõi tiến trình mua sắm, thúc đẩy hành vi chuyển đổi sang bước thanh toán và đảm bảo luồng trải nghiệm không bị gián đoạn khi chuyển đổi giữa các trang.
+
+---
+
+## 5.9 Giao diện thanh toán và xác nhận đơn hàng
+
+**Hình 5.9. Giao diện nhập thông tin giao hàng, phương thức thanh toán và tổng quan đơn hàng**
+
+### Mô tả chức năng
+Giao diện thanh toán và xác nhận đơn hàng (Checkout Page) là nơi thu thập thông tin giao nhận, lựa chọn hình thức thanh toán và xác nhận chi phí cuối cùng của đơn hàng. Chức năng phục vụ mục đích hoàn tất quy trình giao dịch mua sắm thương mại điện tử, khởi tạo bản ghi đơn hàng trong cơ sở dữ liệu và chuẩn bị cho bước xử lý vận chuyển. Đối tượng sử dụng là khách hàng đã chọn sản phẩm và chuẩn bị mua hàng.
+
+### Phân tích giao diện
+Giao diện được phân chia cấu trúc gồm ba khung chức năng chính:
+- **Khung thông tin giao hàng (Bên trái, phía trên):** Chứa các trường nhập liệu gồm Họ và tên (`Nguyễn Văn A`), Số điện thoại (`0901234567`), bản đồ tích hợp OpenStreetMap hỗ trợ xác nhận vị trí địa lý và ô nhập địa chỉ chi tiết (số nhà, tên đường, phường/xã, quận/huyện).
+- **Khung phương thức thanh toán (Bên trái, phía dưới):** Danh sách các tùy chọn thanh toán trực tuyến và truyền thống bao gồm Chuyển khoản VietQR, Ví điện tử MoMo, Cổng VNPAY, Thẻ Quốc tế (Stripe) và Thanh toán khi nhận hàng (COD).
+- **Khung tổng quan đơn hàng (Bên phải):** Hiển thị danh sách sản phẩm đặt mua (Quần Tây Slim Fit Chino, biến thể, giá `780.000 đ`), ô áp dụng mã giảm giá, tiền tạm tính, phí vận chuyển (`30.000 đ`), TỔNG THANH TOÁN (`810.000 đ`) màu vàng và nút bấm "XÁC NHẬN ĐẶT HÀNG" màu xanh/tím nổi bật.
+
+### Quy trình sử dụng
+1. Người dùng nhập thông tin cá nhân và địa chỉ nhận hàng chi tiết vào biểu mẫu giao hàng.
+2. Người dùng lựa chọn một trong các phương thức thanh toán được hỗ trợ (như VietQR, MoMo, VNPAY, Stripe hoặc COD).
+3. Người dùng kiểm tra lại thông tin danh mục hàng hóa, nhập mã giảm giá (nếu có) và quan sát tổng chi phí thanh toán ở khung đơn hàng.
+4. Người dùng nhấn nút "XÁC NHẬN ĐẶT HÀNG" để gửi yêu cầu khởi tạo đơn hàng về máy chủ Backend xử lý giao dịch.
+
+### Ý nghĩa trong hệ thống
+Giao diện thanh toán là giai đoạn cuối cùng mang tính quyết định trong chuỗi nghiệp vụ thương mại điện tử. Việc tích hợp đa dạng phương thức thanh toán trực tuyến cùng bản đồ xác định vị trí giao hàng giúp nâng cao độ chính xác của dữ liệu địa chỉ, đảm bảo tính bảo mật giao dịch tài chính và tối ưu hóa quy trình xử lý đơn hàng tự động trên hệ thống Backend Laravel.
+
+---
+
+## 5.10 Giao diện cửa sổ Trợ lý Mua sắm AI
+
+**Hình 5.10. Giao diện cửa sổ tư vấn trực tuyến của Trợ lý Mua sắm AI**
+
+### Mô tả chức năng
+Giao diện cửa sổ Trợ lý Mua sắm AI (AI Shopping Assistant Chatbot) cung cấp công cụ tương tác hội thoại thông minh hỗ trợ tư vấn khách hàng theo thời gian thực. Chức năng phục vụ mục đích giải đáp thắc mắc về kích cỡ (size), chất liệu vải, chính sách khuyến mãi và thực hiện tìm kiếm ngữ nghĩa sản phẩm dựa trên công nghệ RAG. Đối tượng sử dụng là khách hàng cần tư vấn hỗ trợ mua hàng tự động trên ứng dụng.
+
+### Phân tích giao diện
+Giao diện được thiết kế dạng bảng trượt (Sidebar) phía bên phải màn hình với các khu vực chính:
+- **Thanh tiêu đề (Header Chat):** Hiển thị tên dịch vụ "Trợ Lý Mua Sắm AI" đi kèm biểu tượng ngôi sao màu vàng và nút biểu tượng dấu X đóng cửa sổ ở góc phải.
+- **Chỉ báo ngữ cảnh (Context Indicator):** Dòng hiển thị trạng thái `Context: Trang chủ Catalog` cho biết khu vực dữ liệu hệ thống AI đang truy xuất để phục vụ tư vấn.
+- **Khu vực hiển thị nội dung hội thoại:** Khung chứa các bong bóng tin nhắn (Chat Bubbles). Tin nhắn khởi đầu từ hệ thống hiển thị văn bản chào mừng: "Chào mừng bạn đến với trải nghiệm mua sắm xa xỉ DECKKO. Tôi có thể giúp gì cho bạn hôm nay?".
+- **Khung nhập liệu phản hồi:** Đặt ở đáy bảng trượt, bao gồm ô nhập câu hỏi văn bản với văn bản gợi ý "Hỏi về size, chất liệu, khuyến mãi..." và nút gửi tin nhắn màu cam có biểu tượng biểu thị thao tác truyền dữ liệu.
+
+### Quy trình sử dụng
+1. Người dùng kích hoạt nút "TRỢ LÝ AI" trên thanh điều hướng để mở bảng trượt tương tác.
+2. Người dùng quan sát chỉ báo ngữ cảnh và tin nhắn chào mừng mặc định của trợ lý AI.
+3. Người dùng nhập câu hỏi hoặc yêu cầu tư vấn liên quan đến sản phẩm vào ô nhập liệu và nhấn nút gửi.
+4. Hệ thống AI tiếp nhận câu hỏi, thực hiện truy vấn ngữ nghĩa và phản hồi kết quả tư vấn trực tiếp trên cửa sổ hội thoại.
+
+### Ý nghĩa trong hệ thống
+Cửa sổ Trợ lý Mua sắm AI đại diện cho giải pháp ứng dụng Trí tuệ nhân tạo trong việc tự động hóa dịch vụ chăm sóc khách hàng. Việc tích hợp trợ lý AI kết nối với Vector Database Qdrant và mô hình ngôn ngữ lớn giúp nâng cao khả năng tư vấn chính xác, hỗ trợ người dùng tìm kiếm sản phẩm theo ngữ nghĩa tự nhiên và nâng cao trải nghiệm tương tác trên nền tảng thương mại điện tử.
+
+---
+
+## 5.11 Giao diện tổng quan trang quản trị
+
+**Hình 5.11. Giao diện báo cáo tổng quan chỉ số hệ thống trang quản trị**
+
+### Mô tả chức năng
+Giao diện tổng quan trang quản trị (Admin Dashboard) đóng vai trò là trung tâm theo dõi và báo cáo các chỉ số kinh doanh chính của hệ thống thương mại điện tử DECKKO Classic. Chức năng phục vụ mục đích cung cấp bức tranh toàn cảnh về doanh thu tổng, lượng đơn hàng xử lý, số lượng khách hàng đăng ký và giá trị đơn hàng trung bình. Đối tượng sử dụng là cấp quản lý doanh nghiệp (Quản Trị Viên / CEO) và nhân viên vận hành hệ thống.
+
+### Phân tích giao diện
+Giao diện bao gồm thanh điều hướng quản trị theo chiều dọc bên trái và khu vực báo cáo chỉ số ở bên phải:
+- **Thanh menu điều hướng dọc (Sidebar):** Định danh logo "D ADMIN ADMIN", danh sách menu chức năng (Tổng quan, Sản phẩm, Đơn hàng, Khách hàng, Cài đặt), khối hiển thị thông tin người dùng đang đăng nhập (`AD Quản Trị Viên (CEO) ADDECKKO`), cùng hai liên kết "VỀ TRANG CHỦ" và "ĐĂNG XUẤT".
+- **Thẻ thống kê chỉ số chính (Stat Cards):** Gồm 4 thẻ báo cáo được đặt song song phía trên:
+  1. *TỔNG DOANH THU:* Hiển thị tổng số tiền doanh số tích lũy (hiện tại `0 đ`).
+  2. *TỔNG ĐƠN HÀNG:* Hiển thị số lượng đơn hàng kèm nhãn chỉ báo thời gian thực `Realtime`.
+  3. *KHÁCH HÀNG:* Thống kê số lượng người dùng duy nhất kèm nhãn `Unique`.
+  4. *ĐƠN HÀNG TB:* Tính toán giá trị doanh thu trung bình trên mỗi đơn hàng.
+- **Biểu đồ và bảng danh sách:**
+  - Khối biểu đồ "ĐƠN HÀNG THEO NGÀY TRONG TUẦN" hỗ trợ theo dõi biến động số lượng đơn theo mốc thời gian.
+  - Khối danh sách "ĐƠN HÀNG MỚI NHẤT" hiển thị các giao dịch phát sinh gần nhất trong hệ thống.
+
+### Quy trình sử dụng
+1. Quản trị viên đăng nhập vào hệ thống quản trị và được tự động điều hướng hoặc nhấp chọn mục "Tổng quan" trên thanh menu.
+2. Quản trị viên theo dõi các chỉ số doanh thu, số lượng đơn hàng và biến động biểu đồ hiển thị trên màn hình.
+3. Quản trị viên có thể sử dụng thông tin từ bảng đơn hàng mới nhất để kiểm tra trạng thái các giao dịch vừa phát sinh.
+4. Hệ thống tự động truy vấn dữ liệu từ PostgreSQL và cập nhật thông số hiển thị theo thời gian thực mà không cần thao tác tải lại thủ công.
+
+### Ý nghĩa trong hệ thống
+Giao diện tổng quan trang quản trị đóng vai trò cực kỳ quan trọng trong việc hỗ trợ ra quyết định kinh doanh và giám sát hoạt động vận hành của toàn bộ nền tảng thương mại điện tử. Việc tập trung các chỉ số đo lường hiệu suất kinh doanh (KPIs) tại một giao diện duy nhất giúp bộ phận quản lý nắm bắt nhanh chóng tình hình giao dịch, phát hiện bất thường và điều phối nguồn lực vận hành hiệu quả.
+
+---
+
+## 5.12 Giao diện quản lý kho sản phẩm trang quản trị
+
+**Hình 5.12. Giao diện danh sách kho sản phẩm trang quản trị**
+
+### Mô tả chức năng
+Giao diện quản lý kho sản phẩm (Admin Product Inventory) cung cấp công cụ quản trị dữ liệu hàng hóa toàn diện cho hệ thống. Chức năng cho phép bộ phận vận hành theo dõi danh mục sản phẩm lưu kho, cập nhật mức giá bán, liên kết nhãn thương hiệu phân cấp, xem trước tư liệu truyền thông và thực hiện các thao tác quản lý dữ liệu sản phẩm. Đối tượng sử dụng bao gồm Quản trị viên và Nhân viên quản lý kho.
+
+### Phân tích giao diện
+Giao diện được tổ chức theo dạng bảng dữ liệu chuẩn hóa kết hợp thanh công cụ điều hướng phía trên:
+- **Thanh công cụ trên cùng:** Tiêu đề "KHO SẢN PHẨM" kèm dòng chú thích tính năng "Quản lý kho hàng, cập nhật video KOL, giá bán (Đã đồng bộ Schema)". Bên phải bố trí ô tìm kiếm "Tìm tên sản phẩm..." và nút bấm màu cam "+ THÊM SẢN PHẨM".
+- **Bảng dữ liệu sản phẩm (Product Inventory Table):** Gồm 5 cột thông tin được phân định rõ ràng:
+  - *SẢN PHẨM:* Hiển thị hình ảnh thu nhỏ, tên đầy đủ và mã định danh sản phẩm (ví dụ: Áo Khoác Bomber Luxury Gold Accent, Áo Khoác Dạ Blazer Classic,...).
+  - *GIÁ BÁN:* Hiển thị mức giá niêm yết chính thức bằng đơn vị Đồng (VNĐ).
+  - *THƯƠNG HIỆU:* Thẻ nhãn phân loại dòng sản phẩm (DECKKO STREETWEAR, DECKKO PERFORMANCE, DECKKO WINTER, DECKKO FORMAL).
+  - *MEDIA:* Nút liên kết biểu tượng hình ảnh/video hỗ trợ xem trước tư liệu truyền thông sản phẩm.
+  - *THAO TÁC:* Bộ biểu tượng chức năng cho phép chỉnh sửa thông tin hoặc xóa sản phẩm khỏi hệ thống.
+
+### Quy trình sử dụng
+1. Quản trị viên nhấp chọn mục "Sản phẩm" trên thanh điều hướng dọc bên trái.
+2. Quản trị viên xem danh sách sản phẩm lưu kho hoặc nhập từ khóa tên sản phẩm vào ô tìm kiếm để lọc dữ liệu.
+3. Khi cần bổ sung mặt hàng mới, quản trị viên nhấn nút màu cam "+ THÊM SẢN PHẨM" để mở biểu mẫu nhập liệu.
+4. Đối với mỗi sản phẩm trong danh sách, quản trị viên có thể nhấn biểu tượng hình cây bút để chỉnh sửa thông tin hoặc biểu tượng thùng rác để xóa sản phẩm khỏi cơ sở dữ liệu.
+
+### Ý nghĩa trong hệ thống
+Chức năng quản lý kho sản phẩm là cốt lõi của phân hệ quản trị thương mại điện tử, đảm bảo dữ liệu catalog sản phẩm luôn được đồng bộ chính xác với giao diện mua sắm phía khách hàng. Việc cấu hình danh mục thương hiệu rõ ràng và hỗ trợ quản lý liên kết truyền thông giúp tối ưu hóa cấu trúc dữ liệu sản phẩm trên cơ sở dữ liệu PostgreSQL.
+
+---
+
+## 5.13 Giao diện biểu mẫu thêm sản phẩm mới
+
+**Hình 5.13. Giao diện cửa sổ nhập liệu thêm sản phẩm mới trang quản trị**
+
+### Mô tả chức năng
+Giao diện biểu mẫu thêm sản phẩm mới (Add Product Modal) là cửa sổ hộp thoại nhập liệu dạng tương tác nổi, phục vụ mục đích khai báo và lưu trữ thông tin sản phẩm mới vào cơ sở dữ liệu hệ thống. Chức năng giúp người quản trị cập nhật bổ sung các mặt hàng mới vào danh mục kinh doanh mà không làm gián đoạn luồng làm việc trên trang danh sách. Đối tượng sử dụng là Quản trị viên hệ thống và Nhân viên phụ trách dữ liệu sản phẩm.
+
+### Phân tích giao diện
+Biểu mẫu được thiết kế dưới dạng hộp thoại Modal trung tâm, tạo sự tập trung tối đa cho thao tác nhập liệu:
+- **Thanh tiêu đề Modal:** Hiển thị dòng chữ "THÊM SẢN PHẨM MỚI" ở góc trái và nút đóng biểu tượng dấu X ở góc phải.
+- **Các trường nhập liệu chuẩn hóa:**
+  - *TÊN SẢN PHẨM:* Trường văn bản có gợi ý `VD: Áo Thun Cổ Lọ Ý`.
+  - *GIÁ BẢN (VND):* Trường nhập số liệu tài chính (giá trị hiển thị mẫu `550000`).
+  - *THƯƠNG HIỆU:* Trường nhập phân loại dòng thương hiệu (`VD: DECKKO STREETWEAR`).
+  - *LINK ẢNH COVER (URL):* Trường nhập liên kết địa chỉ hình ảnh đại diện (`https://unsplash.com/...`).
+  - *LINK VIDEO REVIEW (OPTIONAL):* Trường nhập liên kết video xem trước không bắt buộc (`https://mixkit.co/...`).
+- **Nút lệnh thao tác:** Nút chữ "HỦY" cho phép hủy bỏ thao tác nhập liệu và nút khối màu cam "LƯU SẢN PHẨM" để xác nhận lưu trữ.
+
+### Quy trình sử dụng
+1. Quản trị viên nhấn nút "+ THÊM SẢN PHẨM" trên giao diện kho sản phẩm để kích hoạt hiển thị Modal.
+2. Quản trị viên điền đầy đủ các thông tin cần thiết gồm Tên sản phẩm, Giá bán, Thương hiệu và Liên kết hình ảnh/video vào các ô tương ứng.
+3. Quản trị viên nhấn nút "LƯU SẢN PHẨM" để gửi dữ liệu về máy chủ xử lý.
+4. Hệ thống kiểm tra tính hợp lệ của dữ liệu, lưu sản phẩm mới vào cơ sở dữ liệu PostgreSQL và tự động cập nhật danh sách hiển thị phía ngoài.
+
+### Ý nghĩa trong hệ thống
+Chức năng biểu mẫu thêm sản phẩm mới đảm bảo quy trình nhập liệu dữ liệu hàng hóa diễn ra nhanh chóng, chính xác và tuân thủ đúng cấu trúc dữ liệu của hệ thống. Việc kiểm soát các trường thông tin bắt buộc giúp chuẩn hóa dữ liệu đầu vào, ngăn ngừa lỗi định dạng và duy trì tính toàn vẹn thông tin cho toàn bộ nền tảng thương mại điện tử.
+
+---
+
+## 5.14 Giao diện cài đặt hệ thống và kiểm soát phân quyền
+
+**Hình 5.14. Giao diện cài đặt hệ thống, kiểm soát phân quyền và trạng thái kết nối**
+
+### Mô tả chức năng
+Giao diện cài đặt hệ thống (Admin System Settings) đóng vai trò là trung tâm kiểm soát phân quyền tài khoản, xác minh vai trò người dùng và giám sát trạng thái kết nối của các dịch vụ hạ tầng trong hệ thống thương mại điện tử. Chức năng giúp người quản trị nắm rõ hạn mức quyền hạn được cấp và tình trạng hoạt động của cơ sở dữ liệu cùng các API tích hợp. Đối tượng sử dụng là Quản trị viên hệ thống.
+
+### Phân tích giao diện
+Giao diện được chia thành hai khung thông tin cấu hình chính trên nền tối đồng nhất:
+- **Tiêu đề phân đoạn:** Hiển thị "CÀI ĐẶT HỆ THỐNG" kèm dòng mô tả phụ "Trung tâm kiểm soát phân quyền và cấu hình Database".
+- **Khối Quyền hạn tài khoản (Bên trái):**
+  - *Thông tin định danh:* Lời chào "Xin chào, Quản Trị Viên (CEO)!" và thông báo vai trò "Tài khoản của bạn đang được cấp quyền: ADMIN".
+  - *Danh sách quyền thao tác chi tiết:* Liệt kê các đặc quyền được kích hoạt bằng dấu tích màu xanh, bao gồm: Xem đơn hàng, Cập nhật trạng thái giao hàng, Thêm/Sửa/Xóa Sản phẩm, Xem Phân tích Doanh thu và Xem Hồ sơ Khách hàng VIP.
+- **Khối Trạng thái kết nối (Bên phải):**
+  - *CƠ SỞ DỮ LIỆU (STORAGE):* Hiển thị thẻ trạng thái màu xanh lá `ĐANG HOẠT ĐỘNG`.
+  - *WEBHOOKS (GHN API):* Hiển thị thẻ trạng thái màu vàng `GIẢ LẬP`.
+
+### Quy trình sử dụng
+1. Quản trị viên nhấp chọn mục "Cài đặt" trên thanh menu dọc phía bên trái.
+2. Quản trị viên kiểm tra danh sách quyền hạn được gán cho phiên làm việc hiện tại ở khung bên trái.
+3. Quản trị viên quan sát chỉ báo trạng thái tại khung bên phải để xác nhận tình trạng kết nối của hệ thống lưu trữ và dịch vụ giao hàng.
+4. Hệ thống duy trì việc giám sát kết nối và phản hồi trạng thái hoạt động thực tế lên giao diện theo thời gian thực.
+
+### Ý nghĩa trong hệ thống
+Giao diện cài đặt hệ thống và kiểm soát phân quyền đóng vai trò nòng cốt trong việc đảm bảo an ninh thông tin và độ tin cậy vận hành cho ứng dụng. Cơ chế phân quyền RBAC (Role-Based Access Control) giúp ngăn chặn việc truy cập trái phép vào các chức năng nhạy cảm, trong khi bảng theo dõi kết nối giúp bộ phận kỹ thuật chủ động phát hiện và khắc phục các sự cố gián đoạn dịch vụ hạ tầng.
+
+---
+
 # KẾT LUẬN
 Sau 8 tuần thực tập tốt nghiệp đầy nỗ lực tại {{company}} dưới sự giảng dạy hướng dẫn sát sao của cô {{advisor}}, sinh viên đã nghiên cứu lý thuyết kiến trúc Web phân tách và hoàn thành thiết kế, xây dựng thành công website trực tuyến E-commerce DECKKO:
 * Thiết kế giao diện responsive tối ưu, hoạt động mượt mà trên cả máy tính và thiết bị di động, cấu hình metadata SEO đầy đủ.
